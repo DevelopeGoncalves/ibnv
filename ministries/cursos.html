@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igreja Batista Nova Vida - Ministério Cursos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">IBNV</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../about.html">Sobre Nós</a></li>
+                    <li><a href="../sermons.html">Sermões</a></li>
+                    <li><a href="../ministries.html">Ministérios</a></li>
+                    <li><a href="../pascoa.html">Páscoa</a></li>
+                    <li><a href="../events.html">Eventos</a></li>
+                    <li><a href="../give.html">Dê</a></li>
+                    <li><a href="../contact.html">Contato</a></li>
+                    <li><a href="../cadastro_de_professores.html" class="btn btn-primary">Cadastre-se</a></li>
+                </ul>
+                <div class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section hero-page-header">
+            <div class="container text-center">
+                <h1>Nossos Cursos</h1>
+                <p>Cresça em conhecimento e fé através dos nossos cursos transformadores.</p>
+            </div>
+        </section>
+
+        <section class="section ministry-detail-content">
+            <div class="container text-left">
+                <h2>Selecione um curso para saber mais:</h2>
+                <div class="course-selection-grid">
+                    <div class="course-card" onclick="showCourseDetail('cursos-geral')">
+                        <img src="../img/ministries/cursos.jpg" alt="Imagem genérica de cursos">
+                        <h3>Cursos em Geral</h3>
+                        <p>Descubra os fundamentos da fé cristã e aprofunde seu relacionamento com Deus.</p>
+                    </div>
+                    <div class="course-card" onclick="showCourseDetail('homem-ao-maximo')">
+                        <img src="../img/ministries/homem-ao-maximo.jpg" alt="Homem ao Máximo">
+                        <h3>Homem ao Máximo</h3>
+                        <p>Capacitando homens a viverem uma vida de propósito e liderança cristã.</p>
+                    </div>
+                    <div class="course-card" onclick="showCourseDetail('mulher-unica')">
+                        <img src="../img/ministries/mulher-unica.jpg" alt="Mulher Única">
+                        <h3>Mulher Única</h3>
+                        <p>Encorajando mulheres a descobrirem sua identidade em Cristo e seu potencial.</p>
+                    </div>
+                    <div class="course-card" onclick="showCourseDetail('coragem')">
+                        <img src="../img/ministries/coragem.jpg" alt="Coragem">
+                        <h3>Coragem</h3>
+                        <p>Um curso para fortalecer sua fé e enfrentar os desafios da vida com ousadia.</p>
+                    </div>
+                </div>
+
+                <div id="course-detail-section" style="display: none; margin-top: 4rem;">
+                    <button class="btn btn-outline" onclick="hideCourseDetail()">Voltar para a seleção de cursos</button>
+                    <h3 id="course-detail-title" style="margin-top: 2rem;"></h3>
+                    <div id="course-detail-content"></div>
+                </div>
+
+                <p style="margin-top: 3rem;">Para mais informações sobre os cursos ou para se inscrever, entre em contato conosco!</p>
+                <a href="../contact.html" class="btn btn-primary">Fale Conosco</a>
+                <a href="../ministries.html" class="btn btn-outline">Voltar para Ministérios</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../about.html">Sobre Nós</a></li>
+                    <li><a href="../sermons.html">Sermões</a></li>
+                    <li><a href="../ministries.html">Ministérios</a></li>
+                </ul>
+                <ul>
+                    <li><a href="../pascoa.html">Páscoa</a></li>
+                    <li><a href="../events.html">Eventos</a></li>
+                    <li><a href="../give.html">Dê</a></li>
+                    <li><a href="../contact.html">Contato</a></li>
+                    <li><a href="../privacy-policy.html">Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-info">
+                <p>© 2024 Igreja Batista Nova Vida. Todos os direitos reservados.</p>
+                <p>Feito com ❤️ pela comunidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        function showCourseDetail(courseId) {
+            const courseDetailSection = document.getElementById('course-detail-section');
+            const courseDetailTitle = document.getElementById('course-detail-title');
+            const courseDetailContent = document.getElementById('course-detail-content');
+            const courseSelectionGrid = document.querySelector('.course-selection-grid');
+
+            courseSelectionGrid.style.display = 'none';
+            courseDetailSection.style.display = 'block';
+
+            let title = '';
+            let content = '';
+
+            switch (courseId) {
+                case 'cursos-geral':
+                    title = 'Cursos em Geral';
+                    content = `
+                        <p>Nossos Cursos em Geral são projetados para todos que desejam aprofundar seu conhecimento da Bíblia e da fé cristã.</p>
+                        <p><strong>Tópicos abordados:</strong></p>
+                        <ul>
+                            <li>Introdução à Bíblia</li>
+                            <li>Doutrinas Fundamentais</li>
+                            <li>Vida Cristã Prática</li>
+                            <li>História da Igreja</li>
+                        </ul>
+                        <p><strong>Líderes:</strong> Equipe de Pastores e Professores</p>
+                        <p><strong>Próxima Turma:</strong> Inscrições abertas para o próximo trimestre!</p>
+                        <img src="../img/ministries/cursos-galeria-1.jpg" alt="Pessoas estudando a bíblia" class="ministry-detail-img">
+                        <p>Este curso é ideal para novos convertidos e para aqueles que desejam revisar e aprofundar seus fundamentos.</p>
+                    `;
+                    break;
+                case 'homem-ao-maximo':
+                    title = 'Homem ao Máximo';
+                    content = `
+                        <p>O curso "Homem ao Máximo" é um programa abrangente que visa equipar homens em todas as áreas da vida, à luz dos princípios bíblicos.</p>
+                        <p><strong>Temas incluídos:</strong></p>
+                        <ul>
+                            <li>Paternidade e Família</li>
+                            <li>Liderança e Caráter</li>
+                            <li>Finanças e Integridade</li>
+                            <li>Espiritualidade e Propósito</li>
+                        </ul>
+                        <p><strong>Líderes:</strong> Pastor João e equipe</p>
+                        <p><strong>Frequência:</strong> Encontros semanais às quartas-feiras</p>
+                        <img src="../img/ministries/homem-ao-maximo-detail.jpg" alt="Grupo de homens em reunião" class="ministry-detail-img">
+                        <p>Participe e descubra como ser um homem que honra a Deus em tudo!</p>
+                    `;
+                    break;
+                case 'mulher-unica':
+                    title = 'Mulher Única';
+                    content = `
+                        <p>O curso "Mulher Única" é um convite para mulheres de todas as idades explorarem sua identidade, valor e propósito em Cristo.</p>
+                        <p><strong>O que você aprenderá:</strong></p>
+                        <ul>
+                            <li>Autoestima e Confiança em Deus</li>
+                            <li>Relacionamentos Saudáveis</li>
+                            <li>Administração do Lar e Tempo</li>
+                            <li>Crescimento Espiritual</li>
+                        </ul>
+                        <p><strong>Líderes:</strong> Luziene e Equipe de Mulheres</p>
+                        <p><strong>Frequência:</strong> Encontros quinzenais aos sábados</p>
+                        <img src="../img/ministries/mulher-unica-detail.jpg" alt="Grupo de mulheres em confraternização" class="ministry-detail-img">
+                        <p>Junte-se a nós para uma jornada de descoberta e fortalecimento!</p>
+                    `;
+                    break;
+                case 'coragem':
+                    title = 'Coragem';
+                    content = `
+                        <p>O curso "Coragem" foi desenvolvido para aqueles que buscam fortalecer sua fé e encontrar ousadia para viver os planos de Deus, superando medos e desafios.</p>
+                        <p><strong>Pontos-chave:</strong></p>
+                        <ul>
+                            <li>Confiança em Deus em Meio à Adversidade</li>
+                            <li>Como Vencer o Medo e a Insegurança</li>
+                            <li>Ativando sua Fé para Grandes Conquistas</li>
+                            <li>Vivendo uma Vida com Propósito Divino</li>
+                        </ul>
+                        <p><strong>Líderes:</strong> Pastor André</p>
+                        <p><strong>Duração:</strong> 8 semanas</p>
+                        <img src="../img/ministries/coragem-detail.jpg" alt="Pessoa meditando com a bíblia" class="ministry-detail-img">
+                        <p>Descubra a verdadeira coragem que vem de Deus e transforme sua vida!</p>
+                    `;
+                    break;
+                default:
+                    title = 'Detalhes do Curso';
+                    content = '<p>Selecione um curso para ver seus detalhes.</p>';
+            }
+
+            courseDetailTitle.innerHTML = title;
+            courseDetailContent.innerHTML = content;
+        }
+
+        function hideCourseDetail() {
+            const courseDetailSection = document.getElementById('course-detail-section');
+            const courseSelectionGrid = document.querySelector('.course-selection-grid');
+
+            courseDetailSection.style.display = 'none';
+            courseSelectionGrid.style.display = 'grid';
+        }
+    </script>
+</body>
+</html>
