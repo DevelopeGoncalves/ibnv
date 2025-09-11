@@ -153,5 +153,7 @@ function normalizarTexto(texto) {
     } else {
         console.warn('Novo Chatbot: Elementos essenciais não foram encontrados no HTML. O chatbot não será inicializado.');
     }
+    AOS.init();
     // --- FIM DA NOVA LÓGICA DO CHATBOT CRISTÃO ---
 });
+AOS.init();

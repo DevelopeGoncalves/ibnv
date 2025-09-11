@@ -35,41 +35,77 @@
     </header>
 
     <main>
-        <section class="section hero-page-header">
-            <div class="container text-center">
-                <h1>Sermões</h1>
-                <p>Receba a Palavra de Deus e cresça em sua fé.</p>
+        <section class="featured-sermon-section">
+            <div class="container">
+                <h1 class="page-title text-center">Assista Nossos Sermões</h1>
+                
+                <div class="featured-sermon">
+                    <h2 class="featured-sermon-title">Deus Te Ama</h2>
+                    <p class="featured-sermon-preacher">Por: Pastor Maurício Jager</p>
+                    
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/yzvSte2VWX8" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="featured-sermon-details">
+                        <p class="sermon-date">Data: 08 de Setembro de 2025</p>
+                        <p class="sermon-description">Uma mensagem inspiradora sobre como manter a fé forte diante dos desafios da vida, baseada em Hebreus 11.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="section sermons-list bg-light">
+        <section class="section sermons-archive-list bg-light">
             <div class="container">
-                <h2>Mensagens Recentes</h2>
+                <h2>Mensagens Anteriores</h2>
+                
+                <div class="sermon-filters">
+                    <input type="text" id="sermon-search" placeholder="Buscar sermões...">
+                    
+                    <select id="sermon-speaker-filter">
+                        <option value="all">Todos os Pregadores</option>
+                        <option value="pastor-jose-silva">Pastor José Silva</option>
+                        <option value="pastora-maria-souza">Pastora Maria Souza</option>
+                    </select>
+                </div>
+                
                 <div class="sermon-grid">
-                    <div class="sermon-card">
-                        <img src="img/sermons/capa-sermão-1.jpg" alt="Capa do Sermão: Fé Inabalável">
+                    <div class="sermon-card" data-speaker="pastor-jose-silva">
+                        <img src="img/sermons/capa-sermão-1.jpg" alt="Capa do Sermão: Fé Inabalável" loading="lazy">
                         <h3>Fé Inabalável em Tempos Difíceis</h3>
                         <p class="sermon-date">12 de Maio de 2024</p>
                         <p>Uma mensagem inspiradora sobre como manter a fé forte diante dos desafios da vida, baseada em Hebreus 11.</p>
                         <a href="sermon-details/sermon-detail-1.html" class="btn btn-small">Ouvir / Assistir</a>
                     </div>
-                    <div class="sermon-card">
-                        <img src="img/sermons/capa-sermão-2.jpg" alt="Capa do Sermão: O Amor que Transforma">
+
+                    <div class="sermon-card" data-speaker="pastora-maria-souza">
+                        <img src="img/sermons/capa-sermão-2.jpg" alt="Capa do Sermão: O Amor que Transforma" loading="lazy">
                         <h3>O Amor que Transforma</h3>
                         <p class="sermon-date">05 de Maio de 2024</p>
                         <p>Explorando a essência do amor cristão e seu poder de mudar vidas e comunidades, segundo 1 Coríntios 13.</p>
                         <a href="sermon-details/sermon-detail-2.html" class="btn btn-small">Ouvir / Assistir</a>
                     </div>
-                    <div class="sermon-card">
-                        <img src="img/sermons/capa-sermão-3.jpg" alt="Capa do Sermão: Chamados para Servir">
+                    
+                    <div class="sermon-card" data-speaker="pastor-jose-silva">
+                        <img src="img/sermons/capa-sermão-3.jpg" alt="Capa do Sermão: Chamados para Servir" loading="lazy">
                         <h3>Chamados para Servir</h3>
                         <p class="sermon-date">28 de Abril de 2024</p>
                         <p>Uma reflexão sobre o nosso propósito como servos de Deus, inspirada nas parábolas de Jesus sobre serviço.</p>
                         <a href="sermon-details/sermon-detail-3.html" class="btn btn-small">Ouvir / Assistir</a>
                     </div>
+
+                    <div class="sermon-card" data-speaker="pastora-maria-souza">
+                        <img src="img/sermons/capa-sermão-4.jpg" alt="Capa do Sermão: O Poder da Oração" loading="lazy">
+                        <h3>O Poder da Oração</h3>
+                        <p class="sermon-date">21 de Abril de 2024</p>
+                        <p>Uma exploração profunda sobre a importância e o impacto da oração em nossa vida e na comunidade.</p>
+                        <a href="sermon-details/sermon-detail-4.html" class="btn btn-small">Ouvir / Assistir</a>
                     </div>
-                <p class="mt-4">Explore nosso arquivo completo de sermões para mais mensagens.</p>
-                <a href="#" class="btn btn-primary">Ver Arquivo Completo</a>
+                </div>
             </div>
         </section>
     </main>
@@ -99,5 +135,5 @@
     </footer>
 
     <script src="js/script.js"></script>
-</body>
+    <script src="js/sermons-script.js"></script> </body>
 </html>

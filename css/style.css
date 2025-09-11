@@ -3,13 +3,17 @@
 
 /* Variáveis CSS para facilitar a manutenção */
 :root {
-    --primary-color: #A32D2C; /* Um vermelho mais escuro, semelhante ao The Sanctuary */
-    --secondary-color: #2F3645; /* Um cinza escuro, quase preto */
-    --accent-color: #FFC107; /* Um toque de amarelo/dourado para destaque */
+    --primary-color: #A32D2C;
+    /* Um vermelho mais escuro, semelhante ao The Sanctuary */
+    --secondary-color: #2F3645;
+    /* Um cinza escuro, quase preto */
+    --accent-color: #FFC107;
+    /* Um toque de amarelo/dourado para destaque */
     --text-color: #333333;
     --light-bg: #f8f8f8;
     --white: #ffffff;
-    --dark-bg: #222222; /* Para seções escuras */
+    --dark-bg: #222222;
+    /* Para seções escuras */
 
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Open Sans', sans-serif;
@@ -42,16 +46,29 @@ body {
 }
 
 /* Títulos Globais */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     color: var(--secondary-color);
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
-h1 { font-size: 3.5rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 1.8rem; }
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
 
 /* Links */
 a {
@@ -129,19 +146,19 @@ a:hover {
 .main-header {
     background-color: var(--white);
     padding: 20px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #6607ff;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: padding 0.3s ease, background-color 0.3s ease;
 }
 
 .main-header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background-color: rgba(221, 220, 220, 0.95);
+    box-shadow: 0 4px 8px rgba(89, 226, 62, 0.15);
     padding: 15px 0;
 }
 
@@ -159,6 +176,7 @@ a:hover {
     text-decoration: none;
     transition: font-size 0.3s ease;
 }
+
 .main-header.scrolled .logo {
     font-size: 1.6rem;
 }
@@ -170,19 +188,23 @@ a:hover {
 }
 
 .main-nav .nav-list li {
-    margin-left: 25px; /* AJUSTE PARA O ALINHAMENTO DO MENU */
+    margin-left: 25px;
+    /* AJUSTE PARA O ALINHAMENTO DO MENU */
 }
 
 .main-nav .nav-list li a {
     color: var(--text-color);
     font-weight: 600;
-    font-size: 0.9rem; /* AJUSTE PARA O ALINHAMENTO DO MENU */
+    font-size: 0.9rem;
+    /* AJUSTE PARA O ALINHAMENTO DO MENU */
     padding: 5px 0;
     position: relative;
     transition: color 0.3s ease, font-size 0.3s ease;
 }
+
 .main-header.scrolled .nav-list li a {
-    font-size: 0.85rem; /* Levemente menor quando scrolled para manter a compactação */
+    font-size: 0.85rem;
+    /* Levemente menor quando scrolled para manter a compactação */
 }
 
 
@@ -233,15 +255,18 @@ a:hover {
 
 /* Hero Section */
 .hero-section {
-    background: url('../img/hero-background.jpg') no-repeat center center/cover;
-    min-height: 70vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/background-image.jpg');
+    /* Adiciona a imagem de fundo e uma sobreposição escura */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    /* Muda a cor do texto para branco para ficar visível sobre o fundo escuro */
+    min-height: 100vh;
+    /* Faz com que a seção ocupe a altura total da tela */
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: var(--white);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    position: relative;
-    margin-top: var(--header-height);
+    align-items: center;
+    text-align: center;
 }
 
 .hero-section::before {
@@ -251,7 +276,7 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -278,10 +303,9 @@ a:hover {
     margin: 0 10px;
 }
 
-/* About Section (Original index.html) */
-.about-section h2 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
+/* --- Ajustes na Seção "Nossa Missão" (About Section) --- */
+.about-section {
+    padding: 80px 0;
 }
 
 .about-section p {
@@ -292,17 +316,27 @@ a:hover {
 
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    /* Duas colunas de largura igual para telas grandes */
     gap: 30px;
     margin-top: 3rem;
     text-align: left;
 }
 
+/* Garante que o grid se comporte bem em telas menores */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        /* Itens em uma única coluna em telas menores */
+    }
+}
+
 .about-item {
+    background-color: var(--white);
+    /* Fundo branco para os cards, destaca-os do bg-light da seção */
     padding: 30px;
-    background-color: var(--light-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .about-item h3 {
@@ -314,6 +348,8 @@ a:hover {
 .about-item ul {
     list-style: none;
     margin-top: 1rem;
+    padding-left: 0;
+    /* Garante que a lista não tenha recuo */
 }
 
 .about-item ul li {
@@ -323,7 +359,8 @@ a:hover {
 }
 
 .about-item ul li::before {
-    content: '\f00c'; /* Font Awesome Checkmark */
+    content: '\f00c';
+    /* Font Awesome Checkmark */
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     color: var(--primary-color);
@@ -347,7 +384,7 @@ a:hover {
 .sermon-card {
     background-color: var(--white);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     text-align: left;
     transition: transform 0.3s ease;
@@ -388,76 +425,93 @@ a:hover {
     width: calc(100% - 40px);
 }
 
-/* Events Section (Original index.html) */
-.events-section h2 {
-    font-size: 3rem;
+/* Sermão em Destaque */
+.featured-sermon-section {
+    padding: 60px 0;
 }
 
-.event-list {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-top: 3rem;
-}
-
-.event-item {
-    display: flex;
-    background-color: var(--white);
+.featured-sermon {
+    background-color: #f7f7f7;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    text-align: left;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 40px;
 }
 
-.event-item:hover {
-    transform: translateY(-5px);
-}
-
-.event-date {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 120px;
-}
-
-.event-date .day {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.event-date .month {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.event-details {
-    padding: 20px;
-    flex-grow: 1;
-}
-
-.event-details h3 {
-    margin-top: 0;
-    font-size: 1.8rem;
-    color: var(--secondary-color);
-}
-
-.event-details p {
-    margin-bottom: 10px;
-    color: #555;
-    font-size: 1rem;
-}
-
-.event-details p i {
-    margin-right: 8px;
+.featured-sermon-title {
+    font-size: 2.2rem;
     color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.featured-sermon-preacher {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Container do vídeo para ser responsivo (proporção 16:9) */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Seção de Arquivo e Cards */
+.sermons-archive-list {
+    padding-top: 40px;
+}
+
+/* Estilos para os filtros */
+.sermon-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+}
+
+.sermon-filters input, .sermon-filters select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 250px;
+    max-width: 100%;
+}
+
+/* O grid de sermões */
+.sermon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Estilos para os cards individuais */
+.sermon-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+.sermon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 /* Give Section (Original index.html) */
@@ -550,7 +604,7 @@ a:hover {
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #02031a;
     border-radius: 5px;
     font-size: 1rem;
     font-family: var(--font-body);
@@ -668,7 +722,7 @@ a:hover {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .mission-vision-section {
@@ -683,14 +737,16 @@ a:hover {
     text-align: left;
 }
 
-.mission-item, .vision-item {
+.mission-item,
+.vision-item {
     background-color: var(--white);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.mission-item h3, .vision-item h3 {
+.mission-item h3,
+.vision-item h3 {
     color: var(--primary-color);
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -712,7 +768,7 @@ a:hover {
     padding: 20px;
     background-color: var(--light-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .leader-card img {
@@ -722,7 +778,7 @@ a:hover {
     object-fit: cover;
     margin-bottom: 15px;
     border: 4px solid var(--primary-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .leader-card h3 {
@@ -751,7 +807,7 @@ a:hover {
     display: block;
     background-color: var(--white);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -761,7 +817,7 @@ a:hover {
 
 .ministry-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .ministry-card img {
@@ -784,35 +840,49 @@ a:hover {
 }
 
 /* Estilos para páginas de detalhe de ministérios, sermões e eventos */
-.ministry-detail-content, .event-detail-content, .sermon-detail-content, .privacy-content {
+.ministry-detail-content,
+.event-detail-content,
+.sermon-detail-content,
+.privacy-content {
     padding-top: 40px;
     text-align: left;
 }
 
-.ministry-detail-content h3, .event-detail-content h3, .sermon-detail-content h3, .privacy-content h2 {
+.ministry-detail-content h3,
+.event-detail-content h3,
+.sermon-detail-content h3,
+.privacy-content h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
     color: var(--secondary-color);
 }
 
-.ministry-detail-content ul, .event-detail-content ul, .sermon-detail-content ul, .privacy-content ul {
+.ministry-detail-content ul,
+.event-detail-content ul,
+.sermon-detail-content ul,
+.privacy-content ul {
     list-style-type: disc;
     padding-left: 25px;
     margin-bottom: 1.5rem;
 }
 
-.ministry-detail-content ul li, .event-detail-content ul li, .sermon-detail-content ul li, .privacy-content ul li {
+.ministry-detail-content ul li,
+.event-detail-content ul li,
+.sermon-detail-content ul li,
+.privacy-content ul li {
     margin-bottom: 0.8rem;
 }
 
-.ministry-detail-content .ministry-detail-img, .event-detail-content .event-detail-img, .sermon-detail-content .sermon-detail-img {
+.ministry-detail-content .ministry-detail-img,
+.event-detail-content .event-detail-img,
+.sermon-detail-content .sermon-detail-img {
     width: 100%;
     max-width: 900px;
     height: auto;
     border-radius: 8px;
     margin: 2rem auto;
     display: block;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos para events.html */
@@ -827,7 +897,7 @@ a:hover {
     display: block;
     background-color: var(--white);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -837,7 +907,7 @@ a:hover {
 
 .event-listing-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .event-listing-card img {
@@ -904,7 +974,7 @@ a:hover {
     background-color: var(--white);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     text-align: center;
     transition: transform 0.3s ease;
 }
@@ -938,236 +1008,2032 @@ a:hover {
 }
 
 /* Estilos para contact.html */
-.contact-form-section {
-    padding-top: 40px;
+.contact-section h2 {
+    font-size: 3rem;
 }
 
-.contact-form-section .contact-grid {
-    margin-top: 2rem;
-}
-
-.contact-form-section .contact-info {
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px;
+    margin-top: 3rem;
     text-align: left;
 }
-.contact-form-section .contact-info ul {
-    list-style: none;
-    padding: 0;
+
+.contact-info h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
+    font-size: 1.8rem;
+    margin-right: 15px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #02031a;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    width: auto;
     margin-top: 10px;
 }
-.contact-form-section .contact-info ul li {
-    margin-bottom: 5px;
-}
 
-.map-container {
-    margin-top: 2rem;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.map-container iframe {
-    border-radius: 8px;
-}
-
-/* Estilos para pascoa.html */
-.pascoa-content {
-    padding-top: 40px;
-}
-
-.pascoa-content .video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    margin: 2rem auto;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.pascoa-content .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-}
-
-.pascoa-messages .sermon-grid {
-    margin-top: 2rem; /* Já tem o estilo de sermon-grid */
-}
-
-.pascoa-messages .video-container-small {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    width: 100%; /* Ajusta para dentro do card */
-    margin-top: 15px; /* Espaço entre texto e vídeo */
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.pascoa-messages .video-container-small iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-}
-
-.pascoa-behind-scenes .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 2rem;
-}
-
-.pascoa-behind-scenes .video-item {
+/* Footer */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 60px 0;
     text-align: center;
 }
 
-.pascoa-behind-scenes .video-container-small {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    width: 100%;
-    margin-top: 0;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.main-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
 }
 
-.pascoa-behind-scenes .video-container-small iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left;
+    margin-right: 50px;
 }
 
-.pascoa-behind-scenes .video-caption {
-    font-size: 0.9rem;
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: var(--white);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-info {
+    text-align: right;
+    flex-grow: 1;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- ESTILOS PARA AS NOVAS PÁGINAS (about.html, pascoa.html, ministries.html, events.html, etc.) --- */
+/* Cabeçalho de página para as novas páginas (não para index.html) */
+.hero-page-header {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 100px 20px 60px;
+    margin-top: var(--header-height);
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-page-header h1 {
+    color: var(--white);
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero-page-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* Estilos para about.html */
+.about-intro .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.about-intro .about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-intro .about-image {
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 500px;
+}
+
+.about-intro .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-section {
+    padding: 60px 0;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.mission-item,
+.vision-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mission-item h3,
+.vision-item h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.leadership-section {
+    padding: 80px 0;
+}
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.leader-card {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.leader-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leader-card h3 {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.leader-card p {
+    font-size: 0.95rem;
     color: #666;
+}
+
+/* Estilos para ministries.html */
+.ministries-list {
+    padding-top: 40px;
+}
+
+.ministry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.ministry-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.ministry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ministry-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.ministry-card h3 {
+    margin: 15px 20px 5px 20px;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.ministry-card p {
+    font-size: 1rem;
+    margin: 0 20px 20px 20px;
+    color: #555;
+}
+
+/* Estilos para páginas de detalhe de ministérios, sermões e eventos */
+.ministry-detail-content,
+.event-detail-content,
+.sermon-detail-content,
+.privacy-content {
+    padding-top: 40px;
+    text-align: left;
+}
+
+.ministry-detail-content h3,
+.event-detail-content h3,
+.sermon-detail-content h3,
+.privacy-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.ministry-detail-content ul,
+.event-detail-content ul,
+.sermon-detail-content ul,
+.privacy-content ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.ministry-detail-content ul li,
+.event-detail-content ul li,
+.sermon-detail-content ul li,
+.privacy-content ul li {
+    margin-bottom: 0.8rem;
+}
+
+.ministry-detail-content .ministry-detail-img,
+.event-detail-content .event-detail-img,
+.sermon-detail-content .sermon-detail-img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para events.html */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.event-listing-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.event-listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.event-listing-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.event-listing-card .card-content {
+    padding: 20px;
+}
+
+.event-listing-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
+.event-listing-card .event-date-location {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.event-listing-card .event-date-location i {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+.event-listing-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.event-listing-card .btn {
+    width: auto;
     margin-top: 10px;
 }
 
-
-/* Responsividade */
-@media (max-width: 992px) {
-    h1 { font-size: 3rem; }
-    h2 { font-size: 2.2rem; }
-    h3 { font-size: 1.6rem; }
-
-    .main-nav .nav-list {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: var(--white);
-        position: absolute;
-        top: var(--header-height);
-        left: 0;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        padding: 20px 0;
-        z-index: 999;
-    }
-
-    .main-nav .nav-list.active {
-        display: flex;
-    }
-
-    .main-nav .nav-list li {
-        margin: 10px 0;
-        text-align: center;
-    }
-
-    .main-nav .nav-list li a {
-        display: block;
-        padding: 10px 0;
-    }
-
-    .hamburger-menu {
-        display: block;
-    }
-
-    .hero-content h1 {
-        font-size: 3.5rem;
-    }
-
-    .hero-content p {
-        font-size: 1.2rem;
-    }
-
-    .hero-content .btn {
-        display: block;
-        margin: 15px auto;
-        width: 80%;
-    }
-
-    .about-section p {
-        font-size: 1rem;
-    }
-
-    .sermon-grid, .contact-grid, .ministry-grid, .event-grid, .give-options-grid, .pascoa-behind-scenes .video-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .event-item {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .event-date {
-        width: 100%;
-        padding: 15px 0;
-    }
-
-    .event-details {
-        text-align: center;
-        padding: 15px;
-    }
-
-    .contact-info, .contact-form {
-        text-align: center;
-    }
-
-    .about-intro .container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .about-intro .about-image {
-        width: 80%;
-        margin-top: 2rem;
-    }
+/* Estilos para give.html */
+.give-content {
+    padding-top: 40px;
 }
 
-@media (max-width: 768px) {
-    .section {
-        padding: 60px 0;
-    }
-
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.5rem; }
-
-    .hero-content h1 {
-        font-size: 2.8rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .hero-content .btn {
-        display: block;
-        margin: 15px auto;
-        width: 80%;
-    }
+.give-content .give-intro {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.give-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.give-option-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.give-option-card:hover {
+    transform: translateY(-5px);
+}
+
+.give-option-card i {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.give-option-card h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.give-option-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.give-option-card small {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* Estilos para contact.html */
+.contact-section h2 {
+    font-size: 3rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.contact-info h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
+    font-size: 1.8rem;
+    margin-right: 15px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #02031a;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.main-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left;
+    margin-right: 50px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: var(--white);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-info {
+    text-align: right;
+    flex-grow: 1;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- ESTILOS PARA AS NOVAS PÁGINAS (about.html, pascoa.html, ministries.html, events.html, etc.) --- */
+/* Cabeçalho de página para as novas páginas (não para index.html) */
+.hero-page-header {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 100px 20px 60px;
+    margin-top: var(--header-height);
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-page-header h1 {
+    color: var(--white);
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero-page-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* Estilos para about.html */
+.about-intro .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.about-intro .about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-intro .about-image {
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 500px;
+}
+
+.about-intro .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-section {
+    padding: 60px 0;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.mission-item,
+.vision-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mission-item h3,
+.vision-item h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.leadership-section {
+    padding: 80px 0;
+}
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.leader-card {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.leader-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leader-card h3 {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.leader-card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Estilos para ministries.html */
+.ministries-list {
+    padding-top: 40px;
+}
+
+.ministry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.ministry-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.ministry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ministry-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.ministry-card h3 {
+    margin: 15px 20px 5px 20px;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.ministry-card p {
+    font-size: 1rem;
+    margin: 0 20px 20px 20px;
+    color: #555;
+}
+
+/* Estilos para páginas de detalhe de ministérios, sermões e eventos */
+.ministry-detail-content,
+.event-detail-content,
+.sermon-detail-content,
+.privacy-content {
+    padding-top: 40px;
+    text-align: left;
+}
+
+.ministry-detail-content h3,
+.event-detail-content h3,
+.sermon-detail-content h3,
+.privacy-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.ministry-detail-content ul,
+.event-detail-content ul,
+.sermon-detail-content ul,
+.privacy-content ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.ministry-detail-content ul li,
+.event-detail-content ul li,
+.sermon-detail-content ul li,
+.privacy-content ul li {
+    margin-bottom: 0.8rem;
+}
+
+.ministry-detail-content .ministry-detail-img,
+.event-detail-content .event-detail-img,
+.sermon-detail-content .sermon-detail-img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para events.html */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.event-listing-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.event-listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.event-listing-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.event-listing-card .card-content {
+    padding: 20px;
+}
+
+.event-listing-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
+.event-listing-card .event-date-location {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.event-listing-card .event-date-location i {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+.event-listing-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.event-listing-card .btn {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Estilos para give.html */
+.give-content {
+    padding-top: 40px;
+}
+
+.give-content .give-intro {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.give-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.give-option-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.give-option-card:hover {
+    transform: translateY(-5px);
+}
+
+.give-option-card i {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.give-option-card h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.give-option-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.give-option-card small {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* Estilos para contact.html */
+.contact-section h2 {
+    font-size: 3rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.contact-info h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
+    font-size: 1.8rem;
+    margin-right: 15px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #02031a;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.main-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left;
+    margin-right: 50px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: var(--white);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-info {
+    text-align: right;
+    flex-grow: 1;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- ESTILOS PARA AS NOVAS PÁGINAS (about.html, pascoa.html, ministries.html, events.html, etc.) --- */
+/* Cabeçalho de página para as novas páginas (não para index.html) */
+.hero-page-header {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 100px 20px 60px;
+    margin-top: var(--header-height);
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-page-header h1 {
+    color: var(--white);
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero-page-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* Estilos para about.html */
+.about-intro .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.about-intro .about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-intro .about-image {
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 500px;
+}
+
+.about-intro .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-section {
+    padding: 60px 0;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.mission-item,
+.vision-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mission-item h3,
+.vision-item h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.leadership-section {
+    padding: 80px 0;
+}
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.leader-card {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.leader-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leader-card h3 {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.leader-card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Estilos para ministries.html */
+.ministries-list {
+    padding-top: 40px;
+}
+
+.ministry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.ministry-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.ministry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ministry-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.ministry-card h3 {
+    margin: 15px 20px 5px 20px;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.ministry-card p {
+    font-size: 1rem;
+    margin: 0 20px 20px 20px;
+    color: #555;
+}
+
+/* Estilos para páginas de detalhe de ministérios, sermões e eventos */
+.ministry-detail-content,
+.event-detail-content,
+.sermon-detail-content,
+.privacy-content {
+    padding-top: 40px;
+    text-align: left;
+}
+
+.ministry-detail-content h3,
+.event-detail-content h3,
+.sermon-detail-content h3,
+.privacy-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.ministry-detail-content ul,
+.event-detail-content ul,
+.sermon-detail-content ul,
+.privacy-content ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.ministry-detail-content ul li,
+.event-detail-content ul li,
+.sermon-detail-content ul li,
+.privacy-content ul li {
+    margin-bottom: 0.8rem;
+}
+
+.ministry-detail-content .ministry-detail-img,
+.event-detail-content .event-detail-img,
+.sermon-detail-content .sermon-detail-img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para events.html */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.event-listing-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.event-listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.event-listing-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.event-listing-card .card-content {
+    padding: 20px;
+}
+
+.event-listing-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
+.event-listing-card .event-date-location {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.event-listing-card .event-date-location i {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+.event-listing-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.event-listing-card .btn {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Estilos para give.html */
+.give-content {
+    padding-top: 40px;
+}
+
+.give-content .give-intro {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.give-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.give-option-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.give-option-card:hover {
+    transform: translateY(-5px);
+}
+
+.give-option-card i {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.give-option-card h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.give-option-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.give-option-card small {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* Estilos para contact.html */
+.contact-section h2 {
+    font-size: 3rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.contact-info h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
+    font-size: 1.8rem;
+    margin-right: 15px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #02031a;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.main-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left;
+    margin-right: 50px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: var(--white);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-info {
+    text-align: right;
+    flex-grow: 1;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- ESTILOS PARA AS NOVAS PÁGINAS (about.html, pascoa.html, ministries.html, events.html, etc.) --- */
+/* Cabeçalho de página para as novas páginas (não para index.html) */
+.hero-page-header {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 100px 20px 60px;
+    margin-top: var(--header-height);
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-page-header h1 {
+    color: var(--white);
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero-page-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* Estilos para about.html */
+.about-intro .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.about-intro .about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-intro .about-image {
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 500px;
+}
+
+.about-intro .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision-section {
+    padding: 60px 0;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.mission-item,
+.vision-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mission-item h3,
+.vision-item h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.leadership-section {
+    padding: 80px 0;
+}
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.leader-card {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.leader-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leader-card h3 {
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.leader-card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Estilos para ministries.html */
+.ministries-list {
+    padding-top: 40px;
+}
+
+.ministry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.ministry-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.ministry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ministry-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.ministry-card h3 {
+    margin: 15px 20px 5px 20px;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.ministry-card p {
+    font-size: 1rem;
+    margin: 0 20px 20px 20px;
+    color: #555;
+}
+
+/* Estilos para páginas de detalhe de ministérios, sermões e eventos */
+.ministry-detail-content,
+.event-detail-content,
+.sermon-detail-content,
+.privacy-content {
+    padding-top: 40px;
+    text-align: left;
+}
+
+.ministry-detail-content h3,
+.event-detail-content h3,
+.sermon-detail-content h3,
+.privacy-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.ministry-detail-content ul,
+.event-detail-content ul,
+.sermon-detail-content ul,
+.privacy-content ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.ministry-detail-content ul li,
+.event-detail-content ul li,
+.sermon-detail-content ul li,
+.privacy-content ul li {
+    margin-bottom: 0.8rem;
+}
+
+.ministry-detail-content .ministry-detail-img,
+.event-detail-content .event-detail-img,
+.sermon-detail-content .sermon-detail-img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para events.html */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.event-listing-card {
+    display: block;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.event-listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.event-listing-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.event-listing-card .card-content {
+    padding: 20px;
+}
+
+.event-listing-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
+.event-listing-card .event-date-location {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.event-listing-card .event-date-location i {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+.event-listing-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.event-listing-card .btn {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Estilos para give.html */
+.give-content {
+    padding-top: 40px;
+}
+
+.give-content .give-intro {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.give-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.give-option-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.give-option-card:hover {
+    transform: translateY(-5px);
+}
+
+.give-option-card i {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.give-option-card h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.give-option-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.give-option-card small {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* Estilos para contact.html */
+.contact-section h2 {
+    font-size: 3rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.contact-info h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-links a {
+    font-size: 1.8rem;
+    margin-right: 15px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #02031a;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.main-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left;
+    margin-right: 50px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: var(--white);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-info {
+    text-align: right;
+    flex-grow: 1;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
 /* --- Estilos para páginas de detalhe de ministérios (ex: ministries/infantil.html) --- */
 
 /* Galeria de Fotos */
@@ -1181,7 +3047,7 @@ a:hover {
 .gallery-item {
     background-color: var(--white);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1189,12 +3055,13 @@ a:hover {
 
 .gallery-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .gallery-item img {
     width: 100%;
-    height: 180px; /* Altura fixa para as imagens da galeria */
+    height: 180px;
+    /* Altura fixa para as imagens da galeria */
     object-fit: cover;
     display: block;
 }
@@ -1203,16 +3070,20 @@ a:hover {
     padding: 15px;
     font-size: 0.95rem;
     color: #555;
-    margin-bottom: 0; /* Remove margem inferior padrão */
+    margin-bottom: 0;
+    /* Remove margem inferior padrão */
 }
 
 /* Lista de Eventos da Semana */
 .event-details-list {
-    list-style: none; /* Remove marcadores padrão */
+    list-style: none;
+    /* Remove marcadores padrão */
     padding: 0;
-    text-align: left; /* Alinha o texto da lista à esquerda */
+    text-align: left;
+    /* Alinha o texto da lista à esquerda */
     margin-top: 2rem;
-    max-width: 700px; /* Limita a largura para melhor leitura */
+    max-width: 700px;
+    /* Limita a largura para melhor leitura */
     margin-left: auto;
     margin-right: auto;
 }
@@ -1224,7 +3095,7 @@ a:hover {
     margin-bottom: 10px;
     font-size: 1.1rem;
     color: var(--secondary-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
 }
@@ -1236,14 +3107,16 @@ a:hover {
 }
 
 .event-details-list li a {
-    font-size: 1rem; /* Ajusta o tamanho do link dentro da lista */
+    font-size: 1rem;
+    /* Ajusta o tamanho do link dentro da lista */
     margin-left: 10px;
 }
 
 /* Participantes do Ministério (Professores/Voluntários) */
 .ministry-participants-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Cards menores para participantes */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    /* Cards menores para participantes */
     gap: 20px;
     margin-top: 2rem;
 }
@@ -1252,7 +3125,7 @@ a:hover {
     background-color: var(--white);
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     text-align: center;
     transition: transform 0.3s ease;
 }
@@ -1262,13 +3135,14 @@ a:hover {
 }
 
 .participant-card img {
-    width: 100px; /* Tamanho da foto de perfil do participante */
+    width: 100px;
+    /* Tamanho da foto de perfil do participante */
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
     border: 3px solid var(--primary-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .participant-card h4 {
@@ -1282,6 +3156,7 @@ a:hover {
     color: #666;
     margin-bottom: 10px;
 }
+
 /* style.css (add these or similar styles) */
 
 .course-selection-grid {
@@ -1299,9 +3174,12 @@ a:hover {
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* MODIFICADO PARA FLEX */
-    flex-direction: column; /* MODIFICADO PARA FLEX */
-    justify-content: space-between; /* MODIFICADO PARA FLEX */
+    display: flex;
+    /* MODIFICADO PARA FLEX */
+    flex-direction: column;
+    /* MODIFICADO PARA FLEX */
+    justify-content: space-between;
+    /* MODIFICADO PARA FLEX */
 }
 
 .course-card:hover {
@@ -1311,7 +3189,8 @@ a:hover {
 
 .course-card img {
     max-width: 100%;
-    height: 180px; /* Adjust as needed */
+    height: 180px;
+    /* Adjust as needed */
     object-fit: cover;
     border-radius: 4px;
     margin-bottom: 1rem;
@@ -1328,7 +3207,8 @@ a:hover {
 }
 
 #course-detail-section .ministry-detail-img,
-#artistic-expression-detail-section .ministry-detail-img { /* COMBINADO */
+#artistic-expression-detail-section .ministry-detail-img {
+    /* COMBINADO */
     max-width: 100%;
     height: auto;
     border-radius: 8px;
@@ -1338,30 +3218,34 @@ a:hover {
     margin-right: auto;
 }
 
-.gallery-grid { /* JÁ EXISTENTE, CONFERIDO */
+.gallery-grid {
+    /* JÁ EXISTENTE, CONFERIDO */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
 
-.gallery-item { /* JÁ EXISTENTE, CONFERIDO */
+.gallery-item {
+    /* JÁ EXISTENTE, CONFERIDO */
     background-color: #fff;
     border: 1px solid #eee;
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.gallery-item img { /* JÁ EXISTENTE, CONFERIDO */
+.gallery-item img {
+    /* JÁ EXISTENTE, CONFERIDO */
     width: 100%;
     height: 180px;
     object-fit: cover;
     display: block;
 }
 
-.gallery-item p { /* JÁ EXISTENTE, CONFERIDO */
+.gallery-item p {
+    /* JÁ EXISTENTE, CONFERIDO */
     padding: 0.8rem;
     color: #555;
     font-size: 0.9em;
@@ -1379,13 +3263,15 @@ a:hover {
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    padding-bottom: 1rem; /* Space for text below video */
+    padding-bottom: 1rem;
+    /* Space for text below video */
     text-align: center;
 }
 
 .video-item iframe {
     width: 100%;
-    height: 200px; /* Adjust height as needed for responsive videos */
+    height: 200px;
+    /* Adjust height as needed for responsive videos */
     display: block;
 }
 
@@ -1406,9 +3292,11 @@ a:hover {
     .video-item iframe {
         height: 150px;
     }
+
     .course-card img {
         height: 150px;
     }
+
     .gallery-item img {
         height: 150px;
     }
@@ -1417,25 +3305,31 @@ a:hover {
 /* Estilo para o novo botão 'Converse Conosco' (DA SEÇÃO HERO) */
 .btn-accent-outline {
     background-color: transparent;
-    color: var(--accent-color); /* Cor de destaque */
+    color: var(--accent-color);
+    /* Cor de destaque */
     border: 2px solid var(--accent-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     font-size: 1.1rem;
-    padding: 15px 30px; /* Mais padding para destaque */
-    margin: 0 10px; /* Alinhar com os outros botões */
+    padding: 15px 30px;
+    /* Mais padding para destaque */
+    margin: 0 10px;
+    /* Alinhar com os outros botões */
 }
 
 .btn-accent-outline:hover {
     background-color: var(--accent-color);
-    color: var(--secondary-color); /* Texto escuro ao passar o mouse */
+    color: var(--secondary-color);
+    /* Texto escuro ao passar o mouse */
     border-color: var(--accent-color);
-    transform: translateY(-2px); /* Pequeno efeito de elevação */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    /* Pequeno efeito de elevação */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-accent-outline i {
-    margin-right: 8px; /* Espaçamento entre ícone e texto */
+    margin-right: 8px;
+    /* Espaçamento entre ícone e texto */
 }
 
 /* Garante que os botões na seção hero fiquem em uma linha em desktop */
@@ -1443,21 +3337,26 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    flex-wrap: wrap;
+    /* Permite quebrar linha em telas menores */
     margin-top: 2.5rem;
 }
 
 .hero-buttons .btn {
-    margin: 10px; /* Espaço entre os botões */
+    margin: 10px;
+    /* Espaço entre os botões */
 }
 
 /* Media Query para responsividade do novo botão */
 @media (max-width: 768px) {
     .hero-buttons {
-        flex-direction: column; /* Botões em coluna em telas pequenas */
+        flex-direction: column;
+        /* Botões em coluna em telas pequenas */
     }
+
     .hero-buttons .btn {
-        width: 80%; /* Botões mais largos em mobile */
+        width: 80%;
+        /* Botões mais largos em mobile */
         margin: 10px auto;
     }
 }
@@ -1481,9 +3380,10 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px; /* Ajustado para fas fa-comment-dots */
+    font-size: 28px;
+    /* Ajustado para fas fa-comment-dots */
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -1498,15 +3398,15 @@ a:hover {
     max-height: 500px;
     background-color: var(--white);
     border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    
-    position: fixed; 
+
+    position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1001; 
+    z-index: 1001;
 
     opacity: 0;
     visibility: hidden;
@@ -1522,7 +3422,7 @@ a:hover {
 }
 
 .novo-chatbot-header {
-    background-color: var(--secondary-color); 
+    background-color: var(--secondary-color);
     color: var(--white);
     padding: 15px 20px;
     display: flex;
@@ -1533,7 +3433,7 @@ a:hover {
 
 .novo-chatbot-header h3 {
     margin: 0;
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
     color: var(--white);
     font-weight: 600;
 }
@@ -1548,14 +3448,14 @@ a:hover {
 }
 
 .novo-chatbot-close-btn:hover {
-    color: var(--primary-color); 
+    color: var(--primary-color);
 }
 
 .novo-chatbot-messages {
     flex-grow: 1;
     padding: 15px;
     overflow-y: auto;
-    background-color: #f7f9fc; 
+    background-color: #f7f9fc;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -1571,23 +3471,24 @@ a:hover {
 }
 
 .novo-chatbot-message.bot {
-    background-color: #e9ecef; 
+    background-color: #e9ecef;
     color: var(--text-color);
     align-self: flex-start;
     border-bottom-left-radius: 4px;
 }
 
 .novo-chatbot-message.user {
-    background-color: var(--primary-color); 
+    background-color: var(--primary-color);
     color: var(--white);
     align-self: flex-end;
     border-bottom-right-radius: 4px;
 }
 
-.novo-chatbot-message a { 
-    color: var(--accent-color); 
+.novo-chatbot-message a {
+    color: var(--accent-color);
     text-decoration: underline;
 }
+
 .novo-chatbot-message a:hover {
     color: var(--secondary-color);
 }
@@ -1640,14 +3541,426 @@ a:hover {
 /* Responsividade para o Chatbot */
 @media (max-width: 480px) {
     .novo-chatbot-window {
-        width: calc(100% - 30px); 
+        width: calc(100% - 30px);
         max-height: 80vh;
         bottom: 15px;
         right: 15px;
     }
-    .novo-chatbot-toggle-icon { 
+
+    .novo-chatbot-toggle-icon {
         width: 50px;
         height: 50px;
         font-size: 24px;
+    }
+}
+
+/* Seção com fundo claro */
+.section.bg-light {
+    background-color: #4f616f;
+    /* Um cinza claro para a seção de sermões, por exemplo */
+    color: #333;
+    /* Cor do texto para contraste */
+}
+
+/* Seção com fundo escuro */
+.section.bg-dark {
+    background-color: #36454e;
+    /* Um cinza escuro para a seção de doação, por exemplo */
+    color: #fff;
+    /* Cor do texto para contraste */
+}
+/* --- NOVOS ESTILOS PARA A PÁGINA SOBRE NÓS --- */
+
+/* Estilo para a seção hero da página Sobre Nós */
+.hero-page-about {
+    background-image: linear-gradient(rgba(47, 54, 69, 0.7), rgba(47, 54, 69, 0.7)), url('../img/about/hero-about.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    min-height: 40vh; /* Altura um pouco maior para a seção de herói da página */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: var(--header-height);
+}
+
+.hero-page-about h1 {
+    font-size: 4rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.hero-page-about p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Estilos para o layout de grade de 2 colunas */
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    text-align: left;
+    margin: 60px 0;
+}
+
+.grid-2-cols.reverse-grid {
+    direction: rtl; /* Inverte a ordem da grade */
+}
+
+.grid-2-cols.reverse-grid .content-text,
+.grid-2-cols.reverse-grid .content-image {
+    direction: ltr; /* Restaura a direção do texto e imagem */
+}
+
+.content-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para a seção de valores com ícones */
+.values-section {
+    padding: 80px 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.value-item {
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.value-item i {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.value-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Responsividade para layouts de grade */
+@media (max-width: 992px) {
+    .grid-2-cols, .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- ESTILOS PARA A SEÇÃO 'NOSSA EQUIPE' (replica o design da Renewal Church) --- */
+
+.team-section {
+    padding: 80px 0;
+    background-color: var(--background-light); /* Ou a cor de fundo que você preferir para essa seção */
+}
+
+.team-section h2 {
+    margin-bottom: 15px;
+    font-size: 2.8rem;
+    color: var(--secondary-color);
+}
+
+.team-section .section-description {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    justify-content: center; /* Centraliza os itens na grade */
+}
+
+.team-member {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Para flexbox interno */
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-member:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.member-photo {
+    width: 180px; /* Largura da forma hexagonal */
+    height: 180px; /* Altura da forma hexagonal */
+    background: var(--light-gray); /* Cor de fundo para o espaço do hexágono */
+    margin: 0 auto 25px auto;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Garante que a imagem não vaze do hexágono */
+    position: relative;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o hexágono sem distorcer */
+    /* Não aplicamos clip-path diretamente na imagem para evitar bordas brancas indesejadas */
+}
+
+.team-member h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+}
+
+.team-member .role {
+    font-size: 1.1rem;
+    color: var(--primary-color); /* Para dar destaque, como no exemplo */
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empurra os links sociais para baixo se o texto do cargo for curto */
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links li a {
+    color: var(--gray);
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.social-links li a:hover {
+    color: var(--primary-color);
+}
+
+/* Responsividade para a grade da equipe */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    .member-photo {
+        width: 150px;
+        height: 150px;
+    }
+}
+/* Seção de Programação Semanal */
+.weekly-schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.schedule-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-header {
+    background-color: #0056b3; /* Cor primária da sua igreja */
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.schedule-day {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.schedule-time {
+    font-weight: 400;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.schedule-body {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.schedule-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.schedule-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.schedule-link {
+    display: block;
+    text-align: right;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    color: #0056b3;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.schedule-link:hover {
+    background-color: #e9ecef;
+}
+/* Estilos para a seção de eventos com imagem de fundo */
+.events-section {
+    padding: 80px 0; /* Aumenta um pouco o padding para dar mais respiro */
+    background: url('../img/backgrounds/events-bg.jpg') no-repeat center center/cover; /* Caminho da sua imagem */
+    position: relative; /* Necessário para posicionar o overlay */
+    color: #fff; /* Altera a cor do texto padrão para branco */
+}
+
+/* Overlay para melhorar a legibilidade do texto sobre a imagem */
+.events-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Cor escura semitransparente */
+    z-index: 1; /* Garante que o overlay fique abaixo do conteúdo */
+}
+
+/* Garante que o conteúdo da seção fique acima do overlay */
+.events-section .container {
+    position: relative;
+    z-index: 2; 
+}
+
+/* Ajustes para o texto dentro da seção de eventos */
+.events-section .section-title {
+    color: #fff; /* Título branco para contraste */
+    margin-bottom: 40px;
+}
+
+/* Ajustes para os cards dentro da seção de eventos */
+.schedule-card {
+    background-color: rgba(255, 255, 255, 0.95); /* Deixa os cards ligeiramente transparentes */
+    border: none; /* Remove a borda se preferir */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-card .schedule-header {
+    background-color: #007bff; /* Uma cor mais vibrante para o cabeçalho do card */
+    /* Ou, se preferir uma versão mais escura da cor primária: */
+    /* background-color: #004085; */ 
+}
+
+.schedule-card .schedule-link {
+    background-color: rgba(248, 249, 250, 0.8); /* Fundo do link ligeiramente transparente */
+    color: #0056b3;
+}
+
+.schedule-card .schedule-title {
+    color: #333; /* Cor do título dentro do card */
+}
+
+.schedule-card .schedule-description {
+    color: #555; /* Cor da descrição dentro do card */
+}
+/* Seção de Cursos e Eventos */
+.courses-events-section {
+    padding: 80px 0;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.courses-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.course-event-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 3em;
+    color: #007bff; /* Cor primária */
+    margin-bottom: 15px;
+}
+
+.course-event-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.course-event-card p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .courses-events-grid {
+        grid-template-columns: 1fr;
     }
 }
