@@ -4089,4 +4089,169 @@ img {
         text-align: left;
     }
 }
+/* ========================================================= */
+/* === OTIMIZAÇÕES PARA TELAS PEQUENAS (SMARTPHONES/TABLETS) === */
+/* ========================================================= */
 
+@media (max-width: 992px) {
+    /* Ajusta o layout do rodapé para dispositivos móveis */
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        margin-right: 0;
+        width: 100%;
+        align-items: center;
+    }
+
+    .footer-info {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* === TIPOGRAFIA === */
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    /* === HEADER E NAVEGAÇÃO === */
+    .main-header {
+        padding: 15px 0;
+    }
+
+    .main-header .logo {
+        font-size: 1.4rem;
+    }
+
+    /* Oculta o menu de navegação padrão */
+    .main-nav {
+        display: none;
+    }
+
+    /* Exibe o menu de hambúrguer */
+    .hamburger-menu {
+        display: block;
+        font-size: 28px;
+        color: var(--text-color);
+    }
+
+    /* Estilos do menu de hambúrguer aberto */
+    .main-nav.active {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--white);
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        width: 80%;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        z-index: 999;
+    }
+
+    .main-nav .nav-list {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .main-nav .nav-list li {
+        text-align: left;
+        width: 100%;
+    }
+
+    .main-nav .nav-list li a {
+        display: block;
+        padding: 10px 0;
+    }
+    
+    .main-nav .nav-list li .btn {
+        width: 100%;
+    }
+
+    /* === SEÇÃO HERO === */
+    .hero-content h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    /* Botões na seção principal em coluna */
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 80%;
+        margin: 10px auto;
+    }
+
+    /* === GRIDS E LAYOUTS === */
+    .about-grid,
+    .contact-grid,
+    .weekly-schedule-grid,
+    .courses-events-grid,
+    .sermon-grid,
+    .mission-vision-grid,
+    .leadership-grid,
+    .ministry-grid,
+    .event-grid,
+    .give-options-grid,
+    .gallery-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-intro .container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .about-intro .about-text {
+        text-align: center;
+    }
+    
+    .about-intro .about-image {
+        width: 100%;
+    }
+    
+    .grid-2-cols {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-2-cols.reverse-grid {
+        direction: ltr; /* Desfaz a inversão em mobile */
+    }
+
+    .team-member {
+        padding: 20px;
+    }
+
+    /* === CHATBOT === */
+    .novo-chatbot-window {
+        width: 90%;
+        max-width: 340px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .novo-chatbot-toggle-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+}
