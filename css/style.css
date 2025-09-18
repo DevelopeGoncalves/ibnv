@@ -4044,3 +4044,49 @@ img {
   background: #333;
   border-radius: 2px;
 }
+/* ===== MENU RESPONSIVO ===== */
+.menu-toggle, .hamburger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+/* Estilo do hamburguer */
+.hamburger-menu {
+    font-size: 28px;
+    color: #333;
+}
+
+/* Para mobile */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 80%;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        border-radius: 8px;
+        z-index: 999;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-list li {
+        text-align: left;
+    }
+}
+
