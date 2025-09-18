@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>IBNV - Cadastro de Voluntários</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a class="logo" href="index.html">IBNV</a>
+            <div class="menu-toggle"><span></span><span></span><span></span></div><nav class="main-nav nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="sermons.html">Sermões</a></li>
+                    <li><a href="ministries.html">Ministérios</a></li>
+                    <li><a href="pascoa.html">Páscoa</a></li>
+                    <li><a href="give.html">Doar</a></li>
+                    <li><a href="casadepaz.html">Casa de Paz</a></li>
+                    <li><a class="btn btn-primary" href="cadastro_de_voluntarios.html">Seja Voluntário</a></li>                 </ul>
+                <div class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="padding-top: 120px; min-height: 70vh;">
+            <div class="container">
+                                <h2>Cadastro de Voluntários</h2>
+                <p>Preencha o formulário abaixo para se tornar um voluntário em nossa igreja. Sua dedicação faz a diferença!</p>
+
+                <form action="#" class="contact-form" method="POST">
+                    <div class="form-group">
+                        <label for="nomeVoluntario">Nome Completo:</label>
+                        <input id="nomeVoluntario" name="nomeVoluntario" required="" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataVoluntario">Data de Nascimento:</label>                         <input id="dataVoluntario" name="dataVoluntario" required="" type="date"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailVoluntario">E-mail:</label>
+                        <input id="emailVoluntario" name="emailVoluntario" required="" type="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefoneVoluntario">Telefone (com DDD):</label>
+                        <input id="telefoneVoluntario" name="telefoneVoluntario" placeholder="(XX) XXXXX-XXXX" type="tel"/>
+                    </div>
+
+                                        <div class="form-group">
+                        <label>Ministérios de Interesse (marque quantos desejar):</label>
+                        <div class="checkbox-group">
+                            <label><input name="ministerios[]" type="checkbox" value="louvor"/> Louvor</label>
+                            <label><input name="ministerios[]" type="checkbox" value="midia"/> Mídia (som, projeção, social)</label>
+                            <label><input name="ministerios[]" type="checkbox" value="criancas"/> Ministério com Crianças</label>
+                            <label><input name="ministerios[]" type="checkbox" value="jovens"/> Ministério com Jovens</label>
+                            <label><input name="acolhimento" type="checkbox"/> Acolhimento e Recepção</label>
+                            <label><input name="social" type="checkbox"/> Ação Social / Diaconia</label>
+                            <label><input name="zeladoria" type="checkbox"/> Zeladoria e Manutenção</label>
+                            <label><input name="eventos" type="checkbox"/> Organização de Eventos</label>
+                            <label><input name="outros" type="checkbox"/> Outro (especifique abaixo)</label>
+                        </div>
+                    </div>
+
+                                        <div class="form-group">
+                        <label for="habilidades">Habilidades e Experiência Relevante:</label>
+                        <textarea id="habilidades" name="habilidades" placeholder="Ex: Sou músico e toco guitarra, tenho experiência em design gráfico, sou bom com organização de pessoas e eventos, etc." rows="4"></textarea>
+                    </div>
+
+                                        <div class="form-group">
+                        <label for="disponibilidade">Disponibilidade Preferencial:</label>
+                        <select id="disponibilidade" name="disponibilidade">
+                            <option value="">Selecione uma opção</option>
+                            <option value="domingo-manha">Domingos pela manhã</option>
+                            <option value="domingo-noite">Domingos à noite</option>
+                            <option value="semana-noite">Dias de semana à noite</option>
+                            <option value="sabado">Sábados (manhã/tarde)</option>
+                            <option value="flexivel">Sou flexível com a minha agenda</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagemAdicional">Mensagem Adicional (Opcional):</label>
+                        <textarea id="mensagemAdicional" name="mensagemAdicional" placeholder="Alguma outra informação que você gostaria de compartilhar?" rows="5"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Quero ser Voluntário!</button>
+                </form>
+                </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="sermons.html">Sermões</a></li>
+                    <li><a href="ministries.html">Ministérios</a></li>
+                </ul>
+                <ul>
+                    <li><a href="events.html">Eventos</a></li>
+                    <li><a href="give.html">Dê</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                    <li><a href="privacy-policy.html">Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-info">
+                <p>© 2024 IBNV. Todos os direitos reservados.</p>
+                <p>Feito com ❤️ pela comunidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+<script src="js/menu.js"></script></body>
+</html>

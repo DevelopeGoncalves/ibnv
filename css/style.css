@@ -3964,3 +3964,83 @@ a:hover {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Responsividade */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        padding: 0 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    .grid, .row {
+        display: block !important;
+    }
+}
+
+/* ==== MENU HAMBURGUER ==== */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 999;
+  }
+  .nav-menu.active {
+    display: flex;
+  }
+  .nav-menu a {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+/* ==== HAMBURGUER ICON (3 linhas) ==== */
+.menu-toggle {
+  width: 30px;
+  height: 25px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #333;
+  border-radius: 2px;
+}
