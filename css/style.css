@@ -3105,11 +3105,11 @@ a:hover {
 
 /* Estilo para a seção hero da página Sobre Nós */
 .hero-page-about {
-    background-image: linear-gradient(rgba(47, 54, 69, 0.7), rgba(47, 54, 69, 0.7)), url('../img/about/hero-about.jpg');
+    background-image: linear-gradient(rgba(47, 54, 69, 0.7), rgba(47, 54, 69, 0.7)), url('../img/sobrenos.jpg');
     background-size: cover;
     background-position: center;
     color: var(--white);
-    min-height: 40vh; /* Altura um pouco maior para a seção de herói da página */
+    min-height: 70vh; /* Altura um pouco maior para a seção de herói da página */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3787,3 +3787,5 @@ img {
         font-size: 24px;
     }
 }
+
+
