@@ -142,6 +142,11 @@
             background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
         }
 
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
         .card {
             background: #f8f9fa;
             border-radius: 12px;
@@ -226,8 +231,83 @@
             gap: 20px;
         }
 
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 2fr 1fr 120px;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .conversoes-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .conversao-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-left: 4px solid #28a745;
+        }
+
+        .conversao-info {
+            flex: 1;
+        }
+
+        .conversao-nome {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .conversao-idade {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .pessoa-convertida {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #28a745;
+        }
+
+        .pessoa-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .pessoa-nome {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .pessoa-idade {
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pessoa-detalhes {
+            color: #666;
+            line-height: 1.6;
+        }
+
         @media (max-width: 768px) {
-            .form-row {
+            .form-row, .form-row-3 {
                 grid-template-columns: 1fr;
             }
             
@@ -259,14 +339,14 @@
         </header>
 
         <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('dashboard')">Dashboard</button>
-            <button class="nav-tab" onclick="showTab('novo-relatorio')">Novo Relatório</button>
-            <button class="nav-tab" onclick="showTab('relatorios')">Relatórios</button>
-            <button class="nav-tab" onclick="showTab('sobre')">Sobre Casa de Paz</button>
+            <button class="nav-tab active" onclick="showTab('dashboard', this)">Dashboard</button>
+            <button class="nav-tab" onclick="showTab('novo-relatorio', this)">Novo Relatório</button>
+            <button class="nav-tab" onclick="showTab('relatorios', this)">Relatórios</button>
+            <button class="nav-tab" onclick="showTab('conversoes', this)">Conversões</button>
+            <button class="nav-tab" onclick="showTab('sobre', this)">Sobre Casa de Paz</button>
         </div>
 
         <div class="content">
-            <!-- Dashboard Tab -->
             <div id="dashboard" class="tab-content active">
                 <h2>Dashboard - Casa de Paz</h2>
                 
@@ -280,7 +360,7 @@
                         <div class="stat-label">Pessoas Alcançadas</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number" id="total-conversoes">0</div>
+                        <div class="stat-number" id="total-conversoes-semana">0</div>
                         <div class="stat-label">Conversões Esta Semana</div>
                     </div>
                     <div class="stat-card">
@@ -299,7 +379,6 @@
                 </div>
             </div>
 
-            <!-- Novo Relatório Tab -->
             <div id="novo-relatorio" class="tab-content">
                 <h2>📝 Novo Relatório Semanal</h2>
                 
@@ -335,23 +414,39 @@
                         <textarea id="atividades" name="atividades" required placeholder="Descreva as principais atividades realizadas na casa de paz durante esta semana..."></textarea>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="conversoes">Houve Conversões?</label>
-                            <select id="conversoes" name="conversoes" onchange="toggleConversaoDetalhes()">
-                                <option value="nao">Não houve conversões</option>
-                                <option value="sim">Sim, houve conversões</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="qtd-conversoes-group" style="display: none;">
-                            <label for="qtd-conversoes">Quantas Pessoas Aceitaram Jesus?</label>
-                            <input type="number" id="qtd-conversoes" name="qtd-conversoes" min="1" placeholder="0">
-                        </div>
+                    <div class="form-group">
+                        <label for="conversoes">Houve Conversões?</label>
+                        <select id="conversoes" name="conversoes" onchange="toggleConversaoDetalhes()">
+                            <option value="nao">Não houve conversões</option>
+                            <option value="sim">Sim, houve conversões</option>
+                        </select>
                     </div>
 
-                    <div class="form-group" id="nomes-conversoes-group" style="display: none;">
-                        <label for="nomes-conversoes">Nomes das Pessoas que Aceitaram Jesus (opcional)</label>
-                        <textarea id="nomes-conversoes" name="nomes-conversoes" placeholder="Digite os nomes das pessoas que aceitaram Jesus..."></textarea>
+                    <div id="conversoes-detalhes" style="display: none;">
+                        <div class="conversoes-container">
+                            <h3 style="color: #28a745; margin-bottom: 15px;">👥 Pessoas que Aceitaram Jesus</h3>
+                            
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="nome-convertido">Nome Completo</label>
+                                    <input type="text" id="nome-convertido" placeholder="Digite o nome da pessoa">
+                                </div>
+                                <div class="form-group">
+                                    <label for="idade-convertido">Idade</label>
+                                    <input type="number" id="idade-convertido" min="1" max="150" placeholder="Idade">
+                                </div>
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button type="button" class="btn btn-secondary" onclick="adicionarConvertido()">➕ Adicionar</button>
+                                </div>
+                            </div>
+
+                            <div id="lista-convertidos">
+                                <p style="color: #666; text-align: center; padding: 20px;">
+                                    Nenhuma pessoa adicionada ainda.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -363,7 +458,6 @@
                 </form>
             </div>
 
-            <!-- Relatórios Tab -->
             <div id="relatorios" class="tab-content">
                 <h2>📋 Relatórios Salvos</h2>
                 
@@ -381,7 +475,53 @@
                 </div>
             </div>
 
-            <!-- Sobre Tab -->
+            <div id="conversoes" class="tab-content">
+                <h2>✝️ Pessoas que Aceitaram Jesus</h2>
+                
+                <div style="margin-bottom: 20px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                    <button onclick="debugDados()" class="btn btn-secondary">🔍 Debug - Verificar Dados</button>
+                    <small style="color: #856404; margin-left: 10px;">Use este botão se a lista estiver em branco</small>
+                </div>
+                
+                <div class="form-row" style="margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label for="filtro-lider-conversoes">Filtrar por Líder</label>
+                        <select id="filtro-lider-conversoes" onchange="filtrarConversoes()">
+                            <option value="">Todos os líderes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filtro-periodo">Período</label>
+                        <select id="filtro-periodo" onchange="filtrarConversoes()">
+                            <option value="">Todo período</option>
+                            <option value="7">Últimos 7 dias</option>
+                            <option value="30">Últimos 30 dias</option>
+                            <option value="90">Últimos 3 meses</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Estatísticas de Conversões</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="total-convertidos">0</div>
+                            <div class="stat-label">Total de Convertidos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="media-idade">0</div>
+                            <div class="stat-label">Idade Média</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="lista-conversoes">
+                    <p style="color: #666; text-align: center; padding: 40px;">
+                        Nenhuma conversão registrada ainda.
+                    </p>
+                </div>
+            </div>
+
             <div id="sobre" class="tab-content">
                 <h2>🏠 O que é Casa de Paz?</h2>
                 
@@ -426,129 +566,29 @@
     </div>
 
     <script>
-        // Dados armazenados em memória
-        let relatorios = JSON.parse(localStorage.getItem('relatorios-casa-paz') || '[]');
-        let lideres = new Set();
+        // URL DO SEU GOOGLE APPS SCRIPT
+        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgzLkiJedJ66XhnnPeRXL6kVGAlHPPf6qrkB81tIqYDPRg7fs74Cg-d3tjctBo1U83Nw/exec";
+        
+        // --- GESTÃO DE DADOS (AGORA APENAS LOCALMENTE PARA DEMOSTRAÇÃO) ---
+        let relatorios = [];
+        let convertidosTemporarios = [];
 
-        // Inicializar aplicação
-        document.addEventListener('DOMContentLoaded', function() {
-            // Definir data atual no formulário
-            document.getElementById('data').valueAsDate = new Date();
-            
-            // Carregar dados
-            carregarDados();
-            atualizarDashboard();
-            atualizarListaRelatorios();
-            atualizarFiltroLideres();
-        });
-
-        // Função para mostrar tabs
-        function showTab(tabId) {
-            // Esconder todos os conteúdos
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-            
-            // Remover classe active de todos os botões
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Mostrar conteúdo selecionado
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Toggle para mostrar campos de conversão
-        function toggleConversaoDetalhes() {
-            const conversoes = document.getElementById('conversoes').value;
-            const qtdGroup = document.getElementById('qtd-conversoes-group');
-            const nomesGroup = document.getElementById('nomes-conversoes-group');
-            
-            if (conversoes === 'sim') {
-                qtdGroup.style.display = 'block';
-                nomesGroup.style.display = 'block';
-                document.getElementById('qtd-conversoes').required = true;
-            } else {
-                qtdGroup.style.display = 'none';
-                nomesGroup.style.display = 'none';
-                document.getElementById('qtd-conversoes').required = false;
-                document.getElementById('qtd-conversoes').value = '';
-                document.getElementById('nomes-conversoes').value = '';
-            }
-        }
-
-        // Salvar relatório
-        document.getElementById('relatorio-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const relatorio = {
-                id: Date.now(),
-                lider: formData.get('lider'),
-                data: formData.get('data'),
-                local: formData.get('local'),
-                pessoas: parseInt(formData.get('pessoas')),
-                atividades: formData.get('atividades'),
-                conversoes: formData.get('conversoes') === 'sim',
-                qtdConversoes: parseInt(formData.get('qtd-conversoes') || 0),
-                nomesConversoes: formData.get('nomes-conversoes') || '',
-                observacoes: formData.get('observacoes') || ''
-            };
-            
-            relatorios.push(relatorio);
-            salvarDados();
-            
-            // Mostrar mensagem de sucesso
-            document.getElementById('success-message').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('success-message').style.display = 'none';
-            }, 3000);
-            
-            // Limpar formulário
-            this.reset();
-            document.getElementById('data').valueAsDate = new Date();
-            toggleConversaoDetalhes();
-            
-            // Atualizar dados
-            atualizarDashboard();
-            atualizarListaRelatorios();
-            atualizarFiltroLideres();
-        });
-
-        // Carregar dados do localStorage
-        function carregarDados() {
-            // Atualizar conjunto de líderes
-            lideres.clear();
-            relatorios.forEach(rel => lideres.add(rel.lider));
-        }
-
-        // Salvar dados no localStorage
-        function salvarDados() {
-            localStorage.setItem('relatorios-casa-paz', JSON.stringify(relatorios));
-            carregarDados();
-        }
-
-        // Atualizar dashboard
         function atualizarDashboard() {
-            const casasAtivas = new Set(relatorios.map(r => r.lider)).size;
+            const lideres = new Set(relatorios.map(r => r.lider));
             const totalPessoas = relatorios.reduce((sum, r) => sum + r.pessoas, 0);
             
-            // Conversões desta semana (últimos 7 dias)
             const agora = new Date();
             const seteDiasAtras = new Date(agora.getTime() - (7 * 24 * 60 * 60 * 1000));
-            const conversoesRecentes = relatorios
-                .filter(r => new Date(r.data) >= seteDiasAtras && r.conversoes)
-                .reduce((sum, r) => sum + r.qtdConversoes, 0);
+            const conversoesRecentes = obterTodasConversoes().filter(c => new Date(c.data) >= seteDiasAtras).length;
             
-            document.getElementById('total-casas').textContent = casasAtivas;
+            document.getElementById('total-casas').textContent = lideres.size;
             document.getElementById('total-pessoas').textContent = totalPessoas;
-            document.getElementById('total-conversoes').textContent = conversoesRecentes;
+            document.getElementById('total-conversoes-semana').textContent = conversoesRecentes;
             document.getElementById('total-lideres').textContent = lideres.size;
             
-            // Atualizar últimas atividades
             atualizarUltimasAtividades();
         }
 
-        // Atualizar últimas atividades
         function atualizarUltimasAtividades() {
             const container = document.getElementById('ultimas-atividades');
             const ultimosRelatorios = relatorios
@@ -560,98 +600,308 @@
                 return;
             }
             
-            container.innerHTML = ultimosRelatorios.map(rel => `
+            container.innerHTML = ultimosRelatorios.map(rel => {
+                const qtdConversoes = rel.convertidos ? rel.convertidos.length : 0;
+                return `
                 <div class="report-item">
                     <div class="report-header">
                         <strong>${rel.lider}</strong>
                         <div>
                             <span class="report-date">${formatarData(rel.data)}</span>
-                            ${rel.conversoes ? `<span class="conversion-badge">${rel.qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
+                            ${rel.conversoes ? `<span class="conversion-badge">${qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
                         </div>
                     </div>
                     <p><strong>Local:</strong> ${rel.local}</p>
                     <p><strong>Pessoas:</strong> ${rel.pessoas}</p>
                     <p><strong>Atividades:</strong> ${rel.atividades.substring(0, 150)}${rel.atividades.length > 150 ? '...' : ''}</p>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
-        // Atualizar lista de relatórios
         function atualizarListaRelatorios() {
             const container = document.getElementById('lista-relatorios');
-            const relatoriosOrdenados = relatorios.sort((a, b) => new Date(b.data) - new Date(a.data));
+            const relatoriosOrdenados = [...relatorios].sort((a, b) => new Date(b.data) - new Date(a.data));
             
             if (relatoriosOrdenados.length === 0) {
                 container.innerHTML = '<p style="color: #666; text-align: center; padding: 40px;">Nenhum relatório encontrado. Adicione relatórios na aba "Novo Relatório".</p>';
                 return;
             }
             
-            container.innerHTML = relatoriosOrdenados.map(rel => `
+            container.innerHTML = relatoriosOrdenados.map(rel => {
+                const qtdConversoes = rel.convertidos ? rel.convertidos.length : 0;
+                const nomesConvertidos = rel.convertidos ? rel.convertidos.map(c => `${c.nome} (${c.idade} anos)`).join(', ') : '';
+                
+                return `
                 <div class="report-item">
                     <div class="report-header">
                         <h4>${rel.lider} - ${rel.local}</h4>
                         <div>
                             <span class="report-date">${formatarData(rel.data)}</span>
-                            ${rel.conversoes ? `<span class="conversion-badge">${rel.qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
+                            ${rel.conversoes ? `<span class="conversion-badge">${qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
                         </div>
                     </div>
                     <p><strong>Pessoas Presentes:</strong> ${rel.pessoas}</p>
                     <p><strong>Atividades:</strong> ${rel.atividades}</p>
-                    ${rel.conversoes ? `<p><strong>Conversões:</strong> ${rel.qtdConversoes} pessoas aceitaram Jesus</p>` : ''}
-                    ${rel.nomesConversoes ? `<p><strong>Nomes:</strong> ${rel.nomesConversoes}</p>` : ''}
+                    ${rel.conversoes ? `<p><strong>Pessoas Convertidas:</strong> ${nomesConvertidos}</p>` : ''}
                     ${rel.observacoes ? `<p><strong>Observações:</strong> ${rel.observacoes}</p>` : ''}
                 </div>
-            `).join('');
+            `;
+            }).join('');
+        }
+        
+        function obterTodasConversoes() {
+            const todasConversoes = [];
+            relatorios.forEach(rel => {
+                if (rel.conversoes && Array.isArray(rel.convertidos)) {
+                    rel.convertidos.forEach(convertido => {
+                        todasConversoes.push({
+                            ...convertido,
+                            data: rel.data,
+                            lider: rel.lider,
+                            local: rel.local
+                        });
+                    });
+                }
+            });
+            return todasConversoes;
         }
 
-        // Atualizar filtro de líderes
-        function atualizarFiltroLideres() {
-            const select = document.getElementById('filtro-lider');
-            const lideresArray = Array.from(lideres).sort();
+        function atualizarConversoes() {
+            const todasConversoes = obterTodasConversoes();
             
-            select.innerHTML = '<option value="">Todos os líderes</option>' +
-                lideresArray.map(lider => `<option value="${lider}">${lider}</option>`).join('');
+            document.getElementById('total-convertidos').textContent = todasConversoes.length;
+            
+            const conversoesComIdade = todasConversoes.filter(c => typeof c.idade === 'number');
+            const mediaIdade = conversoesComIdade.length > 0 ? 
+                Math.round(conversoesComIdade.reduce((sum, c) => sum + c.idade, 0) / conversoesComIdade.length) : 0;
+            document.getElementById('media-idade').textContent = mediaIdade;
+
+            filtrarConversoes();
         }
 
-        // Filtrar relatórios por líder
-        function filtrarRelatorios() {
-            const filtro = document.getElementById('filtro-lider').value;
-            const container = document.getElementById('lista-relatorios');
+        function filtrarConversoes() {
+            const filtroLider = document.getElementById('filtro-lider-conversoes').value;
+            const filtroPeriodo = document.getElementById('filtro-periodo').value;
+            const container = document.getElementById('lista-conversoes');
             
-            let relatoriosFiltrados = relatorios;
-            if (filtro) {
-                relatoriosFiltrados = relatorios.filter(rel => rel.lider === filtro);
+            let conversoesFiltradas = obterTodasConversoes();
+            
+            if (filtroLider) {
+                conversoesFiltradas = conversoesFiltradas.filter(c => c.lider === filtroLider);
             }
             
-            const relatoriosOrdenados = relatoriosFiltrados.sort((a, b) => new Date(b.data) - new Date(a.data));
+            if (filtroPeriodo) {
+                const agora = new Date();
+                const diasAtras = new Date(agora.getTime() - (parseInt(filtroPeriodo) * 24 * 60 * 60 * 1000));
+                conversoesFiltradas = conversoesFiltradas.filter(c => new Date(c.data) >= diasAtras);
+            }
+
+            conversoesFiltradas.sort((a, b) => new Date(b.data) - new Date(a.data));
             
-            if (relatoriosOrdenados.length === 0) {
-                container.innerHTML = '<p style="color: #666; text-align: center; padding: 40px;">Nenhum relatório encontrado para este filtro.</p>';
+            if (conversoesFiltradas.length === 0) {
+                container.innerHTML = '<p style="color: #666; text-align: center; padding: 40px;">Nenhuma conversão encontrada com este filtro.</p>';
                 return;
             }
             
-            container.innerHTML = relatoriosOrdenados.map(rel => `
-                <div class="report-item">
-                    <div class="report-header">
-                        <h4>${rel.lider} - ${rel.local}</h4>
-                        <div>
-                            <span class="report-date">${formatarData(rel.data)}</span>
-                            ${rel.conversoes ? `<span class="conversion-badge">${rel.qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
-                        </div>
+            container.innerHTML = conversoesFiltradas.map(convertido => {
+                const idadeTexto = typeof convertido.idade === 'number' ? `${convertido.idade} anos` : 'Idade não informada';
+                
+                return `
+                <div class="pessoa-convertida">
+                    <div class="pessoa-header">
+                        <div class="pessoa-nome">✝️ ${convertido.nome}</div>
+                        <div class="pessoa-idade">${idadeTexto}</div>
                     </div>
-                    <p><strong>Pessoas Presentes:</strong> ${rel.pessoas}</p>
-                    <p><strong>Atividades:</strong> ${rel.atividades}</p>
-                    ${rel.conversoes ? `<p><strong>Conversões:</strong> ${rel.qtdConversoes} pessoas aceitaram Jesus</p>` : ''}
-                    ${rel.nomesConversoes ? `<p><strong>Nomes:</strong> ${rel.nomesConversoes}</p>` : ''}
-                    ${rel.observacoes ? `<p><strong>Observações:</strong> ${rel.observacoes}</p>` : ''}
+                    <div class="pessoa-detalhes">
+                        <p><strong>Data da Conversão:</strong> ${formatarData(convertido.data)}</p>
+                        <p><strong>Casa de Paz:</strong> ${convertido.local}</p>
+                        <p><strong>Líder Responsável:</strong> ${convertido.lider}</p>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        function showTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+            
+            if (tabId === 'conversoes') {
+                atualizarConversoes();
+            } else if (tabId === 'relatorios') {
+                atualizarListaRelatorios();
+            } else if (tabId === 'dashboard') {
+                atualizarDashboard();
+            }
+        }
+        
+        function toggleConversaoDetalhes() {
+            const temConversoes = document.getElementById('conversoes').value === 'sim';
+            const detalhesDiv = document.getElementById('conversoes-detalhes');
+            
+            detalhesDiv.style.display = temConversoes ? 'block' : 'none';
+            if (!temConversoes) {
+                convertidosTemporarios = [];
+                atualizarListaConvertidos();
+            }
+        }
+
+        function adicionarConvertido() {
+            const nome = document.getElementById('nome-convertido').value.trim();
+            const idade = parseInt(document.getElementById('idade-convertido').value);
+            
+            if (!nome || isNaN(idade) || idade < 1) {
+                alert('Por favor, preencha o nome e idade corretamente.');
+                return;
+            }
+            
+            if (convertidosTemporarios.some(c => c.nome.toLowerCase() === nome.toLowerCase())) {
+                alert('Esta pessoa já foi adicionada.');
+                return;
+            }
+            
+            convertidosTemporarios.push({ nome, idade });
+            
+            document.getElementById('nome-convertido').value = '';
+            document.getElementById('idade-convertido').value = '';
+            
+            atualizarListaConvertidos();
+        }
+
+        function removerConvertido(index) {
+            convertidosTemporarios.splice(index, 1);
+            atualizarListaConvertidos();
+        }
+
+        function atualizarListaConvertidos() {
+            const container = document.getElementById('lista-convertidos');
+            
+            if (convertidosTemporarios.length === 0) {
+                container.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">Nenhuma pessoa adicionada ainda.</p>';
+                return;
+            }
+            
+            container.innerHTML = convertidosTemporarios.map((convertido, index) => `
+                <div class="conversao-item">
+                    <div class="conversao-info">
+                        <div class="conversao-nome">${convertido.nome}</div>
+                        <div class="conversao-idade">${convertido.idade} anos</div>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-small" onclick="removerConvertido(${index})">🗑️ Remover</button>
                 </div>
             `).join('');
         }
 
-        // Formatar data
+        async function enviarRelatorioParaSheets(relatorio) {
+            if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL === "COLE_AQUI_SUA_URL_DO_APPS_SCRIPT") {
+                alert('Atenção: A URL do Google Apps Script não foi configurada. Salve a URL na variável GOOGLE_APPS_SCRIPT_URL no código.');
+                return false;
+            }
+
+            try {
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(relatorio),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                
+                if (data.sucesso) {
+                    return true;
+                } else {
+                    console.error('Erro no servidor do Apps Script:', data.erro);
+                    alert('Erro ao salvar relatório: ' + data.erro);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Erro de conexão:', error);
+                alert('Não foi possível se conectar ao Google Sheets. Verifique sua conexão ou a URL do Apps Script.');
+                return false;
+            }
+        }
+
+        document.getElementById('relatorio-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const temConversoes = formData.get('conversoes') === 'sim';
+            
+            if (temConversoes && convertidosTemporarios.length === 0) {
+                alert('Por favor, adicione pelo menos uma pessoa que aceitou Jesus ou selecione "Não houve conversões".');
+                return;
+            }
+            
+            const relatorio = {
+                id: Date.now(),
+                lider: formData.get('lider'),
+                data: formData.get('data'),
+                local: formData.get('local'),
+                pessoas: parseInt(formData.get('pessoas')),
+                atividades: formData.get('atividades'),
+                conversoes: temConversoes,
+                convertidos: temConversoes ? [...convertidosTemporarios] : [],
+                observacoes: formData.get('observacoes') || ''
+            };
+            
+            const sucesso = await enviarRelatorioParaSheets(relatorio);
+
+            if (sucesso) {
+                relatorios.push(relatorio);
+                
+                document.getElementById('success-message').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 3000);
+                
+                this.reset();
+                document.getElementById('data').valueAsDate = new Date();
+                convertidosTemporarios = [];
+                toggleConversaoDetalhes();
+                atualizarListaConvertidos();
+                
+                atualizarDashboard();
+                atualizarListaRelatorios();
+                atualizarFiltroLideres();
+                atualizarConversoes();
+            }
+        });
+
         function formatarData(data) {
+            if (!data) return '';
             return new Date(data + 'T00:00:00').toLocaleDateString('pt-BR');
         }
+
+        function debugDados() {
+            console.log("--- Dados Atuais na Memória (Apenas para demonstração) ---");
+            console.log("Relatórios:", relatorios);
+            console.log("Conversões:", obterTodasConversoes());
+            alert("Verifique o console do navegador (F12) para ver os dados. Após enviar, verifique a sua planilha no Google Sheets.");
+        }
+
+        function atualizarFiltroLideres() {
+            const lideres = new Set(relatorios.map(r => r.lider));
+            const lideresArray = Array.from(lideres).sort();
+            
+            const opcoes = '<option value="">Todos os líderes</option>' +
+                lideresArray.map(lider => `<option value="${lider}">${lider}</option>`).join('');
+            
+            document.getElementById('filtro-lider').innerHTML = opcoes;
+            document.getElementById('filtro-lider-conversoes').innerHTML = opcoes;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('data').valueAsDate = new Date();
+            atualizarDashboard();
+            atualizarFiltroLideres();
+            atualizarListaRelatorios();
+            atualizarConversoes();
+        });
     </script>
 </body>
 </html>
