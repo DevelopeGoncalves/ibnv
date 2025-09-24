@@ -3787,5 +3787,53 @@ img {
         font-size: 24px;
     }
 }
+/* --- Seção de Galeria de Vigílias --- */
+.gallery-vigilias {
+    padding: 40px 0;
+    background-color: #f9f9f9; /* Um fundo suave para destacar a galeria */
+}
+
+.gallery-vigilias .section-title {
+    margin-bottom: 10px;
+}
+
+.gallery-vigilias .section-subtitle {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.gallery-container {
+    display: grid; /* Usa Grid para o layout em blocos */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 3 colunas, responsivas */
+    gap: 20px; /* Espaçamento entre as imagens */
+    max-width: 1000px; /* Limita a largura máxima da galeria */
+    margin: 0 auto; /* Centraliza a galeria */
+}
+
+.gallery-img {
+    width: 100%; /* A imagem ocupa 100% da largura do seu bloco */
+    height: 350px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease; /* Efeito ao passar o mouse */
+}
+
+.gallery-img:hover {
+    transform: translateY(-5px); /* Move a imagem ligeiramente para cima no hover */
+}
+
+/* Responsividade para telas menores (opcional, mas recomendado) */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Reduz para 2 colunas em telas médias */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        grid-template-columns: 1fr; /* Uma única coluna em telas muito pequenas */
+    }
+}
 
 
