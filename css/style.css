@@ -3835,5 +3835,31 @@ img {
         grid-template-columns: 1fr; /* Uma única coluna em telas muito pequenas */
     }
 }
+/* Imagens de fundo para os Ministérios */
+.ministry-huios-bg {
+    background: url('../img/ministries/fundoHuios.jpg') no-repeat center center/cover;
+    color: #fff; /* Altera a cor do texto para branco para melhor contraste */
+}
 
+/* Exemplo para outra página de ministério (você deve criar esta classe para a página correspondente) */
+.ministry-infantil-bg {
+    background: url('../img/ministries/fundoinfantil.jpg') no-repeat center center/cover;
+    color: #0a0909;
+}
+
+/* Exemplo para outra página de ministério (você deve criar esta classe para a página correspondente) */
+.ministry-louvor-bg {
+    background: url('../img/ministries/fundoLouvor.jpg') no-repeat center center/cover;
+    color: #fff;
+}
+.ministry-homens-bg {
+    background: url('../img/ministries/fundohomens.jpg') no-repeat center center/cover;
+    color: #fff;
+}
+.ministry-adolescentes-bg {
+    background: url('../img/ministries/fundoadolescentes.jpg') no-repeat center center/cover;
+    color: #fff;
+}
+
+/* E assim por diante para cada ministério... */
 
