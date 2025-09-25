@@ -3864,6 +3864,18 @@ img {
     background: url('../img/ministries/fundodatacomemorativas.jpg') no-repeat center center/cover;
     color: #060606;
 }
+.ministry-ministerios-bg {
+    background: url('../img/ministries/fundoministerios.jpg') no-repeat center center/cover;
+    color: #060606;
+}
+.ministry-pascoa-bg {
+    background: url('../img/ministries/fundopascoa') no-repeat center center/cover;
+    color: #060606;
+}
+.ministry-dna-bg {
+    background: url('../img/ministries/fundodanca.jpg') no-repeat center center/cover;
+    color: #ff0606;
+}
 
 /* E assim por diante para cada ministério... */
 
