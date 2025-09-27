@@ -3876,6 +3876,10 @@ img {
     background: url('../img/ministries/fundodanca.jpg') no-repeat center center/cover;
     color: #ff0606;
 }
+.ministry-teatro-bg {
+    background: url('../img/ministries/fundoteatro.jpg') no-repeat center center/cover;
+    color: #ff0606;
+}
 
 /* E assim por diante para cada ministério... */
 
