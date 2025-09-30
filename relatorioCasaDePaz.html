@@ -493,9 +493,34 @@
         </div>
     </div>
     <script>
-        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyBUHrTQjvVy94GKqKaLoLKzPSHqXcS42LaTdtifoDG42V6jp2OwwCm9ELq__f13Lb/exec";
+        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxy2eNzArJYE2uJTcaNWst0Wx7FXBJPr6gKqIOKpsCgXfOr76fvAHqhsbp3QwTWG4wi/exec"; // Certifique-se de que a URL é a mesma que você usou antes
         let relatorios = [];
         let convertidosTemporarios = [];
+
+        async function buscarDadosDaPlanilha() {
+            try {
+                const relatoriosResponse = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?action=getRelatorios`);
+                const relatoriosData = await relatoriosResponse.json();
+
+                if (relatoriosData.sucesso) {
+                    relatorios = relatoriosData.dados.map(rel => ({
+                        id: Date.parse(rel.Data), // Cria um ID temporário
+                        lider: rel.Lider,
+                        data: rel.Data,
+                        local: rel.Local,
+                        pessoas: parseInt(rel.Pessoas),
+                        atividades: rel.Atividades,
+                        conversoes: rel.Houve_Conversoes === 'Sim',
+                        convertidos: rel.Convertidos ? JSON.parse(rel.Convertidos) : [], // Converte a string JSON de volta para array
+                        observacoes: rel.Observacoes || ''
+                    }));
+                }
+            } catch (error) {
+                console.error("Erro ao buscar dados da planilha:", error);
+            }
+        }
+
+        // Suas funções de renderização (atualizarDashboard, atualizarListaRelatorios, etc.) permanecem as mesmas
         function atualizarDashboard() {
             const lideres = new Set(relatorios.map(r => r.lider));
             const totalPessoas = relatorios.reduce((sum, r) => sum + r.pessoas, 0);
@@ -655,7 +680,10 @@
                 alert('Esta pessoa já foi adicionada.');
                 return;
             }
-            convertidosTemporarios.push({ nome, idade });
+            convertidosTemporarios.push({
+                nome,
+                idade
+            });
             document.getElementById('nome-convertido').value = '';
             document.getElementById('idade-convertido').value = '';
             atualizarListaConvertidos();
@@ -694,7 +722,7 @@
                     atividades: relatorio.atividades,
                     conversoes: relatorio.conversoes,
                     observacoes: relatorio.observacoes,
-                    convertidos: JSON.stringify(relatorio.convertidos) 
+                    convertidos: JSON.stringify(relatorio.convertidos)
                 });
                 const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
@@ -735,7 +763,8 @@
             };
             const sucesso = await enviarRelatorioParaSheets(relatorio);
             if (sucesso) {
-                relatorios.push(relatorio);
+                // Não adiciona mais o relatório localmente, ele vai ser buscado da planilha
+                // relatorios.push(relatorio);
                 document.getElementById('success-message').style.display = 'block';
                 setTimeout(() => {
                     document.getElementById('success-message').style.display = 'none';
@@ -745,6 +774,8 @@
                 convertidosTemporarios = [];
                 toggleConversaoDetalhes();
                 atualizarListaConvertidos();
+                // Recarrega todos os dados da planilha para atualizar o dashboard e relatórios
+                await buscarDadosDaPlanilha();
                 atualizarDashboard();
                 atualizarListaRelatorios();
                 atualizarFiltroLideres();
@@ -769,11 +800,13 @@
             document.getElementById('filtro-lider').innerHTML = opcoes;
             document.getElementById('filtro-lider-conversoes').innerHTML = opcoes;
         }
-        document.addEventListener('DOMContentLoaded', function () {
+        // O evento DOMContentLoaded agora irá buscar os dados da planilha
+        document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('data').valueAsDate = new Date();
+            await buscarDadosDaPlanilha();
             atualizarDashboard();
-            atualizarFiltroLideres();
             atualizarListaRelatorios();
+            atualizarFiltroLideres();
             atualizarConversoes();
         });
     </script>
