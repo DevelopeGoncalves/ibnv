@@ -3843,23 +3843,28 @@ img {
 
 /* Exemplo para outra página de ministério (você deve criar esta classe para a página correspondente) */
 .ministry-infantil-bg {
-    background: url('../img/ministries/fundoinfantil.jpg') no-repeat center center/cover;
-    color: #0a0909;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoinfantil.jpg');
+            background-position: center;
+            background-size: cover;
+        }
 
 /* Exemplo para outra página de ministério (você deve criar esta classe para a página correspondente) */
+
 .ministry-louvor-bg {
-    background: url('../img/ministries/fundoLouvor.jpg') no-repeat center center/cover;
-    color: #fff;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoLouvor.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
 .ministry-homens-bg {
     background: url('../img/ministries/fundohomens.jpg') no-repeat center center/cover;
     color: #fff;
 }
 .ministry-adolescentes-bg {
-    background: url('../img/ministries/fundoadolescentes.jpg') no-repeat center center/cover;
-    color: #fff;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoadolescentes.jpg');
+            background-position: center;
+            background-size: cover;
+        }
 .ministry-datasComemorativas-bg {
     background: url('../img/ministries/fundodatacomemorativas.jpg') no-repeat center center/cover;
     color: #060606;
@@ -3880,6 +3885,26 @@ img {
     background: url('../img/ministries/fundoteatro.jpg') no-repeat center center/cover;
     color: #ff0606;
 }
+.ministry-midia-bg {
+    background: url('../img/ministries/midia1.jpg') no-repeat center center/cover;
+    color: #060606;
+}
+.ministry-ebd-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/ebdfundo.jpg');
+            background-position: center;
+            background-size: cover;
+        } 
+.ministry-producaoMidia-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/multmidiafundo');
+            background-position: center;
+            background-size: cover;
+        }
+.ministry-sonoplastia-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/sonoplastiafundo.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
 
 /* E assim por diante para cada ministério... */
 
