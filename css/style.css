@@ -3835,12 +3835,13 @@ img {
         grid-template-columns: 1fr; /* Uma única coluna em telas muito pequenas */
     }
 }
-/* Imagens de fundo para os Ministérios */
-.ministry-huios-bg {
-    background: url('../img/ministries/fundoHuios.jpg') no-repeat center center/cover;
-    color: #fff; /* Altera a cor do texto para branco para melhor contraste */
-}
 
+/* Imagens de fundo para os Ministérios  imagens de fundo*/ 
+.ministry-huios-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoHuios.jpg');
+            background-position: center;
+            background-size: cover;
+        }
 /* Exemplo para outra página de ministério (você deve criar esta classe para a página correspondente) */
 .ministry-infantil-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoinfantil.jpg');
@@ -3857,38 +3858,45 @@ img {
         }
 
 .ministry-homens-bg {
-    background: url('../img/ministries/fundohomens.jpg') no-repeat center center/cover;
-    color: #fff;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundohomens.jpg');
+            background-position: center;
+            background-size: cover;
+        }
 .ministry-adolescentes-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoadolescentes.jpg');
             background-position: center;
             background-size: cover;
         }
 .ministry-datasComemorativas-bg {
-    background: url('../img/ministries/fundodatacomemorativas.jpg') no-repeat center center/cover;
-    color: #060606;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundodatacomemorativas.jpg');
+            background-position: center;
+            background-size: cover;
+        } 
 .ministry-ministerios-bg {
-    background: url('../img/ministries/fundoministerios.jpg') no-repeat center center/cover;
-    color: #060606;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoministerios.jpg');
+            background-position: center;
+            background-size: cover;
+        } 
 .ministry-pascoa-bg {
-    background: url('../img/ministries/fundopascoa') no-repeat center center/cover;
-    color: #060606;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundopascoa');
+            background-position: center;
+            background-size: cover;
+        } 
 .ministry-dna-bg {
-    background: url('../img/ministries/fundodanca.jpg') no-repeat center center/cover;
-    color: #ff0606;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundodanca.jpg');
+            background-position: center;
+            background-size: cover;
+        } 
 .ministry-teatro-bg {
-    background: url('../img/ministries/fundoteatro.jpg') no-repeat center center/cover;
-    color: #ff0606;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundoteatro.jpg');
+            background-position: center;
+            background-size: cover;
+        } 
 .ministry-midia-bg {
-    background: url('../img/ministries/midia1.jpg') no-repeat center center/cover;
-    color: #060606;
-}
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/midia1.jpg');
+            background-position: center;
+            background-size: cover;
+        }
 .ministry-ebd-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/ebdfundo.jpg');
             background-position: center;
@@ -3901,6 +3909,31 @@ img {
         }
 .ministry-sonoplastia-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/sonoplastiafundo.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+.ministry-mulheres-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundomulheres.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+.ministry-casais-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundocasais.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+.ministry-sociais-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundosociais');
+            background-position: center;
+            background-size: cover;
+        }
+.ministry-decoracao-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundodecoracao');
+            background-position: center;
+            background-size: cover;
+        }
+.ministry-sermao-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/ministries/fundosermao.jpg');
             background-position: center;
             background-size: cover;
         }
