@@ -1,32 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('sermon-search');
-    const speakerFilter = document.getElementById('sermon-speaker-filter');
-    const sermonCards = document.querySelectorAll('.sermon-card');
+document.addEventListener('DOMContentLoaded', function() {
+    const watchButtons = document.querySelectorAll('.sermon-grid .btn-watch');
 
-    function filterSermons() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const selectedSpeaker = speakerFilter.value;
+    const featuredVideoIframe = document.querySelector('.featured-sermon .video-container iframe');
+    const featuredSermonTitle = document.querySelector('.featured-sermon-title');
+    const featuredSermonPreacher = document.querySelector('.featured-sermon-preacher');
+    const featuredSermonDate = document.querySelector('.sermon-date');
+    const featuredSermonDescription = document.querySelector('.sermon-description');
 
-        sermonCards.forEach(card => {
-            const title = card.querySelector('h3').textContent.toLowerCase();
-            const preacher = card.dataset.speaker;
+    watchButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
 
-            const matchesSearch = title.includes(searchTerm);
-            const matchesSpeaker = selectedSpeaker === 'all' || preacher === selectedSpeaker;
+            const videoSrc = this.getAttribute('href');
+            const sermonCard = this.closest('.sermon-card');
+            
+            // Puxa as informações do card do sermão, incluindo o nome completo do pregador.
+            const title = sermonCard.querySelector('h3').textContent;
+            const preacherName = sermonCard.getAttribute('data-fullname');
+            const date = sermonCard.querySelector('.sermon-date').textContent;
+            const description = sermonCard.querySelector('p:not(.sermon-date)').textContent;
 
-            // Se todas as condições forem verdadeiras, exibe o card.
-            if (matchesSearch && matchesSpeaker) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+            // Atualiza os elementos na seção em destaque.
+            featuredVideoIframe.src = videoSrc;
+            featuredSermonTitle.textContent = title;
+            featuredSermonPreacher.textContent = `Por: ${preacherName}`;
+            featuredSermonDate.textContent = date;
+            featuredSermonDescription.textContent = description;
+
+            // Rola a página suavemente para o topo.
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
-    }
-
-    // Adiciona "ouvintes de eventos" a cada filtro
-    searchInput.addEventListener('input', filterSermons);
-    speakerFilter.addEventListener('change', filterSermons);
-
-    // Chama a função de filtro na carga da página para garantir que o estado inicial esteja correto
-    filterSermons();
+    });
 });

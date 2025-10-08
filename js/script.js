@@ -136,7 +136,7 @@ function normalizarTexto(texto) {
                 return `A Bíblia é a nossa regra de fé e prática, a Palavra viva de Deus! "Lâmpada para os meus pés é tua palavra, e luz para o meu caminho." (Salmos 119:105).`;
             }
             if (texto.includes('oração') || texto.includes('orar')) {
-                return `A oração é nossa conversa com Deus! "Orai sem cessar." (1 Tessalonicenses 5:17). Se precisar de oração, nossa equipe pastoral está à disposição.`;
+                return `A oração é nossa conversa com Deus! "Orai sem cessar." (1 Tessalonicenses 5:17). Se precisar de oração, nossa equipe pastoral está à disposição e todos os dias as 21h temos oração na IBNV`;
             }
              if (texto.includes('páscoa') || texto.includes('ressurreição')) {
                 return `A Páscoa celebra a vitória de Cristo sobre a morte! "Mas Deus prova o seu amor para conosco, em que Cristo morreu por nós, sendo nós ainda pecadores." (Romanos 5:8). Veja mais em nossa página de <a href="pascoa.html" target="_blank">Páscoa</a>.`;
