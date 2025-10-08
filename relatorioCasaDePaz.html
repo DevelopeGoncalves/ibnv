@@ -515,7 +515,7 @@
                     relatorios = relatoriosData.dados.map(rel => ({
                         id: Date.parse(rel.Data),
                         lider: rel.Lider,
-                        data: rel.Data,
+                        data: new Date(rel.Data).toISOString().split('T')[0],
                         local: rel.Local,
                         pessoas: parseInt(rel.Pessoas),
                         atividades: rel.Atividades,
@@ -566,7 +566,7 @@
                     <div class="report-header">
                         <h3>${rel.lider}</h3>
                         <div>
-                            <span class="report-date">${formatarData(rel.data)}</span>
+                            <span class="report-date">${new Date(rel.data).toLocaleDateString('pt-BR')}</span>
                             ${qtdConversoes > 0 ? `<span class="conversion-badge">${qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
                         </div>
                     </div>
@@ -597,7 +597,7 @@
                     <div class="report-header">
                         <h3>${rel.lider} - ${rel.local}</h3>
                         <div>
-                            <span class="report-date">${formatarData(rel.data)}</span>
+                            <span class="report-date">${new Date(rel.data).toLocaleDateString('pt-BR')}</span>
                             ${qtdConversoes > 0 ? `<span class="conversion-badge">${qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
                         </div>
                     </div>
@@ -637,7 +637,7 @@
                         <div class="report-header">
                             <h3>${rel.lider} - ${rel.local}</h3>
                             <div>
-                                <span class="report-date">${formatarData(rel.data)}</span>
+                                <span class="report-date">${new Date(rel.data).toLocaleDateString('pt-BR')}</span>
                                 ${qtdConversoes > 0 ? `<span class="conversion-badge">${qtdConversoes} conversão(ões)</span>` : `<span class="conversion-badge no-conversion">Sem conversões</span>`}
                             </div>
                         </div>
@@ -820,11 +820,12 @@
                 alert('Por favor, adicione pelo menos uma pessoa que aceitou Jesus ou selecione "Não houve conversões".');
                 return;
             }
-
+            
+            const dataDoRelatorio = new Date(formData.get('data') + 'T00:00:00');
             const relatorio = {
                 id: Date.now(),
                 lider: formData.get('lider'),
-                data: formData.get('data'),
+                data: dataDoRelatorio.toISOString().split('T')[0],
                 local: formData.get('local'),
                 pessoas: parseInt(formData.get('pessoas')),
                 atividades: formData.get('atividades'),
