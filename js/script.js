@@ -123,8 +123,41 @@ function normalizarTexto(texto) {
             if (texto.includes('dízimo') || texto.includes('oferta') || texto.includes('doar') || texto.includes('contribuir')) {
                 return `Sua contribuição é uma bênção! "Cada um contribua segundo propôs no seu coração; não com tristeza, ou por necessidade; porque Deus ama ao que dá com alegria." (2 Coríntios 9:7). Você pode ofertar em nossa página <a href="give.html" target="_blank">Dê Online</a>.`;
             }
-            if (texto.includes('ministérios') || texto.includes('servir')) {
+            if (texto.includes('ministerios') || texto.includes('servir')) {
                 return `Temos muitos ministérios onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries.html" target="_blank">Ministérios</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('louvor') || texto.includes('louvor')) {
+                return `Nosso ministério de Louvor responsável por conduzir a adoração musical onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/louvor.html" target="_blank">Louvor</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('infantil') || texto.includes('infantil')) {
+                return `Nosso ministério Infantil cuida da educação e atividades espirituais das crianças. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/infantil.html" target="_blank">Infantil</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('mulheres') || texto.includes('mulheres')) {
+                return `Nosso ministério Mulheres oferece apoio e atividades de discipulado focadas no público feminino. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/mulheres.html" target="_blank">Mulheres</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('decoracao') || texto.includes('decoracao')) {
+                return `Nosso ministério Decoração responsável por embelezar os ambientes da igreja para cultos e eventos. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/decoracao.html" target="_blank">Decoração</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('casais') || texto.includes('casais')) {
+                return `Nosso ministério Casais oferece apoio, aconselhamento e eventos para fortalecer a vida conjugal. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/casais.html" target="_blank">Casais</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('sonoplastia') || texto.includes('sonoplastia')) {
+                return `Nosso ministério Sonoplastia cuida do som e da qualidade de áudio durante as reuniões. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/sonoplastia.html" target="_blank">Sonoplastia</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('multmidia') || texto.includes('multmidia')) {
+                return `Nosso ministério MultMidia gerencia a projeção e os recursos visuais nos cultos. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/producaoMidia.html" target="_blank">MiltiMidia</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('cursos') || texto.includes('cursos')) {
+                return `Nosso ministério Cursos organiza e ministra estudos bíblicos e treinamentos para membros. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/cursos.html" target="_blank">Cursos</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('juventude') || texto.includes('juventude')) {
+                return `Nosso ministério da Juventude organiza encontros e atividades focadas em jovens. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/huios.html" target="_blank">Huios</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('midia') || texto.includes('midia')) {
+                return `Nosso ministério Midia responsável pela comunicação online, gerenciando redes sociais e produção de conteúdo digital. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/midia.html" target="_blank">Midia</a> para conhecer e se envolver.`;
+            }
+            if (texto.includes('RedeSociasi') || texto.includes('Rede Sociais')) {
+                return `Nosso ministério Rede Sociais responsável pela comunicação online, gerenciando redes sociais e produção de conteúdo digital. onde você pode usar seus dons para a glória de Deus! Visite nossa página de <a href="ministries/sociais.html" target="_blank">Rede Sociais</a> para conhecer e se envolver.`;
             }
             if (texto.includes('pastor') || texto.includes('liderança')) {
                 return `Nossos pastores estão a serviço do Reino, guiando o rebanho com amor e sabedoria. Conheça mais sobre eles em <a href="about.html" target="_blank">Sobre Nós</a>.`;
