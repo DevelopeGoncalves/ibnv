@@ -2789,6 +2789,24 @@ a:hover {
     gap: 2rem;
     margin-top: 2rem;
 }
+/* A Chave:Video ministerio infantil Garante que o contêiner do vídeo tenha uma proporção de 16:9 */
+.video-wrapper {
+    position: relative; /* Necessário para posicionar o vídeo */
+    width: 100%;
+    padding-bottom: 100%; /* Isso é 9/16 * 100%. Define a altura. */
+    height: 0; /* Zera a altura real, que agora é controlada pelo padding */
+    overflow: hidden;
+}
+
+/* Garante que o elemento video preencha exatamente o wrapper */
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que o vídeo cubra a área sem distorcer (opcional) */
+}
 
 .video-item {
     background-color: #f9f9f9;
