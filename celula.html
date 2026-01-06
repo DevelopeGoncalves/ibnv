@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBNV - Nossas Células</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS GERAIS DA PÁGINA --- */
+        
+        /* Hero Section com imagem de fundo */
+        .hero-celula {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/hero-celula.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-celula h1 { font-size: 3rem; margin-bottom: 15px; }
+        .hero-celula p { font-size: 1.2rem; }
+
+        /* Barra de Busca Flutuante */
+        .search-bar-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: -50px; /* Faz flutuar sobre o banner */
+            position: relative;
+            z-index: 10;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+        }
+
+        /* Grid para a timeline e para os cards */
+        .grid-responsive {
+            display: grid;
+            gap: 30px;
+        }
+        /* Cards de célula (mínimo 300px) */
+        .grid-cells { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        /* Timeline steps (mínimo 200px) */
+        .grid-timeline { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+
+        /* Estilos dos Cards de Célula */
+        .cell-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .cell-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cell-img {
+            height: 200px;
+            background-color: #eee;
+            /* A imagem é definida no HTML via inline style */
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .cell-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #28a745; /* Verde padrão */
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Cores das Badges */
+        .badge-jovens { background: #ffc107; color: #333; }
+        .badge-casais { background: #dc3545; }
+        .badge-kids { background: #17a2b8; }
+        .badge-mista { background: #007bff; }
+
+        .cell-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cell-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .cell-info {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cell-info i {
+            color: #0056b3;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Estilos da Timeline (Como funciona) */
+        .timeline-step {
+            text-align: center;
+            padding: 20px;
+        }
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: #0056b3;
+            font-size: 24px;
+        }
+
+        /* --- AJUSTES PARA SMARTPHONE (Responsividade) --- */
+        @media (max-width: 768px) {
+            /* Diminui o texto do banner principal */
+            .hero-celula { padding: 60px 0; }
+            .hero-celula h1 { font-size: 2rem; }
+            .hero-celula p { font-size: 1rem; }
+
+            /* Remove o efeito de flutuar da barra de busca em telas pequenas */
+            .search-bar-container {
+                margin-top: 0;
+                padding: 20px;
+                box-shadow: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            /* Força os filtros a ficarem um embaixo do outro */
+            .filters-grid { grid-template-columns: 1fr; }
+            
+            /* Força a timeline a ficar uma embaixo da outra */
+            .grid-timeline { grid-template-columns: 1fr; }
+
+            /* Ajusta o mapa para não ficar tão alto no celular */
+            #mapa-container { height: 300px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">IGREJA BATISTA NOVA VIDA</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="ministries.html">Ministérios</a></li>
+                    <li><a href="events.html">Eventos</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                    <li><a href="cadastro_de_professores.html" class="btn btn-primary">Cadastre-se</a></li>
+                </ul>
+                <div class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-celula">
+            <div class="container">
+                <h1>Não caminhe sozinho</h1>
+                <p>Encontre uma família para pertencer aqui no Jardim Carapina.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="search-bar-container">
+                <h3 style="margin-bottom: 20px; text-align: center;">Encontre a célula ideal para você</h3>
+                <div class="filters-grid">
+                    <select class="filter-select" id="filtroTipo">
+                        <option value="">Todos os Públicos</option>
+                        <option value="mista">Mista (Todos)</option>
+                        <option value="jovens">Jovens</option>
+                        <option value="casais">Casais</option>
+                        <option value="kids">Crianças</option>
+                    </select>
+                    
+                    <select class="filter-select" id="filtroDia">
+                        <option value="">Qualquer Dia</option>
+                        <option value="terca">Terça-feira</option>
+                        <option value="quarta">Quarta-feira</option>
+                        <option value="quinta">Quinta-feira</option>
+                        <option value="sexta">Sexta-feira</option>
+                        <option value="sabado">Sábado</option>
+                    </select>
+                    
+                    <button class="btn btn-primary" onclick="filtrarCelulas()" style="width: 100%;">Buscar Célula</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="section" style="background-color: #f8f9fa;">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <h2>Como funciona uma Célula?</h2>
+                    <p>Um ambiente informal, na casa de irmãos, para compartilhar a vida.</p>
+                </div>
+                <div class="grid-responsive grid-timeline">
+                    <div class="timeline-step">
+                        <div class="timeline-icon"><i class="fas fa-ice-cream"></i></div>
+                        <h4>Quebra-Gelo</h4>
+                        <p>Um momento descontraído para rir e conversar.</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon"><i class="fas fa-bible"></i></div>
+                        <h4>Palavra</h4>
+                        <p>Compartilhamos o que Deus falou no domingo.</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon"><i class="fas fa-praying-hands"></i></div>
+                        <h4>Oração</h4>
+                        <p>Oramos uns pelos outros e pelas necessidades.</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
+                        <h4>Comunhão</h4>
+                        <p>Sempre termina com um lanche gostoso!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding: 0;">
+            <div id="mapa-container" style="width: 100%; height: 400px; background-color: #ddd; display: flex; align-items: center; justify-content: center;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.796657792153!2d-40.26789892582818!3d-20.2259855523867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb817844c853c91%3A0x764893441946c649!2sJardim%20Carapina%2C%20Serra%20-%20ES!5e0!3m2!1spt-BR!2sbr!4v1715786541235!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: 40px;">Células em Jardim Carapina</h2>
+                
+                <div class="grid-container grid-responsive grid-cells">
+                    
+                    <div class="cell-card" data-tipo="mista" data-dia="quarta">
+                        <div class="cell-img" style="background-image: url('img/celula-familia.jpg');">
+                            <span class="cell-badge badge-mista">Mista</span>
+                        </div>
+                        <div class="cell-content">
+                            <h3 class="cell-title">Célula Betânia</h3>
+                            <div class="cell-info"><i class="fas fa-map-marker-alt"></i> Jardim Carapina (Rua X)</div>
+                            <div class="cell-info"><i class="far fa-clock"></i> Quarta-feira às 19:30h</div>
+                            <div class="cell-info"><i class="fas fa-user-friends"></i> Líderes: Pr. João e Maria</div>
+                            <div style="margin-top: auto; padding-top: 20px;">
+                                <a href="https://wa.me/5527999999999?text=Olá, tenho interesse na Célula Betânia. Pode me mandar a localização?" target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;"><i class="fab fa-whatsapp"></i> Quero Visitar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell-card" data-tipo="jovens" data-dia="sexta">
+                        <div class="cell-img" style="background-image: url('img/celula-jovem.jpg');">
+                            <span class="cell-badge badge-jovens">Jovens</span>
+                        </div>
+                        <div class="cell-content">
+                            <h3 class="cell-title">Célula Dunamis</h3>
+                            <div class="cell-info"><i class="fas fa-map-marker-alt"></i> Jardim Carapina (Rua Y)</div>
+                            <div class="cell-info"><i class="far fa-clock"></i> Sexta-feira às 20:00h</div>
+                            <div class="cell-info"><i class="fas fa-user-friends"></i> Líder: Lucas Silva</div>
+                            <div style="margin-top: auto; padding-top: 20px;">
+                                <a href="https://wa.me/5527999999999?text=Olá, tenho interesse na Célula Dunamis de Jovens. Pode me mandar a localização?" target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;"><i class="fab fa-whatsapp"></i> Quero Visitar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell-card" data-tipo="casais" data-dia="quinta">
+                        <div class="cell-img" style="background-image: url('img/celula-casais.jpg');">
+                            <span class="cell-badge badge-casais">Casais</span>
+                        </div>
+                        <div class="cell-content">
+                            <h3 class="cell-title">Célula Aliança</h3>
+                            <div class="cell-info"><i class="fas fa-map-marker-alt"></i> Jardim Carapina (Rua Z)</div>
+                            <div class="cell-info"><i class="far fa-clock"></i> Quinta-feira às 20:00h</div>
+                            <div class="cell-info"><i class="fas fa-user-friends"></i> Líderes: Marcos e Ana</div>
+                            <div style="margin-top: auto; padding-top: 20px;">
+                                <a href="https://wa.me/5527999999999?text=Olá, tenho interesse na Célula de Casais. Pode me mandar a localização?" target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;"><i class="fab fa-whatsapp"></i> Quero Visitar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cell-card" data-tipo="kids" data-dia="sabado">
+                        <div class="cell-img" style="background-image: url('img/celula-kids.jpg');">
+                            <span class="cell-badge badge-kids">Kids</span>
+                        </div>
+                        <div class="cell-content">
+                            <h3 class="cell-title">Célula Sementinha</h3>
+                            <div class="cell-info"><i class="fas fa-map-marker-alt"></i> Jardim Carapina (Salão Social)</div>
+                            <div class="cell-info"><i class="far fa-clock"></i> Sábado às 15:00h</div>
+                            <div class="cell-info"><i class="fas fa-user-friends"></i> Líder: Tia Carla</div>
+                            <div style="margin-top: auto; padding-top: 20px;">
+                                <a href="https://wa.me/5527999999999?text=Olá, gostaria de levar meu filho na Célula Kids. Pode me mandar a localização?" target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;"><i class="fab fa-whatsapp"></i> Quero Visitar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background-color: #0056b3; color: white; text-align: center;">
+            <div class="container">
+                <h2>Abra sua casa para a Arca de Deus</h2>
+                <p style="max-width: 600px; margin: 20px auto;">Você gostaria de hospedar uma célula na sua casa e ver Deus abençoando sua família e vizinhos? Fale conosco!</p>
+                <a href="https://wa.me/5527999999999?text=Olá, tenho interesse em ser um anfitrião de célula" class="btn btn-outline" style="border-color: white; color: white;">Quero ser Anfitrião</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="sermons.html">Sermões</a></li>
+                    <li><a href="ministries.html">Ministérios</a></li>
+                </ul>
+                <ul>
+                    <li><a href="pascoa.html">Páscoa</a></li>
+                    <li><a href="events.html">Eventos</a></li>
+                    <li><a href="give.html">Dê</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                    <li><a href="privacy-policy.html">Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-info">
+                <p>© 2024 Igreja Batista Nova Vida. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    
+    <script>
+        function filtrarCelulas() {
+            // 1. Pegar os valores selecionados
+            const filtroTipo = document.getElementById('filtroTipo').value;
+            const filtroDia = document.getElementById('filtroDia').value;
+
+            // 2. Pegar todos os cards de célula
+            const celulas = document.querySelectorAll('.cell-card');
+            let encontrou = false;
+
+            // 3. Passar por cada célula e verificar
+            celulas.forEach(celula => {
+                // Pega os dados direto do HTML da célula
+                const tipoCelula = celula.getAttribute('data-tipo');
+                const diaCelula = celula.getAttribute('data-dia');
+
+                // Lógica: Se o filtro estiver vazio ("") OU for igual ao da célula, passa.
+                const bateuTipo = !filtroTipo || filtroTipo === tipoCelula;
+                const bateuDia = !filtroDia || filtroDia === diaCelula;
+
+                if (bateuTipo && bateuDia) {
+                    celula.style.display = 'flex'; // Mostra
+                    encontrou = true;
+                } else {
+                    celula.style.display = 'none'; // Esconde
+                }
+            });
+
+            // 4. Feedback visual e rolagem
+            if (encontrou) {
+                document.querySelector('.grid-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert("Nenhuma célula encontrada com esses filtros. Tente mudar o dia ou o tipo!");
+            }
+        }
+    </script>
+</body>
+</html>
