@@ -9,6 +9,115 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff; /* Azul */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+        .chat-toggle-btn:hover { transform: scale(1.1); }
+
+        .chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            max-width: 90%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9999;
+            font-family: 'Open Sans', sans-serif;
+            border: 1px solid #eee;
+        }
+
+        .chat-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header h4 { margin: 0; font-size: 16px; font-family: 'Montserrat', sans-serif; }
+        .close-chat { cursor: pointer; font-size: 20px; }
+
+        .chat-body {
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+        .bot-msg { background-color: #e9ecef; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .user-msg { background-color: #007bff; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+        .chat-input-area {
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 5px;
+            background: white;
+        }
+        .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
+        .chat-input-area button {
+            background: #007bff;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-group-btn {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        .whatsapp-group-btn:hover { background-color: #1ebc57; color: white; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
 
@@ -25,7 +134,7 @@
                     <li><a href="../events.html">Eventos</a></li>
                     <li><a href="../give.html">Dê</a></li>
                     <li><a href="../contact.html">Contato</a></li>
-                    <li><a href="../cadastro_de_professores.html" class="btn btn-primary">Cadastre-se</a></li>
+                    <li><a href="#" class="btn btn-primary" id="headerSignUpBtn">Cadastre-se</a></li>
                 </ul>
                 <div class="hamburger-menu">
                     <i class="fas fa-bars"></i>
@@ -108,11 +217,8 @@
                         </ul>
                     </div>
                 </div>
-                <p style="text-align: center; margin-top: 2rem;"><a href="../cadastro_de_professores.html" class="btn btn-primary">Seja um Voluntário no Ministério de Decoração!</a></p>
-
-                <p style="margin-top: 3rem;">Para mais informações sobre o Ministério de Decoração, entre em contato conosco!</p>
-                <a href="../contact.html" class="btn btn-primary">Fale Conosco</a>
-                <a href="../ministries.html" class="btn btn-outline">Voltar para Ministérios</a>
+                
+                <a href="../ministries.html" class="btn btn-outline" style="margin-top: 3rem;">Voltar para Ministérios</a>
             </div>
         </section>
     </main>
@@ -141,6 +247,139 @@
         </div>
     </footer>
 
+    <div class="chat-toggle-btn" id="openMinistryChat">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="chat-window" id="ministryChatWindow">
+        <div class="chat-header">
+            <h4><i class="fas fa-paint-brush"></i> Cadastro Decoração</h4>
+            <span class="close-chat" id="closeMinistryChat">×</span>
+        </div>
+        <div class="chat-body" id="ministryChatBody">
+            </div>
+        <div class="chat-input-area" id="ministryInputArea">
+            <input type="text" id="ministryChatInput" placeholder="Digite sua resposta...">
+            <button id="ministrySendBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <script src="../js/script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos
+            const openBtn = document.getElementById('openMinistryChat');
+            const headerSignUpBtn = document.getElementById('headerSignUpBtn');
+            const closeBtn = document.getElementById('closeMinistryChat');
+            const chatWindow = document.getElementById('ministryChatWindow');
+            const chatBody = document.getElementById('ministryChatBody');
+            const chatInput = document.getElementById('ministryChatInput');
+            const sendBtn = document.getElementById('ministrySendBtn');
+            const inputArea = document.getElementById('ministryInputArea');
+
+            // ⚠️ ATENÇÃO: COLOQUE SEU NÚMERO AQUI
+            // Exemplo Brasil: 55 + DDD + Numero (Ex: 5527999998888)
+            const adminPhoneNumber = "5527999999999"; 
+
+            let step = 0;
+            let userName = "";
+            let userPhone = "";
+            let userSkill = "";
+
+            function openChat() {
+                chatWindow.style.display = 'flex';
+                if(step === 0) {
+                    botSay("Olá! A paz do Senhor! 🎨");
+                    setTimeout(() => botSay("Que bênção saber que você quer servir com sua criatividade no Ministério de Decoração."), 1000);
+                    setTimeout(() => botSay("Para começarmos, qual é o seu **Nome Completo**?"), 2500);
+                    step = 1;
+                }
+            }
+
+            openBtn.addEventListener('click', openChat);
+
+            headerSignUpBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openChat();
+            });
+
+            closeBtn.addEventListener('click', () => {
+                chatWindow.style.display = 'none';
+            });
+
+            sendBtn.addEventListener('click', processInput);
+            chatInput.addEventListener('keypress', (e) => {
+                if(e.key === 'Enter') processInput();
+            });
+
+            function processInput() {
+                const text = chatInput.value.trim();
+                if(!text) return;
+
+                userSay(text);
+                chatInput.value = '';
+
+                if(step === 1) {
+                    userName = text;
+                    setTimeout(() => botSay(`Prazer, ${userName}! ✨`), 600);
+                    setTimeout(() => botSay("Para contato, qual é o seu número de **WhatsApp (com DDD)**?"), 1500);
+                    step = 2;
+                } 
+                else if(step === 2) {
+                    userPhone = text;
+                    setTimeout(() => botSay("Ótimo. Você tem alguma habilidade manual (artesanato, design) ou disponibilidade para ajudar na montagem de eventos?"), 1000);
+                    step = 3;
+                }
+                else if(step === 3) {
+                    userSkill = text;
+                    setTimeout(() => botSay("Perfeito! Toda ajuda é muito bem-vinda."), 800);
+                    setTimeout(() => {
+                        botSay("Seu cadastro está pronto! Clique abaixo para enviar essas informações para a nossa liderança via WhatsApp:");
+                        addLinkButton();
+                        inputArea.style.display = 'none';
+                    }, 2000);
+                    step = 4;
+                }
+            }
+
+            function botSay(text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message bot-msg';
+                msgDiv.innerHTML = text;
+                chatBody.appendChild(msgDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function userSay(text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message user-msg';
+                msgDiv.textContent = text;
+                chatBody.appendChild(msgDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function addLinkButton() {
+                // Monta a mensagem final com os dados coletados
+                const finalMessage = `Olá! Gostaria de participar do Ministério de Decoração.%0A%0A*Nome:* ${userName}%0A*WhatsApp:* ${userPhone}%0A*Habilidades/Disponibilidade:* ${userSkill}`;
+                
+                const whatsappUrl = `https://wa.me/${adminPhoneNumber}?text=${finalMessage}`;
+
+                const btn = document.createElement('a');
+                btn.href = whatsappUrl;
+                btn.target = "_blank";
+                btn.className = 'whatsapp-group-btn';
+                btn.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Cadastro';
+                
+                const container = document.createElement('div');
+                container.style.textAlign = 'center';
+                container.style.width = '100%';
+                container.appendChild(btn);
+                
+                chatBody.appendChild(container);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        });
+    </script>
 </body>
 </html>
