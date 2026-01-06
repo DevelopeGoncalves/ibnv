@@ -1,110 +1,216 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>IBNV - Cadastro de Professores</title>
-<link href="css/style.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>IBNV - Cadastro de Voluntários</title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+    
+    <style>
+        .form-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+        }
+        .form-section legend {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #0056b3; /* Cor azul da marca */
+            font-size: 1.2rem;
+            padding: 0 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .checkbox-item input {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<header class="main-header">
-<div class="container">
-<a class="logo" href="index.html">IBNV</a>
-<div class="menu-toggle"><span></span><span></span><span></span></div><nav class="main-nav nav-menu">
-<ul class="nav-list">
-<li><a href="index.html">Início</a></li>
-<li><a href="about.html">Sobre Nós</a></li>
-<li><a href="sermons.html">Sermões</a></li>
-<li><a href="ministries.html">Ministérios</a></li>
-<li><a href="pascoa.html">Páscoa</a></li>
-<li><a href="give.html">Doar</a></li>
-<li><a href="casaDePaz.html">Casa de Paz</a></li>
-<li><a class="btn btn-primary" href="cadastro_de_professores.html">Cadastre-se</a></li>
-</ul>
-<div class="hamburger-menu">
-<i class="fas fa-bars"></i>
-</div>
-</nav>
-</div>
-</header>
-<main>
-<section class="section" style="padding-top: 120px; min-height: 70vh;">
-<div class="container">
-<h2>Cadastro de Voluntários</h2>
-<p>Preencha o formulário abaixo para se tornar um voluntário em nossa igreja. Sua dedicação faz a diferença!</p>
-<form action="#" class="contact-form" method="POST">
-<div class="form-group">
-<label for="nomeProfessor">Nome Completo:</label>
-<input id="nomeProfessor" name="nomeProfessor" required="" type="text"/>
-</div>
-<div class="form-group">
-<label for="dataDoProfessor">Data-Nascimento:</label>
-<input id="dataDoProfessor" name="dataDoProfessor" required="" type="email"/>
-</div>
-<div class="form-group">
-<label for="emailProfessor">E-mail:</label>
-<input id="emailProfessor" name="emailProfessor" required="" type="email"/>
-</div>
-<div class="form-group">
-<label for="telefoneProfessor">Telefone (com DDD):</label>
-<input id="telefoneProfessor" name="telefoneProfessor" placeholder="(XX) XXXXX-XXXX" type="tel"/>
-</div>
-<div class="form-group">
-<label for="areaAtuacao">Área de Atuação ou Ministério Desejado:</label>
-<input id="areaAtuacao" name="areaAtuacao" placeholder="Ex: Escola Bíblica, Louvor, Jovens, Crianças" type="text"/>
-</div>
-<div class="form-group">
-<label for="experiencia">Experiência Relevante e Habilidades:</label>
-<textarea id="experiencia" name="experiencia" placeholder="Descreva brevemente sua experiência anterior ou habilidades que podem contribuir." rows="4"></textarea>
-</div>
-<div class="form-group">
-<label for="disponibilidade">Disponibilidade Preferencial:</label>
-<select id="disponibilidade" name="disponibilidade">
-<option value="">Selecione uma opção</option>
-<option value="manha">Manhã (durante a semana)</option>
-<option value="tarde">Tarde (durante a semana)</option>
-<option value="noite">Noite (durante a semana)</option>
-<option value="sabado">Sábado (manhã/tarde)</option>
-<option value="domingo">Domingo (manhã/tarde)</option>
-<option value="flexivel">Flexível</option>
-</select>
-</div>
-<div class="form-group">
-<label for="mensagemAdicional">Mensagem Adicional (Opcional):</label>
-<textarea id="mensagemAdicional" name="mensagemAdicional" placeholder="Alguma outra informação que você gostaria de compartilhar?" rows="5"></textarea>
-</div>
-<button class="btn btn-primary" type="submit">Enviar Cadastro</button>
-</form>
-</div>
-</section>
-</main>
-<footer class="main-footer">
-<div class="container">
-<div class="footer-links">
-<ul>
-<li><a href="index.html">Início</a></li>
-<li><a href="about.html">Sobre Nós</a></li>
-<li><a href="sermons.html">Sermões</a></li>
-<li><a href="ministries.html">Ministérios</a></li>
-</ul>
-<ul>
-<li><a href="events.html">Eventos</a></li>
-<li><a href="give.html">Dê</a></li>
-<li><a href="contact.html">Contato</a></li>
-<li><a href="privacy-policy.html">Privacidade</a></li>
-</ul>
-</div>
-<div class="footer-info">
-<p>© 2024 IBNV. Todos os direitos reservados.</p>
-<p>Feito com ❤️ pela comunidade.</p>
-</div>
-</div>
-</footer>
-<script src="js/script.js"></script>
-<script src="js/menu.js"></script></body>
+    <header class="main-header">
+        <div class="container">
+            <a class="logo" href="index.html">IBNV</a>
+            <div class="menu-toggle"><span></span><span></span><span></span></div>
+            <nav class="main-nav nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="ministries.html">Ministérios</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                    <li><a class="btn btn-primary" href="cadastro_de_professores.html">Cadastre-se</a></li>
+                </ul>
+                <div class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="padding-top: 120px; min-height: 70vh;">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h2><i class="fas fa-hands-helping"></i> Seja um Voluntário</h2>
+                    <p>Sua dedicação faz a diferença! Preencha os dados abaixo para servirmos juntos.</p>
+                </div>
+
+                <form id="volunteerForm" class="contact-form">
+                    
+                    <fieldset class="form-section">
+                        <legend><i class="fas fa-user"></i> Dados Pessoais</legend>
+                        <div class="form-group">
+                            <label for="nomeProfessor">Nome Completo:</label>
+                            <input id="nomeProfessor" name="nomeProfessor" required type="text" placeholder="Seu nome aqui"/>
+                        </div>
+                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label for="dataDoProfessor">Nascimento:</label>
+                                <input id="dataDoProfessor" name="dataDoProfessor" required type="date"/>
+                            </div>
+                            <div>
+                                <label for="telefoneProfessor">WhatsApp:</label>
+                                <input id="telefoneProfessor" name="telefoneProfessor" placeholder="(XX) 99999-9999" type="tel" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailProfessor">E-mail:</label>
+                            <input id="emailProfessor" name="emailProfessor" required type="email" placeholder="seuemail@exemplo.com"/>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend><i class="fas fa-church"></i> Onde você quer servir?</legend>
+                        <div class="form-group">
+                            <label for="areaAtuacao">Ministério de Interesse:</label>
+                            <select id="areaAtuacao" name="areaAtuacao" required>
+                                <option value="">Selecione...</option>
+                                <option value="Escola Bíblica (EBD)">Escola Bíblica (EBD)</option>
+                                <option value="Ministério Infantil">Ministério Infantil</option>
+                                <option value="Louvor e Adoração">Louvor e Adoração</option>
+                                <option value="Mídia e Comunicação">Mídia e Comunicação</option>
+                                <option value="Recepção/Acolhimento">Recepção/Acolhimento</option>
+                                <option value="Jovens e Adolescentes">Jovens e Adolescentes</option>
+                                <option value="Teatro e Artes">Teatro e Artes</option>
+                                <option value="Outro">Outro (Especifique na mensagem)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="experiencia">Suas Habilidades:</label>
+                            <textarea id="experiencia" name="experiencia" placeholder="Ex: Toco violão, já dei aula para crianças, sei editar vídeos..." rows="3"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend><i class="fas fa-clock"></i> Sua Disponibilidade</legend>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">Marque todos os horários que você pode ajudar:</p>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item"><input type="checkbox" name="disp" value="Manhã (Semana)"> Manhã (Semana)</label>
+                            <label class="checkbox-item"><input type="checkbox" name="disp" value="Tarde (Semana)"> Tarde (Semana)</label>
+                            <label class="checkbox-item"><input type="checkbox" name="disp" value="Noite (Semana)"> Noite (Semana)</label>
+                            <label class="checkbox-item"><input type="checkbox" name="disp" value="Sábado"> Sábado</label>
+                            <label class="checkbox-item"><input type="checkbox" name="disp" value="Domingo"> Domingo</label>
+                            <label class="checkbox-item"><input type="checkbox" name="disp" value="Eventos Especiais"> Eventos Especiais</label>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group">
+                        <label for="mensagemAdicional">Alguma observação final?</label>
+                        <textarea id="mensagemAdicional" name="mensagemAdicional" placeholder="Mensagem opcional..." rows="3"></textarea>
+                    </div>
+                    
+                    <button class="btn btn-primary" type="submit" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                        <i class="fab fa-whatsapp"></i> Enviar Cadastro
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-info">
+                <p>© 2024 IBNV. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/menu.js"></script>
+
+    <script>
+        document.getElementById('volunteerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // ⚠️ COLOQUE O NÚMERO DO RESPONSÁVEL AQUI
+            const adminPhoneNumber = "5527996234590"; 
+
+            // Coleta dos dados simples
+            const nome = document.getElementById('nomeProfessor').value;
+            // Formata a data para dia/mês/ano
+            const dataRaw = document.getElementById('dataDoProfessor').value;
+            const dataNasc = dataRaw ? new Date(dataRaw).toLocaleDateString('pt-BR') : 'Não informado';
+            
+            const whatsapp = document.getElementById('telefoneProfessor').value;
+            const email = document.getElementById('emailProfessor').value;
+            const ministerio = document.getElementById('areaAtuacao').value;
+            const experiencia = document.getElementById('experiencia').value || "Nenhuma especificada";
+            const mensagem = document.getElementById('mensagemAdicional').value || "Sem observações";
+
+            // Coleta da Disponibilidade (Checkboxes)
+            let disponibilidades = [];
+            document.querySelectorAll('input[name="disp"]:checked').forEach((checkbox) => {
+                disponibilidades.push(checkbox.value);
+            });
+            const dispTexto = disponibilidades.length > 0 ? disponibilidades.join(', ') : "A combinar";
+
+            // Montagem da mensagem bonita
+            const textMessage = 
+`📝 *NOVO VOLUNTÁRIO IBNV*
+
+👤 *DADOS PESSOAIS*
+*Nome:* ${nome}
+*Nasc:* ${dataNasc}
+*Zap:* ${whatsapp}
+*Email:* ${email}
+
+⛪ *MINISTÉRIO*
+*Área:* ${ministerio}
+*Habilidades:* ${experiencia}
+
+⏰ *DISPONIBILIDADE*
+${dispTexto}
+
+💬 *OBSERVAÇÃO*
+${mensagem}`;
+
+            // Envio
+            const encodedMessage = encodeURIComponent(textMessage);
+            const whatsappUrl = `https://wa.me/${adminPhoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
 </html>
