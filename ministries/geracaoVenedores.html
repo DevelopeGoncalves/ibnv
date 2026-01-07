@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Igreja Batista Nova Vida - Ministério Geração de Vencedores (Melhor Idade)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Igreja Batista Nova Vida - Ministério Geração de Vencedores</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,112 +11,105 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        .chat-toggle-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #007bff; /* Azul */
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 9999;
-            transition: transform 0.3s ease;
-        }
+        /* --- ESTILOS DO CHAT (MANTIDOS) --- */
+        .chat-toggle-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #007bff; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; transition: transform 0.3s ease; }
         .chat-toggle-btn:hover { transform: scale(1.1); }
-
-        .chat-window {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            max-width: 90%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 9999;
-            font-family: 'Open Sans', sans-serif;
-            border: 1px solid #eee;
-        }
-
-        .chat-header {
-            background-color: #007bff;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .chat-window { position: fixed; bottom: 90px; right: 20px; width: 350px; max-width: 90%; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 9999; font-family: 'Open Sans', sans-serif; border: 1px solid #eee; }
+        .chat-header { background-color: #007bff; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         .chat-header h4 { margin: 0; font-size: 16px; font-family: 'Montserrat', sans-serif; }
         .close-chat { cursor: pointer; font-size: 20px; }
-
-        .chat-body {
-            height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 14px;
-            line-height: 1.4;
-            animation: fadeIn 0.3s ease;
-        }
+        .chat-body { height: 300px; overflow-y: auto; padding: 15px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
+        .message { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.4; animation: fadeIn 0.3s ease; }
         .bot-msg { background-color: #e9ecef; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
         .user-msg { background-color: #007bff; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-
-        .chat-input-area {
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            display: flex;
-            gap: 5px;
-            background: white;
-        }
+        .chat-input-area { padding: 10px; border-top: 1px solid #ddd; display: flex; gap: 5px; background: white; }
         .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
-        .chat-input-area button {
-            background: #007bff;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .whatsapp-group-btn {
-            display: inline-block;
-            background-color: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 5px;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
+        .chat-input-area button { background: #007bff; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .whatsapp-group-btn { display: inline-block; background-color: #25d366; color: white; text-decoration: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; margin-top: 5px; text-align: center; border: none; cursor: pointer; }
         .whatsapp-group-btn:hover { background-color: #1ebc57; color: white; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- ESTILOS DA GALERIA DINÂMICA --- */
+        
+        /* Seletor de Pastas */
+        .folder-select-wrapper {
+            margin: 20px 0;
+            position: relative;
+            max-width: 400px;
+        }
+        .folder-select-wrapper select {
+            width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ddd;
+            background: #f8f9fa; font-size: 16px; color: #333; cursor: pointer;
+            outline: none; appearance: none; -webkit-appearance: none;
+        }
+        .folder-select-wrapper::after {
+            content: '\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+            color: #666; pointer-events: none;
+        }
+
+        /* Grade de Fotos */
+        .dynamic-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            .dynamic-gallery-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 colunas no celular */
+                gap: 5px;
+            }
+        }
+
+        .gallery-item {
+            position: relative; aspect-ratio: 1; overflow: hidden;
+            border-radius: 8px; cursor: pointer; background: #eee;
+            transition: transform 0.2s;
+        }
+        .gallery-item:hover { transform: scale(1.03); z-index: 2; }
+        
+        .gallery-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* Vídeo */
+        .video-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;
+        }
+        .play-icon { font-size: 30px; color: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+
+        /* Botão Carregar Mais */
+        .load-more-container { text-align: center; margin-top: 20px; display: none; }
+        .btn-load-more {
+            background: #007bff; color: white; border: none; padding: 12px 30px;
+            border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .btn-load-more:hover { background: #0056b3; }
+
+        /* Status */
+        .status-msg { grid-column: 1 / -1; text-align: center; padding: 40px; color: #666; font-style: italic; }
+
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 10000;
+            display: none; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        
+        .lightbox-content { position: relative; max-width: 95%; max-height: 90%; display: flex; justify-content: center; align-items: center; }
+        .lightbox-img { max-width: 100%; max-height: 85vh; border-radius: 5px; box-shadow: 0 0 20px rgba(0,0,0,0.5); object-fit: contain; }
+        .lightbox-video { width: 90vw; height: 50vh; max-width: 800px; background: black; border: none; }
+        
+        .close-lightbox {
+            position: absolute; top: 20px; right: 20px; color: white;
+            font-size: 30px; cursor: pointer; background: rgba(255,255,255,0.2);
+            width: 45px; height: 45px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; border: none;
+        }
     </style>
 </head>
 <body>
@@ -147,37 +140,32 @@
         <section class="section hero-page-header ministry-geracaoVencedores-bg">
             <div class="container text-center">
                 <h1>Ministério Geração de Vencedores</h1>
-                <p>Celebrando a maturidade e inspirando a Melhor Idade a viver seu propósito e legado em Cristo.</p>
+                <p>Celebrando a maturidade e inspirando a Melhor Idade a viver seu propósito.</p>
             </div>
         </section>
 
         <section class="section ministry-detail-content">
             <div class="container text-left">
                 <p>O Ministério Geração de Vencedores é o espaço de apoio e comunhão dedicado à Melhor Idade. Celebramos a sabedoria acumulada, oferecendo um ambiente onde a fé se renova e o propósito em Cristo continua vibrante. Aqui, os vencedores compartilham suas experiências e edificam a próxima geração.</p>
-                <img src="../img/ministries/geracao.jpg" alt="Grupo de idosos em um evento de comunhão e alegria" class="ministry-detail-img">
+                <img src="../img/ministries/geracao.jpg" alt="Grupo de idosos em um evento" class="ministry-detail-img">
                 <p>Nossa equipe se dedica a criar momentos de crescimento espiritual e integração social. Através de estudos bíblicos focados na jornada da fé, passeios de comunhão e projetos de serviço, buscamos que esta geração continue impactando a igreja e a comunidade.</p>
                 
-                <h3 style="margin-top: 3rem;">Nossa Galeria de Fotos</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="../img/ministries/melhor_idade_1.jpg" alt="Idosos em um momento de louvor e mãos levantadas">
-                        <p>Fé e adoração: a alegria de um coração grato.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/melhor_idade_2.jpg" alt="Grupo de idosos em uma mesa de café da manhã de comunhão">
-                        <p>Comunhão e amizade: fortalecendo os laços.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/melhor_idade_3.jpg" alt="Idosos participando de uma palestra ou estudo bíblico">
-                        <p>Estudos da Palavra e compartilhamento de vida.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/melhor_idade_4.jpg" alt="Casais e amigos da melhor idade sorrindo em um passeio">
-                        <p>Passeios e atividades de lazer para celebrar a vida.</p>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 2rem;"><a href="#" class="btn btn-outline">Ver Álbum Completo</a></p>
+                <h3 style="margin-top: 3rem;"><i class="fas fa-camera"></i> Galeria de Fotos</h3>
+                <p>Momentos especiais da Melhor Idade. Selecione o álbum abaixo:</p>
 
+                <div class="folder-select-wrapper">
+                    <select id="subFolderSelect" onchange="loadImages(this.value)">
+                        </select>
+                </div>
+
+                <div class="dynamic-gallery-grid" id="galleryGrid">
+                    <div class="status-msg">Carregando galeria...</div>
+                </div>
+
+                <div id="loadMoreArea" class="load-more-container">
+                    <button class="btn-load-more" onclick="renderNextChunk()">Ver Mais Fotos</button>
+                    <p id="itemsCounter" style="font-size:12px; opacity:0.6; margin-top:5px;"></p>
+                </div>
                 <h3 style="margin-top: 3rem;">Programação da Semana</h3>
                 <ul class="event-details-list">
                     <li><i class="fas fa-calendar-alt"></i>Quartas-feiras: **Chá da Sabedoria** (15:00h - Salão Social)</li>
@@ -239,17 +227,18 @@
         </div>
     </footer>
 
-    <div class="chat-toggle-btn" id="openMinistryChat">
-        <i class="fas fa-robot"></i>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <button class="close-lightbox" onclick="closeLightbox(null, true)">×</button>
+        <div class="lightbox-content" id="lightboxContent"></div>
     </div>
 
+    <div class="chat-toggle-btn" id="openMinistryChat"><i class="fas fa-crown"></i></div>
     <div class="chat-window" id="ministryChatWindow">
         <div class="chat-header">
             <h4><i class="fas fa-crown"></i> Geração de Vencedores</h4>
             <span class="close-chat" id="closeMinistryChat">×</span>
         </div>
-        <div class="chat-body" id="ministryChatBody">
-            </div>
+        <div class="chat-body" id="ministryChatBody"></div>
         <div class="chat-input-area" id="ministryInputArea">
             <input type="text" id="ministryChatInput" placeholder="Digite sua resposta...">
             <button id="ministrySendBtn"><i class="fas fa-paper-plane"></i></button>
@@ -259,8 +248,135 @@
     <script src="../js/script.js"></script>
 
     <script>
+        // ============================================
+        // 1. CONFIGURAÇÃO DA GALERIA GERAÇÃO DE VENCEDORES
+        // ============================================
+        
+        // ⚠️ COLE A URL DO SEU GOOGLE APPS SCRIPT AQUI:
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx5EH-Up5_QT5hh2PeesKJMEodzTNDNyiWgvZfyuxOXBoR_udYnr_RhoBNNDI25fCp2/exec'; 
+
+        // ⚠️ LISTA DE ÁLBUNS (PASTAS DO DRIVE)
+        // VOCÊ PRECISA COLOCAR OS IDs REAIS DAS PASTAS AQUI!
+        const SUBFOLDERS = [
+            { name: 'Geral / Encontros', id: '1XEl_FrtFU7a5A5Bnzvq9WvsrB7tZuzPG' }
+        ];
+
+        // Variáveis de Controle
+        let allFilesCache = [];
+        let currentIndex = 0;
+        const CHUNK_SIZE = 18; 
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            setupDropdown();
+            loadImages(SUBFOLDERS[0].id);
+        });
+
+        function setupDropdown() {
+            const select = document.getElementById('subFolderSelect');
+            select.innerHTML = '';
+            SUBFOLDERS.forEach(folder => {
+                const option = document.createElement('option');
+                option.value = folder.id;
+                option.text = folder.name;
+                select.appendChild(option);
+            });
+        }
+
+        async function loadImages(folderId) {
+            const grid = document.getElementById('galleryGrid');
+            const loadArea = document.getElementById('loadMoreArea');
+            
+            grid.innerHTML = '<div class="status-msg"><i class="fas fa-spinner fa-spin fa-2x"></i><p>Carregando fotos...</p></div>';
+            loadArea.style.display = 'none';
+
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=list&folderId=${folderId}`);
+                const files = await response.json();
+
+                grid.innerHTML = ''; 
+                allFilesCache = files; 
+                currentIndex = 0;
+
+                if (!files || files.length === 0) {
+                    grid.innerHTML = '<div class="status-msg">Nenhuma foto encontrada neste álbum.</div>';
+                    return;
+                }
+
+                renderNextChunk();
+
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = '<div class="status-msg">Erro ao carregar. Verifique a conexão.</div>';
+            }
+        }
+
+        function renderNextChunk() {
+            const grid = document.getElementById('galleryGrid');
+            const loadArea = document.getElementById('loadMoreArea');
+            const counter = document.getElementById('itemsCounter');
+
+            const nextFiles = allFilesCache.slice(currentIndex, currentIndex + CHUNK_SIZE);
+
+            nextFiles.forEach(file => {
+                // Link oficial de miniatura do Google Drive
+                const thumbUrl = `https://lh3.googleusercontent.com/d/${file.id}=s400`;
+
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.onclick = () => openLightbox(file.type, file.id);
+
+                if (file.type.includes('image')) {
+                    item.innerHTML = `<img src="${thumbUrl}" class="gallery-img" loading="lazy" alt="Foto">`;
+                } else {
+                    item.innerHTML = `
+                        <img src="${thumbUrl}" class="gallery-img" loading="lazy" alt="Vídeo">
+                        <div class="video-overlay"><i class="fas fa-play play-icon"></i></div>
+                    `;
+                }
+                grid.appendChild(item);
+            });
+
+            currentIndex += nextFiles.length;
+
+            if (currentIndex < allFilesCache.length) {
+                loadArea.style.display = 'block';
+                counter.innerText = `Mostrando ${currentIndex} de ${allFilesCache.length} arquivos`;
+            } else {
+                loadArea.style.display = 'none';
+            }
+        }
+
+        // --- LIGHTBOX ---
+        function openLightbox(type, fileId) {
+            const lightbox = document.getElementById('lightbox');
+            const content = document.getElementById('lightboxContent');
+            content.innerHTML = '<div style="color:white"><i class="fas fa-spinner fa-spin"></i></div>';
+            
+            lightbox.classList.add('active');
+
+            setTimeout(() => {
+                if (type.includes('image')) {
+                    const fullUrl = `https://lh3.googleusercontent.com/d/${fileId}=s2000`;
+                    content.innerHTML = `<img src="${fullUrl}" class="lightbox-img">`;
+                } else {
+                    const videoUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                    content.innerHTML = `<iframe src="${videoUrl}" class="lightbox-video" allow="autoplay; fullscreen"></iframe>`;
+                }
+            }, 100);
+        }
+
+        function closeLightbox(event, force) {
+            if (force || event.target.id === 'lightbox') {
+                document.getElementById('lightbox').classList.remove('active');
+                setTimeout(() => { document.getElementById('lightboxContent').innerHTML = ''; }, 300);
+            }
+        }
+
+        // ============================================
+        // 2. SCRIPT DO CHAT (GERAÇÃO DE VENCEDORES)
+        // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Elementos
             const openBtn = document.getElementById('openMinistryChat');
             const headerSignUpBtn = document.getElementById('headerSignUpBtn');
             const closeBtn = document.getElementById('closeMinistryChat');
@@ -269,16 +385,9 @@
             const chatInput = document.getElementById('ministryChatInput');
             const sendBtn = document.getElementById('ministrySendBtn');
             const inputArea = document.getElementById('ministryInputArea');
-
-            // ⚠️ ATENÇÃO: COLOQUE SEU NÚMERO AQUI
-            // Exemplo Brasil: 55 + DDD + Numero (Ex: 5527999998888)
+            
             const adminPhoneNumber = "5527998801481"; 
-
-            let step = 0;
-            let userName = "";
-            let userPhone = "";
-            let participation = "";
-            let interest = "";
+            let step = 0; let userName = ""; let userPhone = ""; let participation = ""; let interest = "";
 
             function openChat() {
                 chatWindow.style.display = 'flex';
@@ -290,26 +399,15 @@
                 }
             }
 
-            openBtn.addEventListener('click', openChat);
-
-            headerSignUpBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openChat();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                chatWindow.style.display = 'none';
-            });
-
-            sendBtn.addEventListener('click', processInput);
-            chatInput.addEventListener('keypress', (e) => {
-                if(e.key === 'Enter') processInput();
-            });
+            if(openBtn) openBtn.addEventListener('click', openChat);
+            if(headerSignUpBtn) headerSignUpBtn.addEventListener('click', (e) => { e.preventDefault(); openChat(); });
+            if(closeBtn) closeBtn.addEventListener('click', () => { chatWindow.style.display = 'none'; });
+            if(sendBtn) sendBtn.addEventListener('click', processInput);
+            if(chatInput) chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processInput(); });
 
             function processInput() {
                 const text = chatInput.value.trim();
                 if(!text) return;
-
                 userSay(text);
                 chatInput.value = '';
 
@@ -318,22 +416,19 @@
                     setTimeout(() => botSay(`Prazer em conhecer, ${userName}! ✨`), 600);
                     setTimeout(() => botSay("Para contato, qual é o seu número de **WhatsApp (com DDD)**?"), 1500);
                     step = 2;
-                } 
-                else if(step === 2) {
+                } else if(step === 2) {
                     userPhone = text;
                     setTimeout(() => botSay("Você já participa das nossas atividades (Chá da Sabedoria, Viagens, Cultos)?"), 1000);
                     step = 3;
-                }
-                else if(step === 3) {
+                } else if(step === 3) {
                     participation = text;
                     setTimeout(() => botSay("Gostaria de receber visitas, participar dos grupos de oração ou ajudar como voluntário?"), 1000);
                     step = 4;
-                }
-                else if(step === 4) {
+                } else if(step === 4) {
                     interest = text;
                     setTimeout(() => botSay("Que bênção! Vamos adorar ter você conosco."), 800);
                     setTimeout(() => {
-                        botSay("Seu cadastro está pronto! Clique abaixo para enviar essas informações para a nossa liderança via WhatsApp:");
+                        botSay("Clique abaixo para enviar seu cadastro:");
                         addLinkButton();
                         inputArea.style.display = 'none';
                     }, 2000);
@@ -342,40 +437,20 @@
             }
 
             function botSay(text) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'message bot-msg';
-                msgDiv.innerHTML = text;
-                chatBody.appendChild(msgDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
+                const div = document.createElement('div'); div.className = 'message bot-msg'; div.innerHTML = text;
+                chatBody.appendChild(div); chatBody.scrollTop = chatBody.scrollHeight;
             }
-
             function userSay(text) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'message user-msg';
-                msgDiv.textContent = text;
-                chatBody.appendChild(msgDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
+                const div = document.createElement('div'); div.className = 'message user-msg'; div.textContent = text;
+                chatBody.appendChild(div); chatBody.scrollTop = chatBody.scrollHeight;
             }
-
             function addLinkButton() {
-                // Monta a mensagem final com os dados coletados
-                const finalMessage = `Olá! Gostaria de participar da Geração de Vencedores.%0A%0A*Nome:* ${userName}%0A*WhatsApp:* ${userPhone}%0A*Participação:* ${participation}%0A*Interesse:* ${interest}`;
-                
-                const whatsappUrl = `https://wa.me/${adminPhoneNumber}?text=${finalMessage}`;
-
-                const btn = document.createElement('a');
-                btn.href = whatsappUrl;
-                btn.target = "_blank";
-                btn.className = 'whatsapp-group-btn';
-                btn.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Cadastro';
-                
-                const container = document.createElement('div');
-                container.style.textAlign = 'center';
-                container.style.width = '100%';
-                container.appendChild(btn);
-                
-                chatBody.appendChild(container);
-                chatBody.scrollTop = chatBody.scrollHeight;
+                const msg = `Olá! Gostaria de participar da Geração de Vencedores.%0A%0A*Nome:* ${userName}%0A*WhatsApp:* ${userPhone}%0A*Participação:* ${participation}%0A*Interesse:* ${interest}`;
+                const url = `https://wa.me/${adminPhoneNumber}?text=${msg}`;
+                const btn = document.createElement('a'); btn.href = url; btn.target = "_blank";
+                btn.className = 'whatsapp-group-btn'; btn.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Cadastro';
+                const div = document.createElement('div'); div.style.textAlign = 'center'; div.style.width = '100%';
+                div.appendChild(btn); chatBody.appendChild(div); chatBody.scrollTop = chatBody.scrollHeight;
             }
         });
     </script>
