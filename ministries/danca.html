@@ -4,119 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Igreja Batista Nova Vida - Ministério de Dança DNA</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        .chat-toggle-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #007bff; /* Azul */
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 9999;
-            transition: transform 0.3s ease;
-        }
+        /* --- ESTILOS ORIGINAIS DO CHAT (Mantidos) --- */
+        .chat-toggle-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #007bff; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; transition: transform 0.3s ease; }
         .chat-toggle-btn:hover { transform: scale(1.1); }
-
-        .chat-window {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            max-width: 90%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 9999;
-            font-family: 'Open Sans', sans-serif;
-            border: 1px solid #eee;
-        }
-
-        .chat-header {
-            background-color: #007bff;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .chat-window { position: fixed; bottom: 90px; right: 20px; width: 350px; max-width: 90%; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 9999; font-family: 'Open Sans', sans-serif; border: 1px solid #eee; }
+        .chat-header { background-color: #007bff; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         .chat-header h4 { margin: 0; font-size: 16px; font-family: 'Montserrat', sans-serif; }
         .close-chat { cursor: pointer; font-size: 20px; }
-
-        .chat-body {
-            height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 14px;
-            line-height: 1.4;
-            animation: fadeIn 0.3s ease;
-        }
+        .chat-body { height: 300px; overflow-y: auto; padding: 15px; background-color: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
+        .message { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.4; animation: fadeIn 0.3s ease; }
         .bot-msg { background-color: #e9ecef; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
         .user-msg { background-color: #007bff; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-
-        .chat-input-area {
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            display: flex;
-            gap: 5px;
-            background: white;
-        }
+        .chat-input-area { padding: 10px; border-top: 1px solid #ddd; display: flex; gap: 5px; background: white; }
         .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
-        .chat-input-area button {
-            background: #007bff;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .whatsapp-group-btn {
-            display: inline-block;
-            background-color: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 5px;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
+        .chat-input-area button { background: #007bff; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .whatsapp-group-btn { display: inline-block; background-color: #25d366; color: white; text-decoration: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; margin-top: 5px; text-align: center; border: none; cursor: pointer; }
         .whatsapp-group-btn:hover { background-color: #1ebc57; color: white; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- NOVOS ESTILOS PARA A GALERIA DINÂMICA E LIGHTBOX --- */
+        
+        /* Grade da Galeria */
+        .dynamic-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #f0f0f0;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item:hover { transform: scale(1.03); z-index: 2; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Ícone de Play para vídeos */
+        .video-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .play-icon { font-size: 30px; color: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+
+        .status-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* LIGHTBOX (Janela Modal) */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 10000;
+            display: none; justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-video {
+            width: 80vw;
+            height: 80vh;
+            max-width: 1000px;
+            border: none;
+            background: black;
+        }
+
+        .close-lightbox {
+            position: absolute; top: 20px; right: 20px;
+            color: white; font-size: 35px; cursor: pointer;
+            background: rgba(255,255,255,0.1); width: 50px; height: 50px;
+            border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s;
+        }
+        .close-lightbox:hover { background: rgba(255,255,255,0.3); }
+
     </style>
 </head>
 <body>
@@ -158,94 +158,14 @@
                 <p>No ministério de dança DNA, transformamos sentimentos em movimentos. A dor, a alegria, a gratidão, o clamor, tudo se traduz em expressão corporal que glorifica a Deus. Entregamos tudo a Ele que nos chama a viver esse propósito.</p>
                 <p><br>Mais do que uma arte, a dança cristã é uma missão. Um chamado para ministrar através do corpo aquilo que o coração carrega. E quando dançamos com propósito, guiados pelo amor de Cristo, milagres acontecem: feridas são curadas, prisões são quebradas, e vidas são restauradas.</p>
                 
-                <h3 style="margin-top: 3rem;">DNA Kids</h3>
-                <p>A maior alegria que você experimenta (sem contar a alegria de sua salvação) é a alegria e a emoção de ver uma criança vir a Cristo através de seu ministério.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca1.jpg" alt="Crianças em peça de Natal">
-                        <p>As crianças celebrando ao Senhor nos 29 anos da IBNV.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca2.jpg" alt="Crianças em caça aos ovos de Páscoa">
-                        <p>As crianças celebrando ao Senhor nos 29 anos da IBNV.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca3.jpg" alt="Crianças em festa de Dia das Crianças">
-                        <p>As crianças celebrando ao Senhor nos 29 anos da IBNV..</p>
-                    </div>
-                </div>
+                <h3 style="margin-top: 3rem;">Nossa Galeria de Fotos</h3>
+                <p>Dançando com o coração para o Senhor. (Fotos atualizadas em tempo real)</p>
                 
-                <h3 style="margin-top: 3rem;">Nossa Galeria de fotos</h3>
-                <p>Dançando com o coração para o Senhor.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca4.jpg" alt="Descrição da foto 1 do café com avós">
-                        <p>Cantata de Natal.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca5.jpg" alt="Descrição da foto 2 do café com avós">
-                        <p>Aniversário da igreja.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca6.jpg" alt="Descrição da foto 3 do café com avós">
-                        <p>Aniversário da igreja.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca7.jpg" alt="Descrição da foto 4 do café com avós">
-                        <p>Conferência do Espírito Santo 2025.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca8.jpg" alt="Descrição da foto 5 do café com avós">
-                        <p>Auto de páscoa Milagres.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca9.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>Congresso de dança igreja Peniel.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca10.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>1° dia de Conferência da Juventude.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca11.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>1° dia de Conferência Até Sermos Um.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca12.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>1° dia de Conferência Até Sermos Um.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca13.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>1° dia de Conferência Até Sermos Um.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca14.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>1° dia de Conferência Até Sermos Um.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca15.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>2° dia de conferência até Sermos Um.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca16.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>2° dia de conferência até Sermos Um.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca17.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>2° dia de conferência até Sermos Um.</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca18.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>Espontâneo</p>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../img/ministries/danca19.jpg" alt="Descrição da foto 6 do café com avós">
-                        <p>Espontâneo - culto de celebração.</p>
+                <div class="dynamic-gallery-grid" id="ministryGallery">
+                    <div class="status-msg">
+                        <i class="fas fa-spinner fa-spin"></i> Carregando galeria...
                     </div>
                 </div>
-
-                <p style="text-align: center; margin-top: 2rem;"><a href="#" class="btn btn-outline">Ver Álbum Completo</a></p>
-
                 <h3 style="margin-top: 3rem;">Nossos Ensaios Semanais</h3>
                 <ul class="event-details-list">
                     <li><i class="fas fa-calendar-alt"></i>DNA Teens - Segunda e sexta às 19:00hs</li>
@@ -267,46 +187,11 @@
                         </ul>
                     </div>
                     <div class="participant-card">
-                        <img src="../img/perfil/erika.jpg" alt="Foto de Gabriel Ferreira">
+                        <img src="../img/perfil/erika.jpg" alt="Foto de Erika">
                         <h4>Érika Pereira</h4>
                         <p>Líder Auxiliar Jovens</p>
-                        <ul class="social-links">
-                            <li><a aria-label="Facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a aria-label="Instagram" href="https://www.instagram.com/gabriel_ferreiracoreografo"><i class="fab fa-instagram"></i></a></li>
-                            <li><a aria-label="Email" href="#"><i class="fas fa-envelope"></i></a></li>
-                        </ul>
                     </div>
-                    <div class="participant-card">
-                        <img src="../img/perfil/Mariana.jpg" alt="Foto de Gabriel Ferreira">
-                        <h4>Mariana Petersen</h4>
-                        <p>Líder Auxiliar Adolescentes</p>
-                        <ul class="social-links">
-                            <li><a aria-label="Facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a aria-label="Instagram" href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a aria-label="Email" href="#"><i class="fas fa-envelope"></i></a></li>
-                        </ul>
                     </div>
-                    <div class="participant-card">
-                        <img src="../img/perfil/mikaela.jpg" alt="Foto de Gabriel Ferreira">
-                        <h4>Mikaeli Manoel Jacinto Furriel Gonçalves</h4>
-                        <p>Líder Auxiliar de Crianças</p>
-                        <ul class="social-links">
-                            <li><a aria-label="Facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a aria-label="Instagram" href="https://www.instagram.com/mikaelimagon?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a></li>
-                            <li><a aria-label="Email" href="#"><i class="fas fa-envelope"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="participant-card">
-                        <img src="../img/perfil/sollyane.jpg" alt="Foto de Sollyane">
-                        <h4>Sollyane dos Santos Queiroz dias</h4>
-                        <p>Líder Auxiliar de Crianças</p>
-                        <ul class="social-links">
-                            <li><a aria-label="Facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a aria-label="Instagram" href="https://www.instagram.com/sollyane.queiroz?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a></li>
-                            <li><a aria-label="Email" href="#"><i class="fas fa-envelope"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
                 
                 <a href="../ministries.html" class="btn btn-outline" style="margin-top: 3rem;">Voltar para Ministérios</a>
             </div>
@@ -337,6 +222,11 @@
         </div>
     </footer>
 
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <button class="close-lightbox" onclick="closeLightbox(null, true)">×</button>
+        <div class="lightbox-content" id="lightboxContent"></div>
+    </div>
+
     <div class="chat-toggle-btn" id="openMinistryChat">
         <i class="fas fa-robot"></i>
     </div>
@@ -346,8 +236,7 @@
             <h4><i class="fas fa-running"></i> Cadastro Dança DNA</h4>
             <span class="close-chat" id="closeMinistryChat">×</span>
         </div>
-        <div class="chat-body" id="ministryChatBody">
-            </div>
+        <div class="chat-body" id="ministryChatBody"></div>
         <div class="chat-input-area" id="ministryInputArea">
             <input type="text" id="ministryChatInput" placeholder="Digite sua resposta...">
             <button id="ministrySendBtn"><i class="fas fa-paper-plane"></i></button>
@@ -357,8 +246,95 @@
     <script src="../js/script.js"></script>
 
     <script>
+        // ============================================
+        // 1. CONFIGURAÇÃO DA GALERIA GOOGLE DRIVE
+        // ============================================
+        
+        // ⚠️ COLE A URL DO SEU GOOGLE APPS SCRIPT AQUI:
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx5EH-Up5_QT5hh2PeesKJMEodzTNDNyiWgvZfyuxOXBoR_udYnr_RhoBNNDI25fCp2/exec'; 
+        
+        // ⚠️ COLE O ID DA PASTA "DANÇA" AQUI:
+        const FOLDER_ID = '1Qxc3BmDLo4zN_URuD3tQT_j-irX6l-66'; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGallery();
+        });
+
+        async function loadGallery() {
+            const grid = document.getElementById('ministryGallery');
+            
+            try {
+                // Chama o script para listar arquivos
+                const response = await fetch(`${SCRIPT_URL}?action=list&folderId=${FOLDER_ID}`);
+                const files = await response.json();
+
+                grid.innerHTML = ''; // Limpa loading
+
+                if (!files || files.length === 0) {
+                    grid.innerHTML = '<div class="status-msg">Nenhuma foto encontrada nesta pasta.</div>';
+                    return;
+                }
+
+                // Limita a exibir apenas as 20 fotos mais recentes (opcional)
+                // files = files.slice(0, 20);
+
+                files.forEach(file => {
+                    // Link otimizado para mobile (miniatura)
+                    const thumbUrl = `https://lh3.googleusercontent.com/d/${file.id}=s400`;
+
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.onclick = () => openLightbox(file.type, file.id);
+
+                    if (file.type.includes('image')) {
+                        item.innerHTML = `<img src="${thumbUrl}" loading="lazy" alt="Foto Ministério">`;
+                    } else if (file.type.includes('video')) {
+                        item.innerHTML = `
+                            <img src="${thumbUrl}" loading="lazy" alt="Vídeo Ministério">
+                            <div class="video-overlay"><i class="fas fa-play play-icon"></i></div>
+                        `;
+                    }
+                    grid.appendChild(item);
+                });
+
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = '<div class="status-msg">Erro ao carregar a galeria. Verifique a conexão.</div>';
+            }
+        }
+
+        // --- FUNÇÕES DO LIGHTBOX ---
+        function openLightbox(type, fileId) {
+            const lightbox = document.getElementById('lightbox');
+            const content = document.getElementById('lightboxContent');
+            content.innerHTML = '<div style="color:white"><i class="fas fa-spinner fa-spin"></i></div>';
+            
+            lightbox.classList.add('active');
+
+            setTimeout(() => {
+                if (type.includes('image')) {
+                    // Imagem Grande (=s2000)
+                    const fullUrl = `https://lh3.googleusercontent.com/d/${fileId}=s2000`;
+                    content.innerHTML = `<img src="${fullUrl}" class="lightbox-img">`;
+                } else {
+                    // Vídeo Player
+                    const videoUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                    content.innerHTML = `<iframe src="${videoUrl}" class="lightbox-video" allow="autoplay; fullscreen"></iframe>`;
+                }
+            }, 100);
+        }
+
+        function closeLightbox(event, force) {
+            if (force || event.target.id === 'lightbox') {
+                document.getElementById('lightbox').classList.remove('active');
+                setTimeout(() => { document.getElementById('lightboxContent').innerHTML = ''; }, 300);
+            }
+        }
+
+        // ============================================
+        // 2. SCRIPT DO CHAT (MANTIDO DO ORIGINAL)
+        // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Elementos
             const openBtn = document.getElementById('openMinistryChat');
             const headerSignUpBtn = document.getElementById('headerSignUpBtn');
             const closeBtn = document.getElementById('closeMinistryChat');
@@ -369,7 +345,6 @@
             const inputArea = document.getElementById('ministryInputArea');
 
             // ⚠️ ATENÇÃO: COLOQUE SEU NÚMERO AQUI
-            // Exemplo Brasil: 55 + DDD + Numero (Ex: 5527999998888)
             const adminPhoneNumber = "5527996992890"; 
 
             let step = 0;
@@ -388,26 +363,16 @@
                 }
             }
 
-            openBtn.addEventListener('click', openChat);
+            if(openBtn) openBtn.addEventListener('click', openChat);
+            if(headerSignUpBtn) headerSignUpBtn.addEventListener('click', (e) => { e.preventDefault(); openChat(); });
+            if(closeBtn) closeBtn.addEventListener('click', () => { chatWindow.style.display = 'none'; });
 
-            headerSignUpBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openChat();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                chatWindow.style.display = 'none';
-            });
-
-            sendBtn.addEventListener('click', processInput);
-            chatInput.addEventListener('keypress', (e) => {
-                if(e.key === 'Enter') processInput();
-            });
+            if(sendBtn) sendBtn.addEventListener('click', processInput);
+            if(chatInput) chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processInput(); });
 
             function processInput() {
                 const text = chatInput.value.trim();
                 if(!text) return;
-
                 userSay(text);
                 chatInput.value = '';
 
@@ -456,22 +421,17 @@
             }
 
             function addLinkButton() {
-                // Monta a mensagem final com os dados coletados
                 const finalMessage = `Olá! Gostaria de participar do Ministério de Dança DNA.%0A%0A*Nome:* ${userName}%0A*WhatsApp:* ${userPhone}%0A*Experiência:* ${experience}%0A*Preferência:* ${preference}`;
-                
                 const whatsappUrl = `https://wa.me/${adminPhoneNumber}?text=${finalMessage}`;
-
                 const btn = document.createElement('a');
                 btn.href = whatsappUrl;
                 btn.target = "_blank";
                 btn.className = 'whatsapp-group-btn';
                 btn.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Cadastro';
-                
                 const container = document.createElement('div');
                 container.style.textAlign = 'center';
                 container.style.width = '100%';
                 container.appendChild(btn);
-                
                 chatBody.appendChild(container);
                 chatBody.scrollTop = chatBody.scrollHeight;
             }
