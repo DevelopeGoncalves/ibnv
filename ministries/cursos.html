@@ -11,690 +11,390 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* --- ESTILOS DO CHATBOT (Mantidos) --- */
-        .chat-toggle-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #007bff;
+        /* --- ESTILOS GERAIS E HERO --- */
+        .ministry-cursos-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
+            url('../img/cursos.jpg'); 
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
             color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 9999;
-            transition: transform 0.3s ease;
+            text-align: center;
         }
-        .chat-toggle-btn:hover { transform: scale(1.1); }
 
-        .chat-window {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            max-width: 90%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
+        .ministry-cursos-bg h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        /* --- GRID E CARDS --- */
+        .course-selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 60px 15px;
+        }
+
+        .course-card {
+            background: #ffffff;
+            border-radius: 20px;
             overflow: hidden;
-            z-index: 9999;
-            font-family: 'Open Sans', sans-serif;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
             border: 1px solid #eee;
         }
 
-        .chat-header {
-            background-color: #007bff;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: #007bff;
         }
-        .chat-header h4 { margin: 0; font-size: 16px; font-family: 'Montserrat', sans-serif; }
-        .close-chat { cursor: pointer; font-size: 20px; }
 
-        .chat-body {
-            height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            background-color: #f9f9f9;
+        .course-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-card-content {
+            padding: 25px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 10px;
         }
 
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 14px;
-            line-height: 1.4;
-            animation: fadeIn 0.3s ease;
-        }
-        .bot-msg { background-color: #e9ecef; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .user-msg { background-color: #007bff; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-
-        .chat-input-area {
-            padding: 10px;
-            border-top: 1px solid #ddd;
+        .course-info-tags {
             display: flex;
-            gap: 5px;
-            background: white;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
         }
-        .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
-        .chat-input-area button {
+
+        .tag {
+            background: #f0f2f5;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tag-price { background: #e7f3ff; color: #007bff; }
+        .tag-date { background: #fff4e5; color: #d97706; }
+
+        /* --- LIDERANÇA PADRONIZADA (INÍCIO E CHAT) --- */
+        .leader-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Container de foto idêntico para ambos os lugares */
+        .leader-photo-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #007bff;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,123,255,0.2);
+        }
+
+        .leader-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Faz a imagem preencher o círculo sem distorcer */
+            display: block;    /* Remove espaços vazios indesejados */
+            object-position: center; /* Garante que o rosto fique centralizado */
+        }   
+
+        .leader-label { font-size: 10px; color: #888; text-transform: uppercase; display: block; }
+        .leader-name { font-weight: 700; color: #333; font-size: 15px; }
+
+        /* --- BOTÃO --- */
+        .btn-premium {
             background: #007bff;
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
             cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-premium:hover { background: #0056b3; transform: scale(1.02); }
+
+        /* --- CHAT WINDOW --- */
+        .chat-window {
+            position: fixed;
+            bottom: 0; right: 0;
+            width: 100%; height: 100%;
+            background: #fff;
+            display: none;
+            flex-direction: column;
+            z-index: 10000;
+        }
+
+        @media (min-width: 768px) {
+            .chat-window {
+                bottom: 30px; right: 30px;
+                width: 380px; height: 620px;
+                border-radius: 20px;
+                box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            }
+        }
+
+        .chat-header {
+            background: #007bff;
+            padding: 15px 20px;
+            color: white;
             display: flex;
             align-items: center;
-            justify-content: center;
-        }
-
-        .whatsapp-group-btn {
-            display: inline-block;
-            background-color: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 5px;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
-        .whatsapp-group-btn:hover { background-color: #1ebc57; color: white; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- NOVOS ESTILOS PARA O MODAL DE INSCRIÇÃO E CARDS --- */
-        
-        /* Garante que a imagem do card mantenha a proporção e não estique */
-        .course-card img {
-            width: 100%;            /* Ocupa toda a largura do card */
-            height: 200px;          /* Define uma altura fixa para todos os cards ficarem iguais */
-            object-fit: cover;      /* Corta as bordas excedentes para preencher sem distorcer */
-            object-position: top center; /* Centraliza a imagem focando mais no topo (bom para capas de livros) */
-            border-radius: 5px 5px 0 0; /* Arredonda apenas as pontas de cima */
-        }
-
-        .modal-overlay {
-            display: none; /* Oculto por padrão */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .registration-modal {
-            background: white;
-            padding: 25px;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 10px;
-            max-height: 90vh;
-            overflow-y: auto;
+            justify-content: space-between;
             position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-align: left; /* Garante alinhamento à esquerda no form */
         }
 
-        .registration-modal h3 {
-            color: #007bff;
-            margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
+        .chat-progress-container {
+            width: 100%; height: 4px;
+            background: rgba(255,255,255,0.2);
+            position: absolute; top: 0; left: 0;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
+        #chatProgressBar { width: 0%; height: 100%; background: #25d366; transition: width 0.3s; }
+
+        .chat-header-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #333;
+        /* Foto do líder dentro do chat agora usa a mesma classe do início */
+        .chat-header-profile .leader-photo-container {
+            border-color: white; /* Borda branca no fundo azul do chat para destaque */
         }
 
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Open Sans', sans-serif;
-            box-sizing: border-box; /* Garante que o padding não estoure a largura */
-        }
+        .chat-body { flex: 1; padding: 20px; background: #f8f9fa; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
 
-        .close-modal-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            cursor: pointer;
-            color: #888;
-        }
-        .close-modal-btn:hover { color: #333; }
+        .chat-input-area { padding: 20px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; }
 
-        .btn-submit-wpp {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-        .btn-submit-wpp:hover { background-color: #1ebc57; }
+        #ministryChatInput { flex: 1; border: 1px solid #ddd; padding: 12px 15px; border-radius: 25px; outline: none; }
     </style>
 </head>
 <body>
 
     <header class="main-header">
         <div class="container">
-            <a href="../index.html" class="logo">IBNV</a>
+            <a href="../index.html" class="logo">Igreja Batista Nova Vida</a>
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="../index.html">Início</a></li>
-                    <li><a href="../about.html">Sobre Nós</a></li>
-                    <li><a href="../sermons.html">Sermões</a></li>
+                    <li><a href="../about.html">Sobre</a></li>
                     <li><a href="../ministries.html">Ministérios</a></li>
-                    <li><a href="../pascoa.html">Páscoa</a></li>
-                    <li><a href="../events.html">Eventos</a></li>
-                    <li><a href="../give.html">Dê</a></li>
                     <li><a href="../contact.html">Contato</a></li>
-                    <li><a href="#" class="btn btn-primary" id="headerSignUpBtn">Cadastre-se</a></li>
                 </ul>
-                <div class="hamburger-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="section hero-page-header ministry-cursos-bg">
-            <div class="container text-center">
-                <h1>Nossos Cursos</h1>
-                <p>Cresça em conhecimento e fé através dos nossos cursos transformadores.</p>
+        <section class="section ministry-cursos-bg">
+            <div class="container">
+                <h1>Capacitação Cristã</h1>
+                <p>Crescimento espiritual através do conhecimento da Palavra.</p>
             </div>
         </section>
 
-        <section class="section ministry-detail-content">
-            <div class="container text-left">
-                <h2>Selecione um curso para saber mais:</h2>
-                <div class="course-selection-grid">
-                    
-                    <div class="course-card" onclick="showCourseDetail('educacao-filhos')">
-                        <img src="../img/ministries/educacao-filhos.jpg" alt="Capa do livro Educação de Filhos à Maneira de Deus">
-                        <h3>Educação de Filhos</h3>
-                        <p>Aprendendo a educar filhos à maneira de Deus. (Vagas Limitadas)</p>
-                    </div>
-                    <div class="course-card" onclick="showCourseDetail('cursos-geral')">
-                        <img src="../img/ministries/cursos.jpg" alt="Imagem genérica de cursos">
-                        <h3>Cursos em Geral</h3>
-                        <p>Descubra os fundamentos da fé cristã e aprofunde seu relacionamento com Deus.</p>
-                    </div>
-                    <div class="course-card" onclick="showCourseDetail('homem-ao-maximo')">
-                        <img src="../img/ministries/homem-ao-maximo.jpg" alt="Homem ao Máximo">
-                        <h3>Homem ao Máximo</h3>
-                        <p>Capacitando homens a viverem uma vida de propósito e liderança cristã.</p>
-                    </div>
-                    <div class="course-card" onclick="showCourseDetail('mulher-unica')">
-                        <img src="../img/ministries/mulher-unica.jpg" alt="Mulher Única">
-                        <h3>Mulher Única</h3>
-                        <p>Encorajando mulheres a descobrirem sua identidade em Cristo e seu potencial.</p>
-                    </div>
-                    <div class="course-card" onclick="showCourseDetail('coragem')">
-                        <img src="../img/ministries/coragem.jpg" alt="Coragem">
-                        <h3>Coragem</h3>
-                        <p>Um curso para fortalecer sua fé e enfrentar os desafios da vida com ousadia.</p>
-                    </div>
-                </div>
-
-                <div id="course-detail-section" style="display: none; margin-top: 4rem;">
-                    <button class="btn btn-outline" onclick="hideCourseDetail()">Voltar para a seleção de cursos</button>
-                    <h3 id="course-detail-title" style="margin-top: 2rem;"></h3>
-                    <div id="course-detail-content"></div>
-                </div>
-
-                <p style="margin-top: 3rem;">Para mais informações sobre os cursos ou para se inscrever, entre em contato conosco!</p>
-                <a href="../cadastro_de_professores.html" class="btn btn-primary">Fale Conosco</a>
-                <a href="cursos.html" class="btn btn-outline">Voltar Cursos</a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
         <div class="container">
-            <div class="footer-links">
-                <ul>
-                    <li><a href="../index.html">Início</a></li>
-                    <li><a href="../about.html">Sobre Nós</a></li>
-                    <li><a href="../sermons.html">Sermões</a></li>
-                    <li><a href="../ministries.html">Ministérios</a></li>
-                </ul>
-                <ul>
-                    <li><a href="../pascoa.html">Páscoa</a></li>
-                    <li><a href="../events.html">Eventos</a></li>
-                    <li><a href="../give.html">Dê</a></li>
-                    <li><a href="../contact.html">Contato</a></li>
-                    <li><a href="../privacy-policy.html">Privacidade</a></li>
-                </ul>
-            </div>
-            <div class="footer-info">
-                <p>© 2024 Igreja Batista Nova Vida. Todos os direitos reservados.</p>
-                <p>Feito com ❤️ pela comunidade.</p>
+            <div class="course-selection-grid">
+                
+                <div class="course-card">
+                    <img src="../img/ministries/homem-ao-maximo.jpg" class="course-banner" alt="Curso Homem ao Máximo">
+                    <div class="course-card-content">
+                        <h3>Homem ao Máximo</h3>
+                        <div class="course-info-tags">
+                            <span class="tag tag-date"><i class="far fa-calendar-alt"></i> Início: 10 de Março</span>
+                            <span class="tag tag-price"><i class="fas fa-tag"></i> Investimento: R$ 50,00</span>
+                            <span class="tag"><i class="far fa-clock"></i> Segundas, 19:30</span>
+                        </div>
+                        <p>Um estudo profundo sobre a responsabilidade e o caráter do homem segundo a Bíblia.</p>
+                        
+                        <div class="leader-badge">
+                            <div class="leader-photo-container">
+                                <img src="../img/perfil/pastor-mauricio.jpg" class="leader-photo" alt="Foto Líder">
+                            </div>
+                            <div class="leader-info-text">
+                                <span class="leader-label">Liderança</span>
+                                <span class="leader-name">.....</span>
+                            </div>
+                        </div>
+                        <button class="btn-premium" onclick="openChatWithCourse('Homem ao Máximo', 'Pr. João', '5527998286777', '../img/perfil/anselmo.jpg')">Quero me inscrever</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <img src="../img/ministries/mulher-unica.jpg" class="course-banner" alt="Curso Mulher Única">
+                    <div class="course-card-content">
+                        <h3>Mulher Única</h3>
+                        <div class="course-info-tags">
+                            <span class="tag tag-date"><i class="far fa-calendar-alt"></i> Início: 02 de Março 2026</span>
+                            <span class="tag tag-price"><i class="fas fa-tag"></i> Investimento: R$ 120,00</span>
+                            <span class="tag"><i class="far fa-clock"></i> Segunda - Feira, 19:30</span>
+                        </div>
+                        <p>Descobrindo a identidade feminina e o valor inestimável projetado pelo Criador.</p>
+                        
+                        <div class="leader-badge">
+                            <div class="leader-photo-container">
+                                <img src="../img/perfil/kezya.jpg" class="leader-photo" alt="Foto Líder">
+                            </div>
+                            <div class="leader-info-text">
+                                <span class="leader-label">Liderança</span>
+                                <span class="leader-name">Keyse Fernanda</span>
+                            </div>
+                        </div>
+                        <button class="btn-premium" onclick="openChatWithCourse('Mulher Única', 'Keyse Fernanda de Oliveira Jadyvsky', '5527996878901', '../img/perfil/kezya.jpg')">Quero me inscrever</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <img src="../img/cursos/Coragem.jpg" class="course-banner" alt="Curso Coragem">
+                    <div class="course-card-content">
+                        <h3>Coragem</h3>
+                        <div class="course-info-tags">
+                            <span class="tag tag-date"><i class="far fa-calendar-alt"></i> Início: 15 de Março</span>
+                            <span class="tag tag-price"><i class="fas fa-tag"></i> Investimento: Gratuito</span>
+                            <span class="tag"><i class="far fa-clock"></i> Quintas, 20:00</span>
+                        </div>
+                        <p>Treinamento intensivo para vencer desafios e viver uma fé ativa e ousada.</p>
+                        
+                        <div class="leader-badge">
+                            <div class="leader-photo-container">
+                                <img src="../img/perfil/ruan.jpg" class="leader-photo" alt="Foto Líder">
+                            </div>
+                            <div class="leader-info-text">
+                                <span class="leader-label">Liderança</span>
+                                <span class="leader-name">Ruan Ferreira Siqueira</span>
+                            </div>
+                        </div>
+                        <button class="btn-premium" onclick="openChatWithCourse('Coragem', 'Ruan Ferreira Siqueira', '5527999807056', '../img/perfil/ruan.jpg')">Quero me inscrever</button>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </footer>
-
-    <div class="chat-toggle-btn" id="openMinistryChat">
-        <i class="fas fa-robot"></i>
-    </div>
+    </main>
 
     <div class="chat-window" id="ministryChatWindow">
         <div class="chat-header">
-            <h4><i class="fas fa-graduation-cap"></i> Inscrição Cursos</h4>
-            <span class="close-chat" id="closeMinistryChat">×</span>
-        </div>
-        <div class="chat-body" id="ministryChatBody">
+            <div class="chat-progress-container"><div id="chatProgressBar"></div></div>
+            <div class="chat-header-profile">
+                <div class="leader-photo-container">
+                    <img src="" id="chatLeaderImg" class="leader-photo">
+                </div>
+                <div class="chat-title" style="margin-left: 5px;">
+                    <p style="font-size: 9px; opacity: 0.9; margin:0; text-transform: uppercase;">Inscrição com</p>
+                    <h4 id="chatHeaderTitle" style="margin:0; font-size: 15px;">Líder</h4>
+                </div>
             </div>
+            <span style="cursor:pointer; font-size: 28px;" onclick="closeChat()">&times;</span>
+        </div>
+        <div class="chat-body" id="ministryChatBody"></div>
         <div class="chat-input-area" id="ministryInputArea">
             <input type="text" id="ministryChatInput" placeholder="Digite sua resposta...">
-            <button id="ministrySendBtn"><i class="fas fa-paper-plane"></i></button>
+            <button id="ministrySendBtn" style="background: #007bff; color: white; border:none; width: 45px; height: 45px; border-radius: 50%; cursor:pointer;"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <div class="modal-overlay" id="registrationModal">
-        <div class="registration-modal">
-            <span class="close-modal-btn" onclick="closeRegistrationModal()">&times;</span>
-            <h3>Inscrição: Educação de Filhos</h3>
-            <p style="font-size: 13px; color: #d9534f; margin-bottom: 15px; font-weight: bold;">
-                <i class="fas fa-exclamation-circle"></i> Vagas limitadas (Máx: 10 inscritos)
-            </p>
-            
-            <form id="courseForm" onsubmit="submitToWhatsapp(event)">
-                <div class="form-group">
-                    <label>Nome Completo:</label>
-                    <input type="text" id="regName" required placeholder="Seu nome completo">
-                </div>
-                
-                <div class="form-group">
-                    <label>Número Identidade (RG):</label>
-                    <input type="text" id="regRG" required placeholder="Apenas números">
-                </div>
-
-                <div class="form-group">
-                    <label>Número CPF:</label>
-                    <input type="text" id="regCPF" required placeholder="000.000.000-00">
-                </div>
-
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" id="regEmail" required placeholder="seu@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label>Telefone (com DDD):</label>
-                    <input type="tel" id="regPhone" placeholder="Ex: 27 99999-8888" required>
-                </div>
-
-                <div class="form-group">
-                    <label>É membro da IBNV?</label>
-                    <select id="regMember">
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Cônjuge vai participar?</label>
-                    <select id="regSpouseCheck" onchange="toggleSpouseField()">
-                        <option value="Não">Não</option>
-                        <option value="Sim">Sim</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="spouseNameField" style="display: none;">
-                    <label>Nome Completo do Cônjuge:</label>
-                    <input type="text" id="regSpouseName" placeholder="Nome do cônjuge">
-                </div>
-
-                <button type="submit" class="btn-submit-wpp">
-                    <i class="fab fa-whatsapp"></i> Enviar Inscrição
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <script src="../js/script.js"></script>
-    
     <script>
-        // --- FUNÇÕES DE DETALHES DOS CURSOS ---
-        function showCourseDetail(courseId) {
-            const courseDetailSection = document.getElementById('course-detail-section');
-            const courseDetailTitle = document.getElementById('course-detail-title');
-            const courseDetailContent = document.getElementById('course-detail-content');
-            const courseSelectionGrid = document.querySelector('.course-selection-grid');
+        let step = 0;
+        let userData = {};
+        let currentLeaderPhone = "";
+        let currentCourse = "";
 
-            courseSelectionGrid.style.display = 'none';
-            courseDetailSection.style.display = 'block';
+        const chatBody = document.getElementById('ministryChatBody');
+        const chatInput = document.getElementById('ministryChatInput');
+        const chatWindow = document.getElementById('ministryChatWindow');
+        const progressBar = document.getElementById('chatProgressBar');
 
-            let title = '';
-            let content = '';
-
-            switch (courseId) {
-                case 'educacao-filhos':
-                    title = 'Educação de Filhos à Maneira de Deus';
-                    content = `
-                        <p>Este curso, baseado no material da <strong>Universidade da Família (UDF)</strong>, é fundamental para pais que desejam criar seus filhos segundo os princípios bíblicos, formando caráter e responsabilidade desde a pré-escola até a pré-adolescência.</p>
-                        <p><strong>Tópicos abordados:</strong></p>
-                        <ul>
-                            <li>Fundamentos bíblicos da educação</li>
-                            <li>Como estabelecer autoridade com amor</li>
-                            <li>Princípios de obediência e correção</li>
-                            <li>Construindo um relacionamento de confiança</li>
-                        </ul>
-                        <p><strong>Material:</strong> Guia do Líder - Gary e Anne Marie Ezzo</p>
-                        <p style="color: #d9534f; font-weight: bold;">⚠️ Atenção: Vagas Encerradas!</p>
-                    `;
-                    break;
-
-                case 'cursos-geral':
-                    title = 'Cursos em Geral';
-                    content = `
-                        <p>Nossos Cursos em Geral são projetados para todos que desejam aprofundar seu conhecimento da Bíblia e da fé cristã.</p>
-                        <p><strong>Tópicos abordados:</strong></p>
-                        <ul>
-                            <li>Introdução à Bíblia</li>
-                            <li>Doutrinas Fundamentais</li>
-                            <li>Vida Cristã Prática</li>
-                            <li>História da Igreja</li>
-                        </ul>
-                        <p><strong>Líderes:</strong> Equipe de Pastores e Professores</p>
-                        <p><strong>Próxima Turma:</strong> Inscrições abertas para o próximo trimestre!</p>
-                        <img src="../img/ministries/cursos-galeria-1.jpg" onerror="this.style.display='none'" alt="Pessoas estudando a bíblia" class="ministry-detail-img">
-                        <p>Este curso é ideal para novos convertidos e para aqueles que desejam revisar e aprofundar seus fundamentos.</p>
-                    `;
-                    break;
-                case 'homem-ao-maximo':
-                    title = 'Homem ao Máximo';
-                    content = `
-                        <p>O curso "Homem ao Máximo" é um programa abrangente que visa equipar homens em todas as áreas da vida, à luz dos princípios bíblicos.</p>
-                        <p><strong>Temas incluídos:</strong></p>
-                        <ul>
-                            <li>Paternidade e Família</li>
-                            <li>Liderança e Caráter</li>
-                            <li>Finanças e Integridade</li>
-                            <li>Espiritualidade e Propósito</li>
-                        </ul>
-                        <p><strong>Líderes:</strong> Pastor João e equipe</p>
-                        <p><strong>Frequência:</strong> Encontros semanais às quartas-feiras</p>
-                        <img src="../img/ministries/homem-ao-maximo-detail.jpg" onerror="this.style.display='none'" alt="Grupo de homens em reunião" class="ministry-detail-img">
-                        <p>Participe e descubra como ser um homem que honra a Deus em tudo!</p>
-                    `;
-                    break;
-                case 'mulher-unica':
-                    title = 'Mulher Única';
-                    content = `
-                        <p>O curso "Mulher Única" é um convite para mulheres de todas as idades explorarem sua identidade, valor e propósito em Cristo.</p>
-                        <p><strong>O que você aprenderá:</strong></p>
-                        <ul>
-                            <li>Autoestima e Confiança em Deus</li>
-                            <li>Relacionamentos Saudáveis</li>
-                            <li>Administração do Lar e Tempo</li>
-                            <li>Crescimento Espiritual</li>
-                        </ul>
-                        <p><strong>Líderes:</strong> Luziene e Equipe de Mulheres</p>
-                        <p><strong>Frequência:</strong> Encontros quinzenais aos sábados</p>
-                        <img src="../img/ministries/mulher-unica-detail.jpg" onerror="this.style.display='none'" alt="Grupo de mulheres em confraternização" class="ministry-detail-img">
-                        <p>Junte-se a nós para uma jornada de descoberta e fortalecimento!</p>
-                    `;
-                    break;
-                case 'coragem':
-                    title = 'Coragem';
-                    content = `
-                        <p>O curso "Coragem" foi desenvolvido para aqueles que buscam fortalecer sua fé e encontrar ousadia para viver os planos de Deus, superando medos e desafios.</p>
-                        <p><strong>Pontos-chave:</strong></p>
-                        <ul>
-                            <li>Confiança em Deus em Meio à Adversidade</li>
-                            <li>Como Vencer o Medo e a Insegurança</li>
-                            <li>Ativando sua Fé para Grandes Conquistas</li>
-                            <li>Vivendo uma Vida com Propósito Divino</li>
-                        </ul>
-                        <p><strong>Líderes:</strong> Pastor André</p>
-                        <p><strong>Duração:</strong> 8 semanas</p>
-                        <img src="../img/ministries/coragem-detail.jpg" onerror="this.style.display='none'" alt="Pessoa meditando com a bíblia" class="ministry-detail-img">
-                        <p>Descubra a verdadeira coragem que vem de Deus e transforme sua vida!</p>
-                    `;
-                    break;
-                default:
-                    title = 'Detalhes do Curso';
-                    content = '<p>Selecione um curso para ver seus detalhes.</p>';
-            }
-
-            courseDetailTitle.innerHTML = title;
-            courseDetailContent.innerHTML = content;
+        function botSay(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.style = "background: #fff; padding: 12px 16px; border-radius: 15px 15px 15px 2px; font-size: 14px; max-width: 85%; align-self: flex-start; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.05);";
+            msgDiv.innerHTML = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        function hideCourseDetail() {
-            const courseDetailSection = document.getElementById('course-detail-section');
-            const courseSelectionGrid = document.querySelector('.course-selection-grid');
-
-            courseDetailSection.style.display = 'none';
-            courseSelectionGrid.style.display = 'grid';
+        function userSay(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.style = "background: #007bff; color: white; padding: 12px 16px; border-radius: 15px 15px 2px 15px; font-size: 14px; max-width: 85%; align-self: flex-end; box-shadow: 0 2px 5px rgba(0,0,0,0.1);";
+            msgDiv.textContent = text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        // --- FUNÇÕES DO NOVO FORMULÁRIO DE INSCRIÇÃO ---
-
-        function openRegistrationModal() {
-            document.getElementById('registrationModal').style.display = 'flex';
-        }
-
-        function closeRegistrationModal() {
-            document.getElementById('registrationModal').style.display = 'none';
-        }
-
-        function toggleSpouseField() {
-            const select = document.getElementById('regSpouseCheck');
-            const field = document.getElementById('spouseNameField');
-            if (select.value === 'Sim') {
-                field.style.display = 'block';
-                document.getElementById('regSpouseName').required = true;
-            } else {
-                field.style.display = 'none';
-                document.getElementById('regSpouseName').value = ''; 
-                document.getElementById('regSpouseName').required = false;
-            }
-        }
-
-        function submitToWhatsapp(e) {
-            e.preventDefault(); 
-
-            // Coleta os dados
-            const name = document.getElementById('regName').value;
-            const rg = document.getElementById('regRG').value;
-            const cpf = document.getElementById('regCPF').value;
-            const email = document.getElementById('regEmail').value;
-            const phone = document.getElementById('regPhone').value;
-            const member = document.getElementById('regMember').value;
-            const hasSpouse = document.getElementById('regSpouseCheck').value;
-            const spouseName = document.getElementById('regSpouseName').value;
-
-            // NÚMERO DE TELEFONE DO ADMIN
-            const adminPhone = "5527999212272"; 
-
-            // Monta a mensagem formatada
-            let msg = `*NOVA INSCRIÇÃO: Educação de Filhos*%0A%0A`;
-            msg += `*Nome:* ${name}%0A`;
-            msg += `*RG:* ${rg}%0A`;
-            msg += `*CPF:* ${cpf}%0A`;
-            msg += `*Email:* ${email}%0A`;
-            msg += `*Telefone:* ${phone}%0A`;
-            msg += `*Membro IBNV:* ${member}%0A`;
-            msg += `*Cônjuge participa:* ${hasSpouse}%0A`;
+        function openChatWithCourse(course, leader, phone, leaderImg) {
+            chatWindow.style.display = 'flex';
+            chatBody.innerHTML = '';
+            document.getElementById('ministryInputArea').style.display = 'flex';
+            step = 1;
+            currentCourse = course;
+            currentLeaderPhone = phone;
+            userData = {};
+            progressBar.style.width = "20%";
             
-            if (hasSpouse === 'Sim' && spouseName) {
-                msg += `*Nome do Cônjuge:* ${spouseName}%0A`;
-            }
+            document.getElementById('chatLeaderImg').src = leaderImg;
+            document.getElementById('chatHeaderTitle').innerText = leader;
 
-            msg += `%0A_Por favor, confirme se ainda há vagas (Limite: 10)._`;
-
-            // Abre o WhatsApp
-            window.open(`https://wa.me/${adminPhone}?text=${msg}`, '_blank');
-            
-            closeRegistrationModal();
+            botSay(`Olá! Você está se inscrevendo no curso: **${course}**.`);
+            botSay(`Para começar, qual o seu **Nome Completo**?`);
         }
 
-        // Fecha modal ao clicar fora dele
-        window.onclick = function(event) {
-            const modal = document.getElementById('registrationModal');
-            if (event.target == modal) {
-                closeRegistrationModal();
+        function closeChat() { chatWindow.style.display = 'none'; }
+
+        function processInput() {
+            const text = chatInput.value.trim();
+            if(!text) return;
+            userSay(text);
+            chatInput.value = '';
+
+            if(step === 1) { userData.nome = text; step = 2; progressBar.style.width = "40%"; botSay("Legal! Agora, informe seu **RG**:"); }
+            else if(step === 2) { userData.rg = text; step = 3; progressBar.style.width = "60%"; botSay("Agora o seu **CPF**:"); }
+            else if(step === 3) { userData.cpf = text; step = 4; progressBar.style.width = "80%"; botSay("Informe seu melhor **E-mail**:"); }
+            else if(step === 4) { userData.email = text; step = 5; progressBar.style.width = "100%"; botSay("Para finalizar, seu **WhatsApp** com DDD:"); }
+            else if(step === 5) { 
+                userData.telefone = text; 
+                botSay("Excelente! Seus dados foram salvos. Clique no botão abaixo para concluir via WhatsApp.");
+                finishInscricao(); 
             }
         }
-    </script>
 
-    <script>
-        // --- SCRIPT DO CHATBOT GERAL (Mantido do Original) ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const openBtn = document.getElementById('openMinistryChat');
-            const headerSignUpBtn = document.getElementById('headerSignUpBtn');
-            const closeBtn = document.getElementById('closeMinistryChat');
-            const chatWindow = document.getElementById('ministryChatWindow');
-            const chatBody = document.getElementById('ministryChatBody');
-            const chatInput = document.getElementById('ministryChatInput');
-            const sendBtn = document.getElementById('ministrySendBtn');
-            const inputArea = document.getElementById('ministryInputArea');
+        function finishInscricao() {
+            document.getElementById('ministryInputArea').style.display = 'none';
+            const msgFinal = `*NOVA INSCRIÇÃO:*%0A*Curso:* ${currentCourse}%0A*Nome:* ${userData.nome}%0A*RG:* ${userData.rg}%0A*CPF:* ${userData.cpf}%0A*WhatsApp:* ${userData.telefone}%0A*Email:* ${userData.email}`;
+            const url = `https://wa.me/${currentLeaderPhone}?text=${msgFinal}`;
+            chatBody.innerHTML += `
+                <div style="text-align:center; padding: 20px;">
+                    <a href="${url}" target="_blank" style="background:#25d366; color:white; padding: 16px 25px; border-radius: 12px; text-decoration:none; font-weight:700; display:inline-block; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">
+                        CONCLUIR NO WHATSAPP
+                    </a>
+                </div>`;
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
 
-            const adminPhoneNumber = "5527998286777"; 
-
-            let step = 0;
-            let userName = "";
-            let userPhone = "";
-            let selectedCourse = "";
-            let availability = "";
-
-            function openChat() {
-                chatWindow.style.display = 'flex';
-                if(step === 0) {
-                    botSay("Olá! A paz do Senhor! 📚");
-                    setTimeout(() => botSay("Que alegria ver seu interesse em crescer no conhecimento."), 1000);
-                    setTimeout(() => botSay("Para começarmos, qual é o seu **Nome Completo**?"), 2500);
-                    step = 1;
-                }
-            }
-
-            openBtn.addEventListener('click', openChat);
-
-            headerSignUpBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openChat();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                chatWindow.style.display = 'none';
-            });
-
-            sendBtn.addEventListener('click', processInput);
-            chatInput.addEventListener('keypress', (e) => {
-                if(e.key === 'Enter') processInput();
-            });
-
-            function processInput() {
-                const text = chatInput.value.trim();
-                if(!text) return;
-
-                userSay(text);
-                chatInput.value = '';
-
-                if(step === 1) {
-                    userName = text;
-                    setTimeout(() => botSay(`Prazer, ${userName}! 🎓`), 600);
-                    setTimeout(() => botSay("Para contato, qual é o seu número de **WhatsApp (com DDD)**?"), 1500);
-                    step = 2;
-                } 
-                else if(step === 2) {
-                    userPhone = text;
-                    setTimeout(() => botSay("Qual curso você tem interesse em participar (Ex: Homem ao Máximo, Mulher Única, Coragem)?"), 1000);
-                    step = 3;
-                }
-                else if(step === 3) {
-                    selectedCourse = text;
-                    setTimeout(() => botSay("Certo. E qual sua disponibilidade de horário para aulas (Manhã, Tarde ou Noite)?"), 1000);
-                    step = 4;
-                }
-                else if(step === 4) {
-                    availability = text;
-                    setTimeout(() => botSay("Perfeito! Vamos encaminhar sua solicitação."), 800);
-                    setTimeout(() => {
-                        botSay("Clique abaixo para enviar suas informações para a nossa secretaria via WhatsApp:");
-                        addLinkButton();
-                        inputArea.style.display = 'none';
-                    }, 2000);
-                    step = 5;
-                }
-            }
-
-            function botSay(text) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'message bot-msg';
-                msgDiv.innerHTML = text;
-                chatBody.appendChild(msgDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }
-
-            function userSay(text) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'message user-msg';
-                msgDiv.textContent = text;
-                chatBody.appendChild(msgDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }
-
-            function addLinkButton() {
-                const finalMessage = `Olá! Gostaria de me inscrever em um curso.%0A%0A*Nome:* ${userName}%0A*WhatsApp:* ${userPhone}%0A*Curso de Interesse:* ${selectedCourse}%0A*Disponibilidade:* ${availability}`;
-                const whatsappUrl = `https://wa.me/${adminPhoneNumber}?text=${finalMessage}`;
-
-                const btn = document.createElement('a');
-                btn.href = whatsappUrl;
-                btn.target = "_blank";
-                btn.className = 'whatsapp-group-btn';
-                btn.innerHTML = '<i class="fab fa-whatsapp"></i> Enviar Inscrição';
-                
-                const container = document.createElement('div');
-                container.style.textAlign = 'center';
-                container.style.width = '100%';
-                container.appendChild(btn);
-                
-                chatBody.appendChild(container);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }
-        });
+        document.getElementById('ministrySendBtn').addEventListener('click', processInput);
+        chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processInput(); });
     </script>
 </body>
 </html>
