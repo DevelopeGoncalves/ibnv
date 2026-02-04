@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Igreja Batista Nova Vida - Ministério Cursos</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,7 +98,6 @@
             border-top: 1px solid #eee;
         }
 
-        /* Container de foto idêntico para ambos os lugares */
         .leader-photo-container {
             width: 100px;
             height: 100px;
@@ -112,9 +111,9 @@
         .leader-photo {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Faz a imagem preencher o círculo sem distorcer */
-            display: block;    /* Remove espaços vazios indesejados */
-            object-position: center; /* Garante que o rosto fique centralizado */
+            object-fit: cover;
+            display: block;
+            object-position: center;
         }   
 
         .leader-label { font-size: 10px; color: #888; text-transform: uppercase; display: block; }
@@ -181,16 +180,23 @@
             gap: 12px;
         }
 
-        /* Foto do líder dentro do chat agora usa a mesma classe do início */
         .chat-header-profile .leader-photo-container {
-            border-color: white; /* Borda branca no fundo azul do chat para destaque */
+            border-color: white;
         }
 
         .chat-body { flex: 1; padding: 20px; background: #f8f9fa; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
 
         .chat-input-area { padding: 20px; background: white; border-top: 1px solid #eee; display: flex; gap: 10px; }
 
-        #ministryChatInput { flex: 1; border: 1px solid #ddd; padding: 12px 15px; border-radius: 25px; outline: none; }
+        /* --- INPUT COM CORREÇÃO DE ZOOM --- */
+        #ministryChatInput { 
+            flex: 1; 
+            border: 1px solid #ddd; 
+            padding: 12px 15px; 
+            border-radius: 25px; 
+            outline: none;
+            font-size: 16px; /* Tamanho 16px evita zoom no iOS */
+        }
     </style>
 </head>
 <body>
@@ -431,7 +437,7 @@
         let userData = {};
         let currentLeaderPhone = "";
         let currentCourse = "";
-        let isCouple = false; // Nova flag para controle de casal
+        let isCouple = false; // Controle de casal
 
         const chatBody = document.getElementById('ministryChatBody');
         const chatInput = document.getElementById('ministryChatInput');
@@ -480,7 +486,7 @@
             userSay(text);
             chatInput.value = '';
 
-            // Lógica de Fluxo por Etapas
+            // Lógica de Fluxo por Etapas (inclui lógica de Casal)
             if(step === 1) { 
                 userData.nome = text; 
                 step = 1.5; 
