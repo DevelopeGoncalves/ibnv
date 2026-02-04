@@ -431,6 +431,7 @@
         let userData = {};
         let currentLeaderPhone = "";
         let currentCourse = "";
+        let isCouple = false; // Nova flag para controle de casal
 
         const chatBody = document.getElementById('ministryChatBody');
         const chatInput = document.getElementById('ministryChatInput');
@@ -439,7 +440,7 @@
 
         function botSay(text) {
             const msgDiv = document.createElement('div');
-            msgDiv.style = "background: #fff; padding: 12px 16px; border-radius: 15px 15px 15px 2px; font-size: 14px; max-width: 85%; align-self: flex-start; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.05);";
+            msgDiv.style = "background: #fff; padding: 12px 16px; border-radius: 15px 15px 15px 2px; font-size: 14px; max-width: 85%; align-self: flex-start; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 5px;";
             msgDiv.innerHTML = text;
             chatBody.appendChild(msgDiv);
             chatBody.scrollTop = chatBody.scrollHeight;
@@ -447,7 +448,7 @@
 
         function userSay(text) {
             const msgDiv = document.createElement('div');
-            msgDiv.style = "background: #007bff; color: white; padding: 12px 16px; border-radius: 15px 15px 2px 15px; font-size: 14px; max-width: 85%; align-self: flex-end; box-shadow: 0 2px 5px rgba(0,0,0,0.1);";
+            msgDiv.style = "background: #007bff; color: white; padding: 12px 16px; border-radius: 15px 15px 2px 15px; font-size: 14px; max-width: 85%; align-self: flex-end; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 5px;";
             msgDiv.textContent = text;
             chatBody.appendChild(msgDiv);
             chatBody.scrollTop = chatBody.scrollHeight;
@@ -461,7 +462,8 @@
             currentCourse = course;
             currentLeaderPhone = phone;
             userData = {};
-            progressBar.style.width = "20%";
+            isCouple = false;
+            progressBar.style.width = "10%";
             
             document.getElementById('chatLeaderImg').src = leaderImg;
             document.getElementById('chatHeaderTitle').innerText = leader;
@@ -478,21 +480,74 @@
             userSay(text);
             chatInput.value = '';
 
-            if(step === 1) { userData.nome = text; step = 2; progressBar.style.width = "40%"; botSay("Legal! Agora, informe seu **RG**:"); }
-            else if(step === 2) { userData.rg = text; step = 3; progressBar.style.width = "60%"; botSay("Agora o seu **CPF**:"); }
-            else if(step === 3) { userData.cpf = text; step = 4; progressBar.style.width = "80%"; botSay("Informe seu melhor **E-mail**:"); }
-            else if(step === 4) { userData.email = text; step = 5; progressBar.style.width = "100%"; botSay("Para finalizar, seu **WhatsApp** com DDD:"); }
+            // Lógica de Fluxo por Etapas
+            if(step === 1) { 
+                userData.nome = text; 
+                step = 1.5; 
+                progressBar.style.width = "20%";
+                botSay("Deseja inscrever seu **Cônjuge** também? (Digite **Sim** ou **Não**)"); 
+            }
+            else if(step === 1.5) {
+                if(text.toLowerCase().includes("sim")) {
+                    isCouple = true;
+                    step = 1.6;
+                    botSay("Entendido! Qual o **Nome Completo do Cônjuge**?");
+                } else {
+                    isCouple = false;
+                    step = 2;
+                    botSay("Ok, seguiremos com a inscrição individual. Informe seu **RG**:");
+                }
+            }
+            else if(step === 1.6) {
+                userData.nomeConjuge = text;
+                step = 2;
+                progressBar.style.width = "30%";
+                botSay("Perfeito. Agora informe o **RG** (se casal, coloque os dois separados por barra /):");
+            }
+            else if(step === 2) { 
+                userData.rg = text; 
+                step = 3; 
+                progressBar.style.width = "50%"; 
+                botSay("Agora o seu **CPF** (ou de ambos):"); 
+            }
+            else if(step === 3) { 
+                userData.cpf = text; 
+                step = 4; 
+                progressBar.style.width = "70%"; 
+                botSay("Informe o melhor **E-mail** para contato:"); 
+            }
+            else if(step === 4) { 
+                userData.email = text; 
+                step = 5; 
+                progressBar.style.width = "90%"; 
+                botSay("Para finalizar, o **WhatsApp** com DDD:"); 
+            }
             else if(step === 5) { 
                 userData.telefone = text; 
-                botSay("Excelente! Seus dados foram salvos. Clique no botão abaixo para concluir via WhatsApp.");
+                progressBar.style.width = "100%";
+                botSay("Excelente! Seus dados foram organizados. Clique no botão abaixo para concluir via WhatsApp.");
                 finishInscricao(); 
             }
         }
 
         function finishInscricao() {
             document.getElementById('ministryInputArea').style.display = 'none';
-            const msgFinal = `*NOVA INSCRIÇÃO:*%0A*Curso:* ${currentCourse}%0A*Nome:* ${userData.nome}%0A*RG:* ${userData.rg}%0A*CPF:* ${userData.cpf}%0A*WhatsApp:* ${userData.telefone}%0A*Email:* ${userData.email}`;
+            
+            let msgFinal = `*NOVA INSCRIÇÃO:*%0A`;
+            msgFinal += `*Curso:* ${currentCourse}%0A`;
+            msgFinal += `*Nome:* ${userData.nome}%0A`;
+            
+            if(isCouple) {
+                msgFinal += `*Cônjuge:* ${userData.nomeConjuge}%0A`;
+            }
+
+            msgFinal += `*RG:* ${userData.rg}%0A`;
+            msgFinal += `*CPF:* ${userData.cpf}%0A`;
+            msgFinal += `*WhatsApp:* ${userData.telefone}%0A`;
+            msgFinal += `*Email:* ${userData.email}`;
+
             const url = `https://wa.me/${currentLeaderPhone}?text=${msgFinal}`;
+            
             chatBody.innerHTML += `
                 <div style="text-align:center; padding: 20px;">
                     <a href="${url}" target="_blank" style="background:#25d366; color:white; padding: 16px 25px; border-radius: 12px; text-decoration:none; font-weight:700; display:inline-block; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">
