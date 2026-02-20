@@ -28,12 +28,39 @@
             text-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
+        /* --- FILTROS E BOTÕES EXTRAS --- */
+        .filters-section {
+            display: flex;
+            justify-content: flex-end;
+            padding: 30px 15px 0;
+        }
+
+        .btn-outline-primary {
+            border: 2px solid #007bff;
+            color: #007bff;
+            background: transparent;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline-primary:hover {
+            background: #007bff;
+            color: white;
+        }
+
         /* --- GRID E CARDS --- */
         .course-selection-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            padding: 60px 15px;
+            padding: 30px 15px 60px;
         }
 
         .course-card {
@@ -87,6 +114,7 @@
 
         .tag-price { background: #e7f3ff; color: #007bff; }
         .tag-date { background: #fff4e5; color: #d97706; }
+        .tag-soldout { background: #ffebe6; color: #d13217; } /* Nova tag para esgotados */
 
         /* --- LIDERANÇA PADRONIZADA (INÍCIO E CHAT) --- */
         .leader-badge {
@@ -119,7 +147,7 @@
         .leader-label { font-size: 10px; color: #888; text-transform: uppercase; display: block; }
         .leader-name { font-weight: 700; color: #333; font-size: 15px; }
 
-        /* --- BOTÃO --- */
+        /* --- BOTÕES --- */
         .btn-premium {
             background: #007bff;
             color: white;
@@ -135,6 +163,17 @@
         }
 
         .btn-premium:hover { background: #0056b3; transform: scale(1.02); }
+
+        .btn-disabled {
+            background: #d3d3d3 !important;
+            color: #7a7a7a !important;
+            cursor: not-allowed !important;
+        }
+
+        .btn-disabled:hover {
+            transform: none !important;
+            background: #d3d3d3 !important;
+        }
 
         /* --- CHAT WINDOW --- */
         .chat-window {
@@ -224,6 +263,13 @@
         </section>
 
         <div class="container">
+            
+            <div class="filters-section">
+                <button class="btn-outline-primary" id="btnLimparFiltros">
+                    <i class="fas fa-times"></i> Limpar Filtros
+                </button>
+            </div>
+
             <div class="course-selection-grid">
                 
                 <div class="course-card">
@@ -234,7 +280,7 @@
                             <span class="tag tag-date"><i class="far fa-calendar-alt"></i> Início: 02 de Março 2026</span>
                             <span class="tag tag-price"><i class="fas fa-tag"></i> Investimento: R$ 120,00</span>
                             <span class="tag"><i class="far fa-clock"></i> Segunda - Feira, 19:30</span>
-                            <span class="tag tag-price"><i class="fas fa-tag"></i> Quantidade de Vagas: 08</span>
+                            <span class="tag tag-soldout"><i class="fas fa-ban"></i> Vagas Encerradas</span>
                         </div>
                         <p>Descobrindo a identidade feminina e o valor inestimável projetado pelo Criador.</p>
                         
@@ -247,7 +293,7 @@
                                 <span class="leader-name">Keyse Fernanda</span>
                             </div>
                         </div>
-                        <button class="btn-premium" onclick="openChatWithCourse('Mulher Única', 'Keyse Fernanda de Oliveira Jadyvsky', '5527996878901', '../img/perfil/kezya.jpg')">Quero me inscrever</button>
+                        <button class="btn-premium btn-disabled" disabled>Vagas Encerradas</button>
                     </div>
                 </div>
 
@@ -285,7 +331,7 @@
                             <span class="tag tag-price"><i class="fas fa-tag"></i> Investimento: R$ 80,00</span>
                             <span class="tag"><i class="far fa-clock"></i> Domingo, 08h</span>
                             <span class="tag"><i class="far fa-clock"></i> Duração, 14 semanas</span>
-                            <span class="tag tag-price"><i class="fas fa-tag"></i> Quantidade de Vagas: 05</span>
+                            <span class="tag tag-soldout"><i class="fas fa-ban"></i> Vagas Encerradas</span>
                         </div>
                         <b>Somente Casal que faz o curso</b>
                         <p>Treinamento intensivo para vencer desafios e viver uma fé ativa e ousada.</p>
@@ -299,7 +345,7 @@
                                 <span class="leader-name">Valter Ferreira e Simone Freitas</span>
                             </div>
                         </div>
-                        <button class="btn-premium" onclick="openChatWithCourse('Casados para Sempre', 'Valter Ferreira e Simone Freitas', '5527998574165', '../img/perfil/simone.jpg')">Quero me inscrever</button>
+                        <button class="btn-premium btn-disabled" disabled>Vagas Encerradas</button>
                     </div>
                 </div>
 
@@ -565,6 +611,12 @@
 
         document.getElementById('ministrySendBtn').addEventListener('click', processInput);
         chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processInput(); });
+        
+        // Exemplo de funcionamento do botão "Limpar Filtros"
+        document.getElementById('btnLimparFiltros').addEventListener('click', () => {
+            console.log('Botão de limpar filtros acionado.');
+            // Aqui você pode adicionar a lógica futura para resetar filtros da tela.
+        });
     </script>
 </body>
 </html>
